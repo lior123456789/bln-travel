@@ -1,43 +1,159 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Edition 01 — The Carry-On",
+        "heading_a": "Engineered for movement.",
+        "heading_b": "Crafted to endure."
+      }
     },
     "featured-product": {
       "type": "featured-product",
-      "settings": {}
+      "settings": {
+        "product": "sliver-classic"
+      }
     },
     "anatomy": {
       "type": "anatomy",
       "blocks": {
-        "wave":    { "type": "feature", "settings": { "icon": "wave",    "label": "01 — Wave",    "title": "Inspired by motion.",    "body": "A signature wave pressed into every panel. Reduces visible scuffing." } },
-        "leather": { "type": "feature", "settings": { "icon": "leather", "label": "02 — Leather", "title": "Hand-finished corners.", "body": "Full-grain leather, vegetable-tanned in Tuscany. Stitched by hand." } },
-        "wheel":   { "type": "feature", "settings": { "icon": "wheel",   "label": "03 — Wheels",  "title": "Silent skate.",          "body": "360° polyurethane, sealed bearings, marble to gravel." } },
-        "frame":   { "type": "feature", "settings": { "icon": "frame",   "label": "04 — Frame",   "title": "Aerospace aluminum.",    "body": "7000-series, CNC-milled, anodized to a soft satin." } }
+        "wave": {
+          "type": "feature",
+          "settings": {
+            "icon": "wave",
+            "label": "01 — Wave",
+            "title": "Inspired by motion.",
+            "body": "A signature wave pressed into every panel. Reduces visible scuffing."
+          }
+        },
+        "leather": {
+          "type": "feature",
+          "settings": {
+            "icon": "leather",
+            "label": "02 — Leather",
+            "title": "Hand-finished corners.",
+            "body": "Full-grain leather, vegetable-tanned in Tuscany. Stitched by hand."
+          }
+        },
+        "wheel": {
+          "type": "feature",
+          "settings": {
+            "icon": "wheel",
+            "label": "03 — Wheels",
+            "title": "Silent skate.",
+            "body": "360° polyurethane, sealed bearings, marble to gravel."
+          }
+        },
+        "frame": {
+          "type": "feature",
+          "settings": {
+            "icon": "frame",
+            "label": "04 — Frame",
+            "title": "Aerospace aluminum.",
+            "body": "7000-series, CNC-milled, anodized to a soft satin."
+          }
+        }
       },
-      "block_order": ["wave", "leather", "wheel", "frame"],
-      "settings": { "eyebrow": "The Anatomy", "heading": "Four details." }
+      "block_order": [
+        "wave",
+        "leather",
+        "wheel",
+        "frame"
+      ],
+      "settings": {
+        "eyebrow": "The Anatomy",
+        "heading": "Four details."
+      }
     },
     "featured-collection": {
       "type": "featured-collection",
-      "settings": { "eyebrow": "The Collection", "heading": "Three finishes." }
+      "settings": {
+        "eyebrow": "The Collection",
+        "heading": "Three finishes.",
+        "collection": "the-carry-ons"
+      }
     },
     "process": {
       "type": "process",
       "blocks": {
-        "step-1": { "type": "step", "settings": { "number": "01", "title": "Hand-drawn. Then proved.",  "body": "Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal." } },
-        "step-2": { "type": "step", "settings": { "number": "02", "title": "Cut from a single sheet.",  "body": "Each panel is CNC-milled from a single billet of 7000-series aluminum. The wave pattern is press-formed, preserving the alloy's structural integrity." } },
-        "step-3": { "type": "step", "settings": { "number": "03", "title": "Leather, stitched by hand.", "body": "Full-grain vegetable-tanned leather from a fourth-generation Tuscan tannery. Four hours per case." } },
-        "step-4": { "type": "step", "settings": { "number": "04", "title": "Eighty-four checks.",        "body": "Wheel rotation. Latch tension. Hinge alignment. Seam pressure. Every case earns the BLN signature on the inner panel." } }
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Hand-drawn. Then proved.",
+            "body": "Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Cut from a single sheet.",
+            "body": "Each panel is CNC-milled from a single billet of 7000-series aluminum. The wave pattern is press-formed, preserving the alloy's structural integrity."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Leather, stitched by hand.",
+            "body": "Full-grain vegetable-tanned leather from a fourth-generation Tuscan tannery. Four hours per case."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Eighty-four checks.",
+            "body": "Wheel rotation. Latch tension. Hinge alignment. Seam pressure. Every case earns the BLN signature on the inner panel."
+          }
+        }
       },
-      "block_order": ["step-1", "step-2", "step-3", "step-4"],
-      "settings": {}
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4"
+      ],
+      "settings": {
+        "eyebrow": "The Process",
+        "heading": "Eighty-six steps.",
+        "heading_b": "Six weeks. One case."
+      }
     },
     "reserve": {
       "type": "reserve",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Reserve",
+        "heading": "First production run. Limited to 500.",
+        "body": "Join the list. Reserve your colorway. Ships Q1 2027. No payment required.",
+        "footnote": "Free shipping · Lifetime warranty · 100-day returns"
+      }
+    },
+    "header_7HYVPC": {
+      "type": "header",
+      "name": "Header",
+      "settings": {
+        "menu": "main-menu"
+      }
     }
   },
-  "order": ["hero", "featured-product", "anatomy", "featured-collection", "process", "reserve"]
+  "order": [
+    "header_7HYVPC",
+    "hero",
+    "featured-product",
+    "anatomy",
+    "featured-collection",
+    "process",
+    "reserve"
+  ]
 }
