@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BLN Travel — Carry-On</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { paper: '#ffffff', paperD: '#f6f5f1', ink: '#0e0e0e', ash: '#5a5a5a', mute: '#9a9a9a', line: '#ececec' },
+          fontFamily: { serif: ['"EB Garamond"', 'Georgia', 'serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #ffffff; color: #0e0e0e; font-family: 'EB Garamond', Georgia, serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; font-feature-settings: "kern","liga","onum"; }
+    .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; color: #5a5a5a; }
+    .cap-ink { color: #0e0e0e; }
+    .link-grow { position: relative; }
+    .link-grow::after { content:''; position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform-origin:left; transform:scaleX(0); transition:transform .4s ease; }
+    .link-grow:hover::after { transform: scaleX(1); }
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    /* Product description HTML styling */
+    .prose p { margin: 0 0 1em; color: #5a5a5a; line-height: 1.7; font-size: 17px; }
+    .prose h3 { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; color: #0e0e0e; margin: 2em 0 0.6em; letter-spacing: -0.005em; }
+    .prose ul { list-style: none; padding: 0; margin: 0 0 1em; }
+    .prose ul li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #ececec; color: #5a5a5a; }
+    .prose ul li strong { color: #0e0e0e; font-weight: 500; }
+    .prose strong { color: #0e0e0e; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- ─────────────── NAV ─────────────── -->
+  <nav id="nav" class="fixed inset-x-0 top-0 z-50 bg-paper transition-shadow duration-300">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 h-16 flex items-center justify-between">
+      <a href="/" class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</a>
+      <div class="hidden md:flex items-center gap-10 cap">
+        <a href="/#collection" class="link-grow hover:cap-ink">Collection</a>
+        <a href="/#detail"     class="link-grow hover:cap-ink">Carry-On</a>
+        <a href="/#craft"      class="link-grow hover:cap-ink">Craft</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <div id="bln-cart-toggle" class="cap cap-ink link-grow" style="cursor:pointer;">Cart (0)</div>
+      </div>
+    </div>
+    <div class="h-px bg-line"></div>
+  </nav>
+
+  <main class="pt-16">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 py-16">
+      <a href="/#collection" class="cap link-grow inline-block mb-8">← Back to Collection</a>
+
+      <div id="product-root" class="grid md:grid-cols-12 gap-12 lg:gap-20">
+        <!-- Image gallery -->
+        <div class="md:col-span-7 reveal">
+          <div id="product-main-image" class="bg-paperD aspect-[4/5] grid place-items-center mb-3">
+            <div class="cap text-mute">Loading…</div>
+          </div>
+          <div id="product-thumbs" class="grid grid-cols-4 gap-3"></div>
+        </div>
+
+        <!-- Info -->
+        <div class="md:col-span-5 reveal">
+          <div class="cap mb-4" id="product-eyebrow">The Carry-On</div>
+          <h1 id="product-title" class="font-serif text-4xl md:text-5xl text-ink leading-tight tracking-tight">Loading product…</h1>
+          <div id="product-price" class="font-serif text-2xl text-ink mt-4">&nbsp;</div>
+
+          <div id="product-description" class="prose mt-8 max-w-md"></div>
+
+          <div id="bln-buy-this" class="mt-8"></div>
+
+          <p class="cap mt-8">Free shipping · Lifetime warranty · 100-day returns</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─────────────── FOOTER (matches index) ─────────────── -->
+  <footer class="bg-paper border-t border-line py-16">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12">
+      <div class="grid md:grid-cols-12 gap-10">
+        <div class="md:col-span-4">
+          <div class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</div>
+          <p class="mt-4 text-ash leading-relaxed max-w-xs">Precision-engineered luggage from Berlin. Built by hand. Made to last decades.</p>
+        </div>
+        <div class="md:col-span-2"><h5 class="cap mb-4">Shop</h5><ul class="space-y-2 text-ash"><li><a href="/#collection" class="link-grow hover:text-ink">Carry-On</a></li></ul></div>
+        <div class="md:col-span-2"><h5 class="cap mb-4">Company</h5><ul class="space-y-2 text-ash"><li><a href="/#craft" class="link-grow hover:text-ink">Craft</a></li></ul></div>
+        <div class="md:col-span-2"><h5 class="cap mb-4">Service</h5><ul class="space-y-2 text-ash"><li><a href="#" class="link-grow hover:text-ink">Warranty</a></li><li><a href="#" class="link-grow hover:text-ink">Contact</a></li></ul></div>
+        <div class="md:col-span-2"><h5 class="cap mb-4">Follow</h5><ul class="space-y-2 text-ash"><li><a href="#" class="link-grow hover:text-ink">Instagram</a></li></ul></div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-3 cap">
+        <div>© 2026 BLN Travel · Berlin</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─────────────── SHOPIFY CONFIG (same as index) ─────────────── -->
+  <script>
+    window.BLN_SHOPIFY = {
+      SHOP_DOMAIN:       "bln-travel.myshopify.com",
+      STOREFRONT_TOKEN:  "754d33af907d7e9bed8fead6c83028b5",
+    };
+  </script>
+
+  <script>
+    // ── Read ?id= from URL ─────────────────────────────────────
+    const params = new URLSearchParams(location.search);
+    const productId = params.get("id");
+    if (!productId) {
+      document.getElementById("product-root").innerHTML =
+        '<div class="md:col-span-12 text-center py-32"><div class="cap mb-3">404</div><h2 class="font-serif text-3xl">No product specified</h2><p class="mt-4 text-ash">Pick one from the <a href="/#collection" class="link-grow">collection</a>.</p></div>';
+    }
+
+    const cfg = window.BLN_SHOPIFY;
+    const GQL = `https://${cfg.SHOP_DOMAIN}/api/2024-10/graphql.json`;
+
+    // ── Fetch product via Storefront API ───────────────────────
+    async function fetchProduct(id) {
+      const res = await fetch(GQL, {
+        method: "POST",
+        headers: {
+          "X-Shopify-Storefront-Access-Token": cfg.STOREFRONT_TOKEN,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `{
+            product(id: "gid://shopify/Product/${id}") {
+              id
+              title
+              descriptionHtml
+              productType
+              availableForSale
+              priceRange { minVariantPrice { amount currencyCode } }
+              images(first: 8) { edges { node { url altText width height } } }
+            }
+          }`,
+        }),
+      });
+      const json = await res.json();
+      return json.data && json.data.product;
+    }
+
+    // ── Render product ────────────────────────────────────────
+    function render(p) {
+      if (!p) {
+        document.getElementById("product-root").innerHTML =
+          '<div class="md:col-span-12 text-center py-32"><div class="cap mb-3">404</div><h2 class="font-serif text-3xl">Product not found</h2></div>';
+        return;
+      }
+      document.title = `${p.title} — BLN Travel`;
+      document.getElementById("product-title").textContent = p.title;
+      document.getElementById("product-eyebrow").textContent = p.productType || "The Carry-On";
+
+      const price = p.priceRange.minVariantPrice;
+      const fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: price.currencyCode || "USD", minimumFractionDigits: 0 });
+      document.getElementById("product-price").textContent = fmt.format(parseFloat(price.amount));
+
+      // Description (Shopify returns HTML)
+      document.getElementById("product-description").innerHTML = p.descriptionHtml || "";
+
+      // Images
+      const imgs = (p.images.edges || []).map((e) => e.node);
+      const main = document.getElementById("product-main-image");
+      const thumbs = document.getElementById("product-thumbs");
+      if (imgs.length > 0) {
+        main.innerHTML = `<img src="${imgs[0].url}" alt="${imgs[0].altText || p.title}" class="h-[80%] w-auto object-contain transition-opacity duration-300" id="main-img">`;
+        thumbs.innerHTML = imgs.slice(0, 4).map((img, i) =>
+          `<button class="aspect-square bg-paperD grid place-items-center overflow-hidden ${i === 0 ? 'ring-1 ring-ink' : ''}" data-thumb="${i}"><img src="${img.url}" alt="${img.altText || ''}" class="h-[80%] w-auto object-contain"></button>`
+        ).join("");
+        thumbs.querySelectorAll("[data-thumb]").forEach((btn, i) => {
+          btn.addEventListener("click", () => {
+            document.getElementById("main-img").src = imgs[i].url;
+            thumbs.querySelectorAll("[data-thumb]").forEach((b) => b.classList.remove("ring-1","ring-ink"));
+            btn.classList.add("ring-1","ring-ink");
+          });
+        });
+      } else {
+        main.innerHTML = '<div class="cap text-mute">No image</div>';
+      }
+
+      // Reveal
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+    }
+
+    if (productId) {
+      fetchProduct(productId)
+        .then(render)
+        .catch((err) => {
+          console.error("[product]", err);
+          document.getElementById("product-title").textContent = "Couldn't load product";
+        });
+    }
+
+    // ── Shopify Buy Button SDK — Add to Cart + cart drawer ────
+    (function () {
+      if (!productId) return;
+      const loadSdk = (cb) => {
+        if (window.ShopifyBuy && window.ShopifyBuy.UI) return cb();
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = "https://sdks.shopifycdn.com/buy-button/latest/buybutton.js";
+        s.onload = cb;
+        document.head.appendChild(s);
+      };
+      loadSdk(() => {
+        const client = ShopifyBuy.buildClient({ domain: cfg.SHOP_DOMAIN, storefrontAccessToken: cfg.STOREFRONT_TOKEN });
+        const ui = ShopifyBuy.UI.init(client);
+        ui.createComponent("product", {
+          id: productId,
+          node: document.getElementById("bln-buy-this"),
+          options: {
+            product: {
+              iframe: false,
+              contents: { img: false, title: false, price: false, options: false, quantity: false, description: false, button: true },
+              text: { button: "Add to Cart" },
+              styles: {
+                button: {
+                  "font-family": "'EB Garamond', Georgia, serif",
+                  "font-size": "11px",
+                  "letter-spacing": "0.26em",
+                  "text-transform": "uppercase",
+                  "padding": "14px 28px",
+                  "background-color": "#0e0e0e",
+                  "border": "1px solid #0e0e0e",
+                  ":hover": { "background-color": "#5a5a5a", "border-color": "#5a5a5a" },
+                },
+                product: { "max-width": "100%" },
+              },
+            },
+            cart: {
+              popup: false,
+              styles: { button: { "font-family": "'EB Garamond', Georgia, serif", "font-size": "11px", "letter-spacing": "0.26em", "text-transform": "uppercase", "background-color": "#0e0e0e", ":hover": { "background-color": "#5a5a5a" } } },
+              text: { title: "Your Cart", total: "Subtotal", button: "Checkout" },
+            },
+            toggle: { sticky: false },
+          },
+        });
+
+        const cartToggle = document.getElementById("bln-cart-toggle");
+        if (cartToggle) {
+          cartToggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            const cart = ui.components.cart && ui.components.cart[0];
+            if (cart) cart.open();
+          });
+          const tick = setInterval(() => {
+            const cart = ui.components.cart && ui.components.cart[0];
+            if (cart) {
+              const update = () => {
+                const count = cart.model.lineItems.reduce((s, i) => s + i.quantity, 0);
+                cartToggle.textContent = "Cart (" + count + ")";
+              };
+              update();
+              cart.view.iframe.parent.addEventListener("DOMSubtreeModified", update);
+              clearInterval(tick);
+            }
+          }, 300);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
