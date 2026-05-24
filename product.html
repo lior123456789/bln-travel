@@ -78,6 +78,8 @@
 
           <div id="bln-buy-this" class="mt-8"></div>
 
+          <a href="/" class="cap link-grow inline-block mt-6">← Continue shopping</a>
+
           <p class="cap mt-8">Free shipping · Lifetime warranty · 100-day returns</p>
         </div>
       </div>
@@ -263,7 +265,12 @@
             cart: {
               popup: false,
               styles: { button: { "font-family": "'EB Garamond', Georgia, serif", "font-size": "11px", "letter-spacing": "0.26em", "text-transform": "uppercase", "background-color": "#0e0e0e", ":hover": { "background-color": "#5a5a5a" } } },
-              text: { title: "Your Cart", total: "Subtotal", button: "Checkout" },
+              text: {
+                title: "Your Cart",
+                total: "Subtotal",
+                button: "Checkout",
+                notice: "Free shipping worldwide · Tap × to keep shopping",
+              },
             },
             toggle: { sticky: false },
           },
