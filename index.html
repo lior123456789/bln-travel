@@ -76,7 +76,10 @@
         <a href="#craft"      class="link-grow hover:cap-ink">Craft</a>
         <a href="#story"      class="link-grow hover:cap-ink">Story</a>
       </div>
-      <a href="#reserve" class="cap cap-ink link-grow">Reserve</a>
+      <div class="flex items-center gap-6">
+        <div id="bln-cart-toggle" class="cap cap-ink link-grow" style="cursor:pointer;">Cart (0)</div>
+        <a href="#reserve" class="cap cap-ink link-grow">Reserve</a>
+      </div>
     </div>
     <div class="h-px bg-line"></div>
   </nav>
@@ -142,7 +145,9 @@
             </div>
           </dl>
 
-          <a href="#reserve" class="mt-10 inline-block cap cap-ink link-grow">Reserve from $890 →</a>
+          <div id="bln-buy-silver-hero" class="mt-10">
+            <a href="#reserve" class="cap cap-ink link-grow bln-fallback-cta">Reserve from $890 →</a>
+          </div>
         </div>
 
       </div>
@@ -217,7 +222,7 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-px bg-line">
-      <a href="#reserve" class="group block bg-paper">
+      <div class="group block bg-paper">
         <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
           <img
             src="carry-on-silver.png"
@@ -232,9 +237,12 @@
           </div>
           <div class="cap cap-ink">$890</div>
         </div>
-      </a>
+        <div id="bln-buy-silver" class="px-2 pb-6">
+          <a href="#reserve" class="cap cap-ink link-grow bln-fallback-cta">Reserve →</a>
+        </div>
+      </div>
 
-      <a href="#reserve" class="group block bg-paper">
+      <div class="group block bg-paper">
         <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
           <img
             src="carry-on-gold.png"
@@ -249,9 +257,12 @@
           </div>
           <div class="cap cap-ink">$960</div>
         </div>
-      </a>
+        <div id="bln-buy-gold" class="px-2 pb-6">
+          <a href="#reserve" class="cap cap-ink link-grow bln-fallback-cta">Reserve →</a>
+        </div>
+      </div>
 
-      <a href="#reserve" class="group block bg-paper">
+      <div class="group block bg-paper">
         <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
           <img
             src="carry-on-obsidian.png"
@@ -266,7 +277,10 @@
           </div>
           <div class="cap cap-ink">$920</div>
         </div>
-      </a>
+        <div id="bln-buy-obsidian" class="px-2 pb-6">
+          <a href="#reserve" class="cap cap-ink link-grow bln-fallback-cta">Reserve →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -403,7 +417,33 @@
     </div>
   </footer>
 
+  <!-- ╔══════════════════════════════════════════════════════════╗ -->
+  <!-- ║  SHOPIFY CONFIG — fill these 5 values and the buttons    ║ -->
+  <!-- ║  go live. Leave them as 'YOUR_*' to keep the waitlist     ║ -->
+  <!-- ║  fallback active.                                          ║ -->
+  <!-- ║                                                            ║ -->
+  <!-- ║  Where to find each value:                                 ║ -->
+  <!-- ║  • SHOP_DOMAIN ........ Settings → Domains (the           ║ -->
+  <!-- ║                         *.myshopify.com one).             ║ -->
+  <!-- ║  • STOREFRONT_TOKEN ... Apps → Develop apps → create     ║ -->
+  <!-- ║                         app → Storefront API → Install    ║ -->
+  <!-- ║                         app → copy access token.          ║ -->
+  <!-- ║  • PRODUCT_*_ID ....... Open each product in Shopify;     ║ -->
+  <!-- ║                         the URL ends in /products/        ║ -->
+  <!-- ║                         {NUMERIC_ID}.                      ║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
   <script>
+    window.BLN_SHOPIFY = {
+      SHOP_DOMAIN:       "YOUR_SHOP.myshopify.com",
+      STOREFRONT_TOKEN:  "YOUR_STOREFRONT_API_TOKEN",
+      PRODUCT_SILVER_ID:   "0000000000000",
+      PRODUCT_GOLD_ID:     "0000000000000",
+      PRODUCT_OBSIDIAN_ID: "0000000000000",
+    };
+  </script>
+
+  <script>
+    // ── Scroll reveal ─────────────────────────────────────────────
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -411,12 +451,14 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+    // ── Nav shadow on scroll ─────────────────────────────────────
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 30) nav.classList.add('shadow-[0_1px_0_0_#ececec]');
       else                     nav.classList.remove('shadow-[0_1px_0_0_#ececec]');
     });
 
+    // ── Waitlist reserve form (still here as marketing capture) ──
     const form = document.getElementById('reserveForm');
     const done = document.getElementById('reserveDone');
     form.addEventListener('submit', (e) => {
@@ -424,6 +466,127 @@
       form.classList.add('hidden');
       done.classList.remove('hidden');
     });
+
+    // ── Shopify Buy Button SDK ───────────────────────────────────
+    // If BLN_SHOPIFY config is filled in (not placeholders), this
+    // replaces every #bln-buy-* slot with a real Add-to-Cart button
+    // and wires the nav "Cart (N)" element to open Shopify's cart
+    // drawer with live count. If config is empty/placeholder, the
+    // fallback "Reserve →" links keep working untouched.
+    (function () {
+      const cfg = window.BLN_SHOPIFY || {};
+      const configured =
+        cfg.SHOP_DOMAIN &&
+        !cfg.SHOP_DOMAIN.startsWith("YOUR_") &&
+        cfg.STOREFRONT_TOKEN &&
+        !cfg.STOREFRONT_TOKEN.startsWith("YOUR_");
+      if (!configured) return;
+
+      const loadSdk = (cb) => {
+        if (window.ShopifyBuy && window.ShopifyBuy.UI) return cb();
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = "https://sdks.shopifycdn.com/buy-button/latest/buybutton.js";
+        s.onload = cb;
+        document.head.appendChild(s);
+      };
+
+      loadSdk(() => {
+        const client = ShopifyBuy.buildClient({
+          domain: cfg.SHOP_DOMAIN,
+          storefrontAccessToken: cfg.STOREFRONT_TOKEN,
+        });
+
+        ShopifyBuy.UI.onReady(client).then((ui) => {
+          // Shared button style — matches our .btn / .cap aesthetic
+          const buttonOnlyOptions = (label) => ({
+            product: {
+              iframe: false,
+              contents: {
+                img: false, title: false, price: false,
+                options: false, quantity: false, description: false,
+                button: true,
+              },
+              text: { button: label || "Add to Cart" },
+              styles: {
+                button: {
+                  "font-family": "'EB Garamond', Georgia, serif",
+                  "font-size": "11px",
+                  "letter-spacing": "0.26em",
+                  "text-transform": "uppercase",
+                  "padding": "14px 28px",
+                  "background-color": "#0e0e0e",
+                  "border": "1px solid #0e0e0e",
+                  ":hover": { "background-color": "#5a5a5a", "border-color": "#5a5a5a" },
+                  ":focus": { "background-color": "#5a5a5a" },
+                },
+                product: {
+                  "max-width": "100%",
+                  "@media (min-width: 601px)": { "max-width": "100%" },
+                },
+              },
+            },
+            cart: {
+              styles: {
+                button: {
+                  "font-family": "'EB Garamond', Georgia, serif",
+                  "font-size": "11px",
+                  "letter-spacing": "0.26em",
+                  "text-transform": "uppercase",
+                  "background-color": "#0e0e0e",
+                  ":hover": { "background-color": "#5a5a5a" },
+                },
+              },
+              text: { title: "Your Cart", total: "Subtotal", button: "Checkout" },
+            },
+            toggle: { sticky: false }, // we use our own toggle in the nav
+          });
+
+          // Clear fallback links inside each slot, then mount the SDK
+          const mount = (slotId, productId, label) => {
+            const slot = document.getElementById(slotId);
+            if (!slot || !productId || productId.startsWith("0000")) return;
+            slot.innerHTML = "";
+            ui.createComponent("product", {
+              id: productId,
+              node: slot,
+              options: buttonOnlyOptions(label),
+            });
+          };
+
+          mount("bln-buy-silver-hero", cfg.PRODUCT_SILVER_ID,   "Add to Cart — $890");
+          mount("bln-buy-silver",      cfg.PRODUCT_SILVER_ID,   "Add to Cart");
+          mount("bln-buy-gold",        cfg.PRODUCT_GOLD_ID,     "Add to Cart");
+          mount("bln-buy-obsidian",    cfg.PRODUCT_OBSIDIAN_ID, "Add to Cart");
+
+          // ── Wire our nav "Cart (N)" element to the SDK cart ──
+          // The SDK creates a global cart object on the first product
+          // component. We grab it and listen for state changes to
+          // update our nav count.
+          const cartToggle = document.getElementById("bln-cart-toggle");
+          if (cartToggle) {
+            const updateCount = () => {
+              const cart = ui.components.cart && ui.components.cart[0];
+              const count = cart ? cart.model.lineItems.reduce((s, i) => s + i.quantity, 0) : 0;
+              cartToggle.textContent = "Cart (" + count + ")";
+            };
+            cartToggle.addEventListener("click", (e) => {
+              e.preventDefault();
+              const cart = ui.components.cart && ui.components.cart[0];
+              if (cart) cart.open();
+            });
+            // Poll briefly until cart instance is ready, then update
+            const tick = setInterval(() => {
+              if (ui.components.cart && ui.components.cart[0]) {
+                updateCount();
+                ui.components.cart[0].view.iframe.parent.addEventListener("DOMSubtreeModified", updateCount);
+                clearInterval(tick);
+              }
+            }, 300);
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
