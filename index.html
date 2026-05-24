@@ -277,13 +277,92 @@
       </a>
 
       <a href="#reserve" class="group block bg-paper">
-        <div class="aspect-[4/5] bg-[#1a1612] grid place-items-center overflow-hidden">
-          <img
-            src="carry-on-silver.png"
-            alt="BLN Travel Carry-On in Obsidian"
-            style="filter: brightness(.32) saturate(.45) contrast(1.15);"
-            class="h-[80%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
-            loading="lazy" />
+        <div class="aspect-[4/5] bg-[#0a0a0a] grid place-items-center overflow-hidden">
+          <svg viewBox="0 0 360 540" class="h-[80%] w-auto transition-transform duration-700 group-hover:scale-105" aria-label="BLN Travel Carry-On in Obsidian">
+            <defs>
+              <linearGradient id="obsBody" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0"  stop-color="#1f1d1c"/>
+                <stop offset=".45" stop-color="#26221f"/>
+                <stop offset="1"  stop-color="#0e0c0a"/>
+              </linearGradient>
+              <linearGradient id="obsLeather" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#a37a55"/>
+                <stop offset="1" stop-color="#6e4a2c"/>
+              </linearGradient>
+              <linearGradient id="obsHandle" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#6a6660"/>
+                <stop offset="1" stop-color="#9a948a"/>
+              </linearGradient>
+              <linearGradient id="obsWheel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="1" stop-color="#d9d4c7"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Trolley handle pulled up -->
+            <rect x="160" y="14" width="40" height="14" rx="3" fill="url(#obsLeather)"/>
+            <rect x="164" y="28" width="6"  height="60" fill="url(#obsHandle)"/>
+            <rect x="190" y="28" width="6"  height="60" fill="url(#obsHandle)"/>
+
+            <!-- Top cognac leather wrap-around corners -->
+            <path d="M40 96 Q40 84 52 84 L130 84 L130 110 L52 110 Q40 110 40 100 Z" fill="url(#obsLeather)"/>
+            <path d="M320 96 Q320 84 308 84 L230 84 L230 110 L308 110 Q320 110 320 100 Z" fill="url(#obsLeather)"/>
+
+            <!-- Subtle leather rivets -->
+            <g fill="rgba(0,0,0,.4)">
+              <circle cx="52"  cy="100" r="1.5"/>
+              <circle cx="120" cy="100" r="1.5"/>
+              <circle cx="240" cy="100" r="1.5"/>
+              <circle cx="308" cy="100" r="1.5"/>
+            </g>
+
+            <!-- Body -->
+            <rect x="36" y="98" width="288" height="380" rx="10" fill="url(#obsBody)" stroke="rgba(255,255,255,.04)"/>
+
+            <!-- Aluminum frame edges -->
+            <rect x="36" y="98"  width="288" height="6"  fill="#3a3530" opacity=".6"/>
+            <rect x="36" y="472" width="288" height="6"  fill="#3a3530" opacity=".6"/>
+
+            <!-- Wave pattern (subtle silver lines) -->
+            <g stroke="rgba(255,255,255,.18)" stroke-width="1.2" fill="none" stroke-linecap="round">
+              <path d="M52 200 Q120 178 188 200 T308 200"/>
+              <path d="M52 258 Q120 236 188 258 T308 258"/>
+              <path d="M52 316 Q120 294 188 316 T308 316"/>
+              <path d="M52 374 Q120 352 188 374 T308 374"/>
+            </g>
+
+            <!-- BLN logo plate -->
+            <rect x="62" y="132" width="50" height="38" rx="2" fill="#1a1612" stroke="rgba(255,255,255,.12)"/>
+            <text x="87" y="151" text-anchor="middle" font-family="EB Garamond" font-size="11" fill="#cfc8b8" letter-spacing="3">BLN</text>
+            <text x="87" y="163" text-anchor="middle" font-family="EB Garamond" font-size="5" fill="#8a857a" letter-spacing="2">TRAVEL</text>
+
+            <!-- Side leather handle -->
+            <rect x="310" y="240" width="22" height="80" rx="4" fill="url(#obsLeather)"/>
+            <rect x="316" y="244" width="10" height="72" rx="2" fill="rgba(0,0,0,.3)"/>
+
+            <!-- Latches -->
+            <rect x="295" y="180" width="22" height="14" rx="2" fill="#3a3530" stroke="rgba(255,255,255,.1)"/>
+            <rect x="295" y="350" width="22" height="14" rx="2" fill="#3a3530" stroke="rgba(255,255,255,.1)"/>
+
+            <!-- Bottom cognac leather corners -->
+            <path d="M40 462 Q40 474 52 474 L130 474 L130 448 L52 448 Q40 448 40 458 Z" fill="url(#obsLeather)"/>
+            <path d="M320 462 Q320 474 308 474 L230 474 L230 448 L308 448 Q320 448 320 458 Z" fill="url(#obsLeather)"/>
+
+            <!-- Wheels (4-wheel spinner — visible 4) -->
+            <g>
+              <circle cx="68"  cy="500" r="22" fill="url(#obsWheel)" stroke="rgba(0,0,0,.2)"/>
+              <circle cx="68"  cy="500" r="11" fill="#bcb5a3"/>
+              <circle cx="148" cy="510" r="20" fill="url(#obsWheel)" stroke="rgba(0,0,0,.2)" opacity=".95"/>
+              <circle cx="148" cy="510" r="10" fill="#bcb5a3"/>
+              <circle cx="212" cy="510" r="20" fill="url(#obsWheel)" stroke="rgba(0,0,0,.2)" opacity=".95"/>
+              <circle cx="212" cy="510" r="10" fill="#bcb5a3"/>
+              <circle cx="292" cy="500" r="22" fill="url(#obsWheel)" stroke="rgba(0,0,0,.2)"/>
+              <circle cx="292" cy="500" r="11" fill="#bcb5a3"/>
+            </g>
+
+            <!-- Floor reflection -->
+            <ellipse cx="180" cy="535" rx="150" ry="4" fill="rgba(255,255,255,.04)"/>
+          </svg>
         </div>
         <div class="px-2 py-6 flex items-baseline justify-between">
           <div>
