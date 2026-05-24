@@ -83,95 +83,71 @@
 
   <!-- ─────────────── HERO ─────────────── -->
   <header id="top" class="pt-16">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-32 pb-32 text-center reveal">
-      <div class="cap mb-10">Edition 01 — The Carry-On</div>
-      <h1 class="font-serif text-6xl md:text-[88px] xl:text-[108px] leading-[1.02] text-ink tracking-tight">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-24 pb-16 text-center reveal">
+      <div class="cap mb-8">Edition 01 — The Carry-On</div>
+      <h1 class="font-serif text-5xl md:text-7xl xl:text-[88px] leading-[1.05] text-ink tracking-tight">
         Engineered for movement.
       </h1>
-      <h1 class="font-serif italic text-6xl md:text-[88px] xl:text-[108px] leading-[1.02] text-ink tracking-tight">
+      <h1 class="font-serif italic text-5xl md:text-7xl xl:text-[88px] leading-[1.05] text-ink tracking-tight">
         Crafted to endure.
       </h1>
     </div>
 
-    <!-- Full-bleed product image -->
-    <div class="bg-[#f6f5f1]">
-      <div class="max-w-[1500px] mx-auto px-0 md:px-12">
-        <div class="aspect-[16/10] grid place-items-center">
-          <img
-            src="carry-on-silver.png"
-            alt="BLN Travel Carry-On in Silver"
-            class="h-[88%] w-auto object-contain"
-            loading="eager" />
-        </div>
-      </div>
-    </div>
+    <!-- Hero showcase: smaller suitcase + stats side-by-side -->
+    <div id="detail" class="max-w-[1300px] mx-auto px-8 lg:px-12 pb-32">
+      <div class="grid md:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 py-16 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-      <div class="max-w-md">
-        <div class="cap mb-3">The Carry-On</div>
-        <p class="font-serif text-xl text-ink leading-relaxed">
-          Precision in motion. Designed to last. The carry-on for travelers who measure quality in decades.
-        </p>
+        <!-- Image side -->
+        <div class="md:col-span-6 reveal">
+          <div class="bg-[#f6f5f1] aspect-square grid place-items-center">
+            <img
+              src="carry-on-silver.png"
+              alt="BLN Travel Carry-On in Silver"
+              class="h-[78%] w-auto object-contain"
+              loading="eager" />
+          </div>
+        </div>
+
+        <!-- Stats side -->
+        <div class="md:col-span-6 reveal">
+          <div class="cap mb-4">Specification</div>
+          <p class="font-serif text-xl text-ink leading-relaxed max-w-md mb-10">
+            Precision in motion. Designed to last. Aerospace-grade aluminum, hand-finished leather, whisper-quiet skate wheels.
+          </p>
+
+          <dl class="space-y-0 max-w-md">
+            <div class="flex justify-between py-4 border-b border-line">
+              <dt class="cap">Dimensions</dt>
+              <dd class="font-serif text-ink">22″ × 14″ × 9″</dd>
+            </div>
+            <div class="flex justify-between py-4 border-b border-line">
+              <dt class="cap">Weight</dt>
+              <dd class="font-serif text-ink">8.4 lbs</dd>
+            </div>
+            <div class="flex justify-between py-4 border-b border-line">
+              <dt class="cap">Capacity</dt>
+              <dd class="font-serif text-ink">37 L</dd>
+            </div>
+            <div class="flex justify-between py-4 border-b border-line">
+              <dt class="cap">Frame</dt>
+              <dd class="font-serif text-ink">Aerospace Aluminum</dd>
+            </div>
+            <div class="flex justify-between py-4 border-b border-line">
+              <dt class="cap">Wheels</dt>
+              <dd class="font-serif text-ink">360° Silent Skate</dd>
+            </div>
+            <div class="flex justify-between py-4 border-b border-line">
+              <dt class="cap">Warranty</dt>
+              <dd class="font-serif text-ink">Lifetime</dd>
+            </div>
+          </dl>
+
+          <a href="#reserve" class="mt-10 inline-block cap cap-ink link-grow">Reserve from $890 →</a>
+        </div>
+
       </div>
-      <a href="#reserve" class="cap cap-ink link-grow">Reserve from $890 →</a>
     </div>
   </header>
-
-  <!-- ─────────────── PRODUCT GRID — single product, two angles ─────────────── -->
-  <section id="detail" class="bg-paper border-t border-line">
-    <div class="grid md:grid-cols-2">
-
-      <!-- Left tile: image -->
-      <div class="bg-[#f6f5f1] aspect-square md:aspect-auto md:min-h-[600px] grid place-items-center reveal">
-        <img
-          src="carry-on-silver.png"
-          alt="BLN Travel Carry-On in Silver"
-          class="h-[80%] w-auto object-contain"
-          loading="lazy" />
-      </div>
-
-      <!-- Right tile: spec -->
-      <div class="flex flex-col justify-center px-8 lg:px-20 py-20 reveal">
-        <div class="cap mb-6">Specification</div>
-        <h2 class="font-serif text-4xl md:text-5xl text-ink leading-tight tracking-tight">
-          The Carry-On.
-        </h2>
-        <p class="mt-6 text-ash leading-relaxed max-w-md text-lg font-serif">
-          Aerospace-grade aluminum frame. Hand-finished leather corners. Whisper-quiet skate wheels. Assembled in Berlin.
-        </p>
-
-        <dl class="mt-12 space-y-0 max-w-md">
-          <div class="flex justify-between py-4 border-b border-line">
-            <dt class="cap">Dimensions</dt>
-            <dd class="font-serif text-ink">22″ × 14″ × 9″</dd>
-          </div>
-          <div class="flex justify-between py-4 border-b border-line">
-            <dt class="cap">Weight</dt>
-            <dd class="font-serif text-ink">8.4 lbs</dd>
-          </div>
-          <div class="flex justify-between py-4 border-b border-line">
-            <dt class="cap">Capacity</dt>
-            <dd class="font-serif text-ink">37 L</dd>
-          </div>
-          <div class="flex justify-between py-4 border-b border-line">
-            <dt class="cap">Frame</dt>
-            <dd class="font-serif text-ink">Aerospace Aluminum</dd>
-          </div>
-          <div class="flex justify-between py-4 border-b border-line">
-            <dt class="cap">Wheels</dt>
-            <dd class="font-serif text-ink">360° Silent Skate</dd>
-          </div>
-          <div class="flex justify-between py-4 border-b border-line">
-            <dt class="cap">Warranty</dt>
-            <dd class="font-serif text-ink">Lifetime</dd>
-          </div>
-        </dl>
-
-        <a href="#reserve" class="mt-12 inline-block cap cap-ink link-grow">Reserve from $890 →</a>
-      </div>
-
-    </div>
-  </section>
 
   <!-- ─────────────── ANATOMY — 4 features minimal ─────────────── -->
   <section class="bg-paper py-32 border-t border-line">
