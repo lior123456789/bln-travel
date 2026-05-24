@@ -3,24 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BLN Travel — Engineered for Movement. Crafted to Endure.</title>
-  <meta name="description" content="BLN Travel — precision-engineered aluminum luggage with full-grain leather corners and silent skate wheels. Made in Berlin." />
+  <title>BLN Travel — The Carry-On</title>
+  <meta name="description" content="BLN Travel — precision-engineered aluminum luggage. Made in Berlin." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            paper:   '#faf8f3',
-            paperD:  '#f3efe6',
-            ink:     '#1f1d1a',
-            ash:     '#5c574e',
-            muted:   '#8a857a',
-            rule:    '#e3ddcf',
-            taupe:   '#b8a888',
+            paper: '#ffffff',
+            ink:   '#0e0e0e',
+            ash:   '#5a5a5a',
+            mute:  '#9a9a9a',
+            line:  '#ececec',
           },
           fontFamily: {
             serif: ['"EB Garamond"', 'Georgia', 'serif'],
@@ -32,196 +30,92 @@
   <style>
     html { scroll-behavior: smooth; }
     body {
-      background: #faf8f3;
-      color: #1f1d1a;
+      background: #ffffff;
+      color: #0e0e0e;
       font-family: 'EB Garamond', Georgia, serif;
-      font-feature-settings: "kern", "liga", "onum";
-      font-size: 18px;
-      line-height: 1.6;
+      font-feature-settings: "kern","liga","onum";
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
-
-    /* Subtle reveal */
-    .reveal     { opacity: 0; transform: translateY(14px); transition: opacity 1s ease, transform 1s ease; }
+    .reveal     { opacity: 0; transform: translateY(10px); transition: opacity 1.1s ease, transform 1.1s ease; }
     .reveal.in  { opacity: 1; transform: none; }
-    .stagger > * { opacity: 0; transform: translateY(12px); transition: opacity .9s ease, transform .9s ease; }
-    .stagger.in > *:nth-child(1) { transition-delay: 0ms;   opacity: 1; transform: none; }
-    .stagger.in > *:nth-child(2) { transition-delay: 90ms;  opacity: 1; transform: none; }
-    .stagger.in > *:nth-child(3) { transition-delay: 180ms; opacity: 1; transform: none; }
-    .stagger.in > *:nth-child(4) { transition-delay: 270ms; opacity: 1; transform: none; }
-    .stagger.in > *:nth-child(5) { transition-delay: 360ms; opacity: 1; transform: none; }
-    .stagger.in > *:nth-child(6) { transition-delay: 450ms; opacity: 1; transform: none; }
 
-    /* Thin link underline */
+    .cap {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #5a5a5a;
+    }
+    .cap-ink { color: #0e0e0e; }
+
     .link-grow { position: relative; }
     .link-grow::after {
-      content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+      content: ''; position: absolute; left: 0; right: 0; bottom: -3px;
       height: 1px; background: currentColor; transform-origin: left;
-      transform: scaleX(0); transition: transform .45s ease;
+      transform: scaleX(0); transition: transform .4s ease;
     }
     .link-grow:hover::after { transform: scaleX(1); }
 
-    /* Tiny caps used throughout */
-    .smallcaps {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-thumb { background: #d6cfbd; border-radius: 9999px; }
-
-    ::selection { background: #e3ddcf; color: #1f1d1a; }
+    ::-webkit-scrollbar-thumb { background: #d6d6d6; border-radius: 9999px; }
+    ::selection { background: #f0f0f0; color: #0e0e0e; }
   </style>
 </head>
-<body class="antialiased">
+<body>
 
   <!-- ─────────────── NAV ─────────────── -->
-  <nav id="nav" class="fixed inset-x-0 top-0 z-50 transition-colors duration-500">
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-14 py-6 flex items-center justify-between">
-      <a href="#top" class="leading-none">
-        <div class="font-serif text-2xl tracking-[0.4em] text-ink">BLN</div>
-        <div class="smallcaps text-muted mt-1">Travel</div>
-      </a>
-      <div class="hidden md:flex items-center gap-9 smallcaps text-ink/75">
-        <a href="#collection" class="link-grow">Collection</a>
-        <a href="#craft"      class="link-grow">Craft</a>
-        <a href="#detail"     class="link-grow">Carry-On</a>
-        <a href="#story"      class="link-grow">Story</a>
+  <nav id="nav" class="fixed inset-x-0 top-0 z-50 bg-paper transition-shadow duration-300">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 h-16 flex items-center justify-between">
+      <a href="#top" class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</a>
+      <div class="hidden md:flex items-center gap-10 cap">
+        <a href="#collection" class="link-grow hover:cap-ink">Collection</a>
+        <a href="#detail"     class="link-grow hover:cap-ink">Carry-On</a>
+        <a href="#craft"      class="link-grow hover:cap-ink">Craft</a>
+        <a href="#story"      class="link-grow hover:cap-ink">Story</a>
       </div>
-      <a href="#reserve"
-         class="smallcaps px-5 py-2.5 border border-ink/30 hover:border-ink hover:bg-ink hover:text-paper text-ink transition-colors">
-        Reserve
-      </a>
+      <a href="#reserve" class="cap cap-ink link-grow">Reserve</a>
     </div>
+    <div class="h-px bg-line"></div>
   </nav>
 
   <!-- ─────────────── HERO ─────────────── -->
-  <header id="top" class="relative min-h-screen flex items-center bg-paper overflow-hidden">
-    <div class="absolute top-1/2 left-8 lg:left-14 -translate-y-1/2 hidden md:block">
-      <div class="smallcaps text-muted rotate-180" style="writing-mode: vertical-rl;">
-        Berlin · Est. 2026
-      </div>
+  <header id="top" class="pt-16">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-32 pb-32 text-center reveal">
+      <div class="cap mb-10">Edition 01 — The Carry-On</div>
+      <h1 class="font-serif text-6xl md:text-[88px] xl:text-[108px] leading-[1.02] text-ink tracking-tight">
+        Engineered for movement.
+      </h1>
+      <h1 class="font-serif italic text-6xl md:text-[88px] xl:text-[108px] leading-[1.02] text-ink tracking-tight">
+        Crafted to endure.
+      </h1>
     </div>
 
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-24 pt-36 pb-20 grid lg:grid-cols-2 gap-16 items-center relative">
-
-      <div class="stagger reveal">
-        <div class="smallcaps text-muted mb-8">The Carry-On — Edition 01</div>
-        <h1 class="font-serif text-5xl md:text-6xl xl:text-7xl leading-[1.05] text-ink font-medium tracking-tight">
-          Engineered<br/>for movement.<br/>
-          <span class="italic text-ash">Crafted</span> to endure.
-        </h1>
-        <div class="mt-10 w-14 h-px bg-ink/40"></div>
-        <p class="mt-8 max-w-md text-ash leading-relaxed text-lg">
-          Precision in motion. Designed to last. The carry-on for travelers who measure quality in decades, not destinations.
-        </p>
-        <div class="mt-12 flex items-center gap-7">
-          <a href="#reserve"
-             class="smallcaps px-7 py-3.5 bg-ink hover:bg-ash text-paper transition-colors">
-            Reserve Yours
-          </a>
-          <a href="#detail" class="smallcaps text-ink link-grow">
-            Discover the Build →
-          </a>
-        </div>
-      </div>
-
-      <!-- Suitcase SVG -->
-      <div class="relative reveal">
-        <svg viewBox="0 0 420 540" class="w-full max-w-[460px] mx-auto" aria-hidden="true">
-          <defs>
-            <linearGradient id="case1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#efeae0"/>
-              <stop offset=".5" stop-color="#e1dccb"/>
-              <stop offset="1" stop-color="#bdb6a3"/>
-            </linearGradient>
-            <linearGradient id="leather1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#a08568"/>
-              <stop offset="1" stop-color="#7a5e44"/>
-            </linearGradient>
-            <linearGradient id="wheel1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffffff"/>
-              <stop offset="1" stop-color="#d4cdbb"/>
-            </linearGradient>
-          </defs>
-
-          <!-- Top handle -->
-          <rect x="190" y="22" width="40" height="10" rx="3" fill="url(#leather1)"/>
-          <rect x="194" y="32" width="6" height="46" fill="#8a8474"/>
-          <rect x="220" y="32" width="6" height="46" fill="#8a8474"/>
-
-          <!-- Top leather corners -->
-          <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="url(#leather1)"/>
-          <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="url(#leather1)"/>
-
-          <rect x="62" y="82" width="296" height="380" rx="22" fill="url(#case1)" stroke="rgba(0,0,0,.07)"/>
-
-          <!-- Wave pattern -->
-          <g stroke="rgba(0,0,0,.12)" stroke-width="1.5" fill="none" stroke-linecap="round">
-            <path d="M80 180 Q150 160 220 180 T350 180"/>
-            <path d="M80 240 Q150 220 220 240 T350 240"/>
-            <path d="M80 300 Q150 280 220 300 T350 300"/>
-            <path d="M80 360 Q150 340 220 360 T350 360"/>
-          </g>
-
-          <!-- Latch -->
-          <rect x="186" y="225" width="48" height="22" rx="3" fill="#a8a190"/>
-          <circle cx="210" cy="236" r="3" fill="#5a5346"/>
-
-          <!-- Logo plate -->
-          <rect x="190" y="120" width="44" height="14" rx="2" fill="url(#leather1)"/>
-          <text x="212" y="131" text-anchor="middle" font-family="EB Garamond" font-size="9" fill="#faf8f3" letter-spacing="2">BLN</text>
-
-          <!-- Bottom leather corners -->
-          <path d="M70 460 Q70 470 80 470 L140 470 L140 448 L80 448 Q70 448 70 458 Z" fill="url(#leather1)"/>
-          <path d="M350 460 Q350 470 340 470 L280 470 L280 448 L340 448 Q350 448 350 458 Z" fill="url(#leather1)"/>
-
-          <!-- Wheels -->
-          <ellipse cx="100" cy="500" rx="26" ry="26" fill="url(#wheel1)" stroke="rgba(0,0,0,.06)"/>
-          <ellipse cx="100" cy="500" rx="14" ry="14" fill="#bcb5a3"/>
-          <ellipse cx="320" cy="500" rx="26" ry="26" fill="url(#wheel1)" stroke="rgba(0,0,0,.06)"/>
-          <ellipse cx="320" cy="500" rx="14" ry="14" fill="#bcb5a3"/>
-
-          <!-- Floor shadow -->
-          <ellipse cx="210" cy="535" rx="170" ry="6" fill="rgba(0,0,0,.05)"/>
-        </svg>
-
-        <div class="absolute -right-4 top-12 hidden xl:block text-right">
-          <div class="smallcaps text-muted">Carry-On</div>
-          <div class="font-serif text-ink mt-1 text-lg">22 × 14 × 9 in</div>
-          <div class="mt-2 w-10 h-px bg-ink/30 ml-auto"></div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ─────────────── PRODUCT DETAIL ─────────────── -->
-  <section id="detail" class="bg-paperD py-32 border-t border-rule">
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-24 grid lg:grid-cols-12 gap-16 items-center">
-
-      <div class="lg:col-span-7 reveal">
-        <div class="aspect-[4/5] bg-paper border border-rule grid place-items-center">
-          <svg viewBox="0 0 420 540" class="w-3/4" aria-hidden="true">
+    <!-- Full-bleed product image -->
+    <div class="bg-[#f6f5f1]">
+      <div class="max-w-[1500px] mx-auto px-0 md:px-12">
+        <div class="aspect-[16/10] grid place-items-center">
+          <svg viewBox="0 0 420 540" class="w-[55%] max-w-[480px]" aria-hidden="true">
             <defs>
-              <linearGradient id="case2" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="caseHero" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stop-color="#efeae0"/>
                 <stop offset=".5" stop-color="#e1dccb"/>
                 <stop offset="1" stop-color="#bdb6a3"/>
               </linearGradient>
-              <linearGradient id="leather2" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="leatherHero" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stop-color="#a08568"/>
                 <stop offset="1" stop-color="#7a5e44"/>
               </linearGradient>
             </defs>
-            <rect x="190" y="22" width="40" height="10" rx="3" fill="url(#leather2)"/>
+            <rect x="190" y="22" width="40" height="10" rx="3" fill="url(#leatherHero)"/>
             <rect x="194" y="32" width="6" height="46" fill="#8a8474"/>
             <rect x="220" y="32" width="6" height="46" fill="#8a8474"/>
-            <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="url(#leather2)"/>
-            <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="url(#leather2)"/>
-            <rect x="62" y="82" width="296" height="380" rx="22" fill="url(#case2)" stroke="rgba(0,0,0,.07)"/>
-            <g stroke="rgba(0,0,0,.12)" stroke-width="1.5" fill="none">
+            <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="url(#leatherHero)"/>
+            <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="url(#leatherHero)"/>
+            <rect x="62" y="82" width="296" height="380" rx="22" fill="url(#caseHero)" stroke="rgba(0,0,0,.06)"/>
+            <g stroke="rgba(0,0,0,.12)" stroke-width="1.5" fill="none" stroke-linecap="round">
               <path d="M80 180 Q150 160 220 180 T350 180"/>
               <path d="M80 240 Q150 220 220 240 T350 240"/>
               <path d="M80 300 Q150 280 220 300 T350 300"/>
@@ -229,429 +123,412 @@
             </g>
             <rect x="186" y="225" width="48" height="22" rx="3" fill="#a8a190"/>
             <circle cx="210" cy="236" r="3" fill="#5a5346"/>
-            <rect x="190" y="120" width="44" height="14" rx="2" fill="url(#leather2)"/>
-            <text x="212" y="131" text-anchor="middle" font-family="EB Garamond" font-size="9" fill="#faf8f3" letter-spacing="2">BLN</text>
-            <path d="M70 460 Q70 470 80 470 L140 470 L140 448 L80 448 Q70 448 70 458 Z" fill="url(#leather2)"/>
-            <path d="M350 460 Q350 470 340 470 L280 470 L280 448 L340 448 Q350 448 350 458 Z" fill="url(#leather2)"/>
+            <rect x="190" y="120" width="44" height="14" rx="2" fill="url(#leatherHero)"/>
+            <text x="212" y="131" text-anchor="middle" font-family="EB Garamond" font-size="9" fill="#ffffff" letter-spacing="2">BLN</text>
+            <path d="M70 460 Q70 470 80 470 L140 470 L140 448 L80 448 Q70 448 70 458 Z" fill="url(#leatherHero)"/>
+            <path d="M350 460 Q350 470 340 470 L280 470 L280 448 L340 448 Q350 448 350 458 Z" fill="url(#leatherHero)"/>
             <ellipse cx="100" cy="500" rx="26" ry="26" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
             <ellipse cx="100" cy="500" rx="14" ry="14" fill="#bcb5a3"/>
             <ellipse cx="320" cy="500" rx="26" ry="26" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
             <ellipse cx="320" cy="500" rx="14" ry="14" fill="#bcb5a3"/>
+            <ellipse cx="210" cy="535" rx="170" ry="6" fill="rgba(0,0,0,.04)"/>
           </svg>
         </div>
       </div>
+    </div>
 
-      <div class="lg:col-span-5 reveal stagger">
-        <div class="smallcaps text-muted mb-4">Specification</div>
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 py-16 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+      <div class="max-w-md">
+        <div class="cap mb-3">The Carry-On</div>
+        <p class="font-serif text-xl text-ink leading-relaxed">
+          Precision in motion. Designed to last. The carry-on for travelers who measure quality in decades.
+        </p>
+      </div>
+      <a href="#reserve" class="cap cap-ink link-grow">Reserve from $890 →</a>
+    </div>
+  </header>
+
+  <!-- ─────────────── PRODUCT GRID — single product, two angles ─────────────── -->
+  <section id="detail" class="bg-paper border-t border-line">
+    <div class="grid md:grid-cols-2">
+
+      <!-- Left tile: image -->
+      <div class="bg-[#f6f5f1] aspect-square md:aspect-auto md:min-h-[600px] grid place-items-center reveal">
+        <svg viewBox="0 0 420 540" class="w-[55%]">
+          <defs>
+            <linearGradient id="case2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#efeae0"/>
+              <stop offset=".5" stop-color="#e1dccb"/>
+              <stop offset="1" stop-color="#bdb6a3"/>
+            </linearGradient>
+            <linearGradient id="leather2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#a08568"/>
+              <stop offset="1" stop-color="#7a5e44"/>
+            </linearGradient>
+          </defs>
+          <rect x="62" y="82" width="296" height="380" rx="22" fill="url(#case2)" stroke="rgba(0,0,0,.07)"/>
+          <g stroke="rgba(0,0,0,.12)" stroke-width="1.5" fill="none">
+            <path d="M80 180 Q150 160 220 180 T350 180"/>
+            <path d="M80 240 Q150 220 220 240 T350 240"/>
+            <path d="M80 300 Q150 280 220 300 T350 300"/>
+            <path d="M80 360 Q150 340 220 360 T350 360"/>
+          </g>
+          <rect x="190" y="22" width="40" height="10" rx="3" fill="url(#leather2)"/>
+          <rect x="194" y="32" width="6" height="46" fill="#8a8474"/>
+          <rect x="220" y="32" width="6" height="46" fill="#8a8474"/>
+          <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="url(#leather2)"/>
+          <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="url(#leather2)"/>
+          <rect x="186" y="225" width="48" height="22" rx="3" fill="#a8a190"/>
+          <rect x="190" y="120" width="44" height="14" rx="2" fill="url(#leather2)"/>
+          <text x="212" y="131" text-anchor="middle" font-family="EB Garamond" font-size="9" fill="#ffffff" letter-spacing="2">BLN</text>
+          <path d="M70 460 Q70 470 80 470 L140 470 L140 448 L80 448 Q70 448 70 458 Z" fill="url(#leather2)"/>
+          <path d="M350 460 Q350 470 340 470 L280 470 L280 448 L340 448 Q350 448 350 458 Z" fill="url(#leather2)"/>
+          <ellipse cx="100" cy="500" rx="26" ry="26" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+          <ellipse cx="100" cy="500" rx="14" ry="14" fill="#bcb5a3"/>
+          <ellipse cx="320" cy="500" rx="26" ry="26" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+          <ellipse cx="320" cy="500" rx="14" ry="14" fill="#bcb5a3"/>
+        </svg>
+      </div>
+
+      <!-- Right tile: spec -->
+      <div class="flex flex-col justify-center px-8 lg:px-20 py-20 reveal">
+        <div class="cap mb-6">Specification</div>
         <h2 class="font-serif text-4xl md:text-5xl text-ink leading-tight tracking-tight">
-          The Carry-On.<br/>
-          <span class="italic text-ash">Perfectly sized</span> for every journey.
+          The Carry-On.
         </h2>
-        <p class="mt-8 text-ash leading-relaxed max-w-md text-lg">
-          Aerospace-grade aluminum frame. Hand-finished leather corners. Whisper-quiet skate wheels. Every component selected, tested, and assembled by hand in our Berlin atelier.
+        <p class="mt-6 text-ash leading-relaxed max-w-md text-lg font-serif">
+          Aerospace-grade aluminum frame. Hand-finished leather corners. Whisper-quiet skate wheels. Assembled in Berlin.
         </p>
 
-        <dl class="mt-12 space-y-5 max-w-md">
-          <div class="flex justify-between py-3 border-b border-rule">
-            <dt class="smallcaps text-muted">Dimensions</dt>
+        <dl class="mt-12 space-y-0 max-w-md">
+          <div class="flex justify-between py-4 border-b border-line">
+            <dt class="cap">Dimensions</dt>
             <dd class="font-serif text-ink">22″ × 14″ × 9″</dd>
           </div>
-          <div class="flex justify-between py-3 border-b border-rule">
-            <dt class="smallcaps text-muted">Weight</dt>
+          <div class="flex justify-between py-4 border-b border-line">
+            <dt class="cap">Weight</dt>
             <dd class="font-serif text-ink">8.4 lbs</dd>
           </div>
-          <div class="flex justify-between py-3 border-b border-rule">
-            <dt class="smallcaps text-muted">Capacity</dt>
+          <div class="flex justify-between py-4 border-b border-line">
+            <dt class="cap">Capacity</dt>
             <dd class="font-serif text-ink">37 L</dd>
           </div>
-          <div class="flex justify-between py-3 border-b border-rule">
-            <dt class="smallcaps text-muted">Frame</dt>
+          <div class="flex justify-between py-4 border-b border-line">
+            <dt class="cap">Frame</dt>
             <dd class="font-serif text-ink">Aerospace Aluminum</dd>
           </div>
-          <div class="flex justify-between py-3 border-b border-rule">
-            <dt class="smallcaps text-muted">Wheels</dt>
+          <div class="flex justify-between py-4 border-b border-line">
+            <dt class="cap">Wheels</dt>
             <dd class="font-serif text-ink">360° Silent Skate</dd>
           </div>
-          <div class="flex justify-between py-3 border-b border-rule">
-            <dt class="smallcaps text-muted">Warranty</dt>
+          <div class="flex justify-between py-4 border-b border-line">
+            <dt class="cap">Warranty</dt>
             <dd class="font-serif text-ink">Lifetime</dd>
           </div>
         </dl>
 
-        <a href="#reserve"
-           class="mt-12 inline-block smallcaps px-7 py-3.5 bg-ink hover:bg-ash text-paper transition-colors">
-          Reserve from $890
-        </a>
+        <a href="#reserve" class="mt-12 inline-block cap cap-ink link-grow">Reserve from $890 →</a>
       </div>
+
     </div>
   </section>
 
-  <!-- ─────────────── 4-FEATURE GRID ─────────────── -->
-  <section class="bg-paper py-32 border-t border-rule">
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-24">
-      <div class="text-center max-w-2xl mx-auto mb-20 reveal">
-        <div class="smallcaps text-muted mb-4">The Anatomy</div>
+  <!-- ─────────────── ANATOMY — 4 features minimal ─────────────── -->
+  <section class="bg-paper py-32 border-t border-line">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12">
+      <div class="max-w-2xl mb-20 reveal">
+        <div class="cap mb-3">The Anatomy</div>
         <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
-          Four details. <span class="italic text-ash">Zero compromise.</span>
+          Four details.
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-px bg-rule reveal stagger">
-        <div class="bg-paper p-12">
-          <div class="flex items-start gap-8">
-            <svg viewBox="0 0 80 80" class="w-14 h-14 flex-shrink-0" fill="none" stroke="#1f1d1a" stroke-width="1.5">
-              <path d="M10 30 Q25 15 40 30 T70 30"/>
-              <path d="M10 50 Q25 35 40 50 T70 50"/>
-            </svg>
-            <div>
-              <div class="smallcaps text-muted mb-3">01 — Wave Design</div>
-              <h3 class="font-serif text-2xl text-ink mb-3">Inspired by motion.</h3>
-              <p class="text-ash leading-relaxed">A signature wave pressed into every panel. Reduces visible scuffing. Catches light like still water.</p>
-            </div>
-          </div>
+      <div class="grid md:grid-cols-4 gap-12 md:gap-8 reveal">
+        <div>
+          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6" fill="none" stroke="#0e0e0e" stroke-width="1.2">
+            <path d="M10 30 Q25 15 40 30 T70 30"/>
+            <path d="M10 50 Q25 35 40 50 T70 50"/>
+          </svg>
+          <div class="cap mb-2">01 — Wave</div>
+          <h3 class="font-serif text-xl text-ink mb-2">Inspired by motion.</h3>
+          <p class="text-ash leading-relaxed font-serif">A signature wave pressed into every panel. Reduces visible scuffing.</p>
         </div>
 
-        <div class="bg-paper p-12">
-          <div class="flex items-start gap-8">
-            <svg viewBox="0 0 80 80" class="w-14 h-14 flex-shrink-0" fill="none" stroke="#1f1d1a" stroke-width="1.5">
-              <path d="M14 14 L40 14 Q66 14 66 40 L66 66 L40 66 Q14 66 14 40 Z" fill="#e3ddcf" fill-opacity=".6"/>
-              <path d="M14 14 L40 14 Q66 14 66 40"/>
-            </svg>
-            <div>
-              <div class="smallcaps text-muted mb-3">02 — Leather Corners</div>
-              <h3 class="font-serif text-2xl text-ink mb-3">Hand-finished. Refined.</h3>
-              <p class="text-ash leading-relaxed">Full-grain leather, vegetable-tanned in Tuscany. Each corner stitched and burnished by hand.</p>
-            </div>
-          </div>
+        <div>
+          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6" fill="none" stroke="#0e0e0e" stroke-width="1.2">
+            <path d="M14 14 L40 14 Q66 14 66 40 L66 66 L40 66 Q14 66 14 40 Z"/>
+          </svg>
+          <div class="cap mb-2">02 — Leather</div>
+          <h3 class="font-serif text-xl text-ink mb-2">Hand-finished corners.</h3>
+          <p class="text-ash leading-relaxed font-serif">Full-grain leather, vegetable-tanned in Tuscany. Stitched by hand.</p>
         </div>
 
-        <div class="bg-paper p-12">
-          <div class="flex items-start gap-8">
-            <svg viewBox="0 0 80 80" class="w-14 h-14 flex-shrink-0">
-              <circle cx="40" cy="40" r="28" fill="none" stroke="#1f1d1a" stroke-width="1.5"/>
-              <circle cx="40" cy="40" r="14" fill="#e3ddcf" fill-opacity=".6" stroke="#1f1d1a" stroke-width="1.2"/>
-              <circle cx="40" cy="40" r="3"  fill="#1f1d1a"/>
-            </svg>
-            <div>
-              <div class="smallcaps text-muted mb-3">03 — Skate Wheels</div>
-              <h3 class="font-serif text-2xl text-ink mb-3">Smooth. Silent. Effortless.</h3>
-              <p class="text-ash leading-relaxed">360° polyurethane wheels rated for marble, cobblestone, and gravel. Sealed bearings. Lifetime.</p>
-            </div>
-          </div>
+        <div>
+          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6">
+            <circle cx="40" cy="40" r="28" fill="none" stroke="#0e0e0e" stroke-width="1.2"/>
+            <circle cx="40" cy="40" r="14" fill="none" stroke="#0e0e0e" stroke-width="1"/>
+            <circle cx="40" cy="40" r="3"  fill="#0e0e0e"/>
+          </svg>
+          <div class="cap mb-2">03 — Wheels</div>
+          <h3 class="font-serif text-xl text-ink mb-2">Silent skate.</h3>
+          <p class="text-ash leading-relaxed font-serif">360° polyurethane, sealed bearings, marble to gravel.</p>
         </div>
 
-        <div class="bg-paper p-12">
-          <div class="flex items-start gap-8">
-            <svg viewBox="0 0 80 80" class="w-14 h-14 flex-shrink-0" fill="none" stroke="#1f1d1a" stroke-width="1.5">
-              <rect x="14" y="14" width="52" height="52" rx="6"/>
-              <path d="M22 30 L58 30" opacity=".4"/>
-              <path d="M22 40 L58 40" opacity=".4"/>
-              <path d="M22 50 L58 50" opacity=".4"/>
-            </svg>
-            <div>
-              <div class="smallcaps text-muted mb-3">04 — Aluminum Finish</div>
-              <h3 class="font-serif text-2xl text-ink mb-3">Refined. Timeless.</h3>
-              <p class="text-ash leading-relaxed">7000-series aerospace aluminum. CNC-milled. Anodized to a soft satin that wears in, not out.</p>
-            </div>
-          </div>
+        <div>
+          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6" fill="none" stroke="#0e0e0e" stroke-width="1.2">
+            <rect x="14" y="14" width="52" height="52" rx="6"/>
+            <path d="M22 30 L58 30" opacity=".4"/>
+            <path d="M22 40 L58 40" opacity=".4"/>
+            <path d="M22 50 L58 50" opacity=".4"/>
+          </svg>
+          <div class="cap mb-2">04 — Frame</div>
+          <h3 class="font-serif text-xl text-ink mb-2">Aerospace aluminum.</h3>
+          <p class="text-ash leading-relaxed font-serif">7000-series, CNC-milled, anodized to a soft satin.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────── CRAFTSMANSHIP ─────────────── -->
-  <section id="craft" class="bg-paperD py-32 border-t border-rule">
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-24">
-      <div class="text-center max-w-2xl mx-auto mb-24 reveal">
-        <div class="smallcaps text-muted mb-4">The Process</div>
+  <!-- ─────────────── COLLECTION — 3 colorways full-bleed tiles ─────────────── -->
+  <section id="collection" class="bg-paper border-t border-line">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-32 pb-12">
+      <div class="max-w-2xl mb-12 reveal">
+        <div class="cap mb-3">The Collection</div>
         <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
-          Eighty-six steps. <span class="italic text-ash">Six weeks.</span>
+          Three finishes.
         </h2>
-        <p class="mt-6 text-ash max-w-md mx-auto text-lg">One case. Built by the same four pairs of hands, start to finish.</p>
       </div>
+    </div>
 
-      <div class="grid lg:grid-cols-12 gap-12">
-
-        <aside class="lg:col-span-4">
-          <div class="sticky top-32">
-            <div class="smallcaps text-muted mb-4">Origin</div>
-            <h3 class="font-serif text-3xl text-ink mb-6 tracking-tight">Made in Berlin.</h3>
-            <p class="text-ash leading-relaxed max-w-sm text-lg">
-              Our atelier sits in a former typewriter workshop in Kreuzberg. Every BLN piece begins with raw aluminum sheet and ends with a hand-signature on the inner lining.
-            </p>
-            <div class="mt-8 w-14 h-px bg-ink/30"></div>
-            <a href="#story" class="mt-6 inline-block smallcaps text-ink link-grow">
-              Read Our Story →
-            </a>
-          </div>
-        </aside>
-
-        <div class="lg:col-span-8 space-y-20">
-
-          <div class="reveal flex gap-10">
-            <div class="font-serif text-7xl text-ink/15 leading-none">01</div>
-            <div>
-              <div class="smallcaps text-muted mb-3">Design</div>
-              <h4 class="font-serif text-3xl text-ink mb-4 tracking-tight">Hand-drawn. Then proved.</h4>
-              <p class="text-ash leading-relaxed max-w-lg">
-                Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal.
-              </p>
-            </div>
-          </div>
-
-          <div class="reveal flex gap-10">
-            <div class="font-serif text-7xl text-ink/15 leading-none">02</div>
-            <div>
-              <div class="smallcaps text-muted mb-3">Engineer</div>
-              <h4 class="font-serif text-3xl text-ink mb-4 tracking-tight">Cut from a single sheet.</h4>
-              <p class="text-ash leading-relaxed max-w-lg">
-                Each panel is CNC-milled from a single billet of 7000-series aluminum. The wave pattern is press-formed, not stamped — preserving the alloy's structural integrity.
-              </p>
-            </div>
-          </div>
-
-          <div class="reveal flex gap-10">
-            <div class="font-serif text-7xl text-ink/15 leading-none">03</div>
-            <div>
-              <div class="smallcaps text-muted mb-3">Craft</div>
-              <h4 class="font-serif text-3xl text-ink mb-4 tracking-tight">Leather. Stitched by hand.</h4>
-              <p class="text-ash leading-relaxed max-w-lg">
-                Full-grain vegetable-tanned leather from a fourth-generation Tuscan tannery. Each corner is cut, skived, stitched, and burnished by hand — four hours per case.
-              </p>
-            </div>
-          </div>
-
-          <div class="reveal flex gap-10">
-            <div class="font-serif text-7xl text-ink/15 leading-none">04</div>
-            <div>
-              <div class="smallcaps text-muted mb-3">Inspect</div>
-              <h4 class="font-serif text-3xl text-ink mb-4 tracking-tight">Eighty-four checks.</h4>
-              <p class="text-ash leading-relaxed max-w-lg">
-                Wheel rotation. Latch tension. Hinge alignment. Seam pressure. Every case passes 84 individual checks before it earns the BLN signature on the inner panel.
-              </p>
-            </div>
-          </div>
-
+    <div class="grid md:grid-cols-3 gap-px bg-line">
+      <a href="#reserve" class="group block bg-paper">
+        <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
+          <svg viewBox="0 0 420 540" class="w-3/5 transition-transform duration-700 group-hover:scale-105">
+            <rect x="62" y="82" width="296" height="380" rx="22" fill="#e1dccb" stroke="rgba(0,0,0,.06)"/>
+            <g stroke="rgba(0,0,0,.15)" stroke-width="1.5" fill="none">
+              <path d="M80 200 Q150 180 220 200 T350 200"/>
+              <path d="M80 280 Q150 260 220 280 T350 280"/>
+              <path d="M80 360 Q150 340 220 360 T350 360"/>
+            </g>
+            <rect x="186" y="240" width="48" height="22" rx="3" fill="#a8a190"/>
+            <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="#8a6b4d"/>
+            <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="#8a6b4d"/>
+            <circle cx="100" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+            <circle cx="320" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+          </svg>
         </div>
-      </div>
+        <div class="px-2 py-6 flex items-baseline justify-between">
+          <div>
+            <div class="font-serif text-xl text-ink">Silver</div>
+            <div class="cap mt-1">Classic Aluminum</div>
+          </div>
+          <div class="cap cap-ink">$890</div>
+        </div>
+      </a>
+
+      <a href="#reserve" class="group block bg-paper">
+        <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
+          <svg viewBox="0 0 420 540" class="w-3/5 transition-transform duration-700 group-hover:scale-105">
+            <rect x="62" y="82" width="296" height="380" rx="22" fill="#d8c4a0" stroke="rgba(0,0,0,.06)"/>
+            <g stroke="rgba(0,0,0,.18)" stroke-width="1.5" fill="none">
+              <path d="M80 200 Q150 180 220 200 T350 200"/>
+              <path d="M80 280 Q150 260 220 280 T350 280"/>
+              <path d="M80 360 Q150 340 220 360 T350 360"/>
+            </g>
+            <rect x="186" y="240" width="48" height="22" rx="3" fill="#9a8458"/>
+            <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="#6f4426"/>
+            <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="#6f4426"/>
+            <circle cx="100" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+            <circle cx="320" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+          </svg>
+        </div>
+        <div class="px-2 py-6 flex items-baseline justify-between">
+          <div>
+            <div class="font-serif text-xl text-ink">Champagne Gold</div>
+            <div class="cap mt-1">Limited · 200 pieces</div>
+          </div>
+          <div class="cap cap-ink">$960</div>
+        </div>
+      </a>
+
+      <a href="#reserve" class="group block bg-paper">
+        <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
+          <svg viewBox="0 0 420 540" class="w-3/5 transition-transform duration-700 group-hover:scale-105">
+            <rect x="62" y="82" width="296" height="380" rx="22" fill="#1a1612" stroke="rgba(0,0,0,.2)"/>
+            <g stroke="rgba(255,255,255,.1)" stroke-width="1.5" fill="none">
+              <path d="M80 200 Q150 180 220 200 T350 200"/>
+              <path d="M80 280 Q150 260 220 280 T350 280"/>
+              <path d="M80 360 Q150 340 220 360 T350 360"/>
+            </g>
+            <rect x="186" y="240" width="48" height="22" rx="3" fill="#4a4338"/>
+            <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="#8a6b4d"/>
+            <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="#8a6b4d"/>
+            <circle cx="100" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+            <circle cx="320" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
+          </svg>
+        </div>
+        <div class="px-2 py-6 flex items-baseline justify-between">
+          <div>
+            <div class="font-serif text-xl text-ink">Obsidian</div>
+            <div class="cap mt-1">Anodized Black</div>
+          </div>
+          <div class="cap cap-ink">$920</div>
+        </div>
+      </a>
     </div>
   </section>
 
-  <!-- ─────────────── COLLECTION ─────────────── -->
-  <section id="collection" class="bg-paper py-32 border-t border-rule">
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-24">
-      <div class="text-center max-w-2xl mx-auto mb-20 reveal">
-        <div class="smallcaps text-muted mb-4">The Collection</div>
-        <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
-          Three finishes. <span class="italic text-ash">One signature.</span>
-        </h2>
+  <!-- ─────────────── CRAFTSMANSHIP — single column, restrained ─────────────── -->
+  <section id="craft" class="bg-paper py-32 border-t border-line">
+    <div class="max-w-2xl mx-auto px-8 text-center reveal mb-20">
+      <div class="cap mb-3">The Process</div>
+      <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
+        Eighty-six steps.<br/>Six weeks. One case.
+      </h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-8 space-y-16">
+      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
+        <div class="col-span-2 cap">01</div>
+        <div class="col-span-10">
+          <h4 class="font-serif text-2xl text-ink mb-2">Hand-drawn. Then proved.</h4>
+          <p class="text-ash leading-relaxed font-serif">Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal.</p>
+        </div>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-8 reveal stagger">
-
-        <!-- Silver -->
-        <a href="#reserve" class="group block">
-          <div class="aspect-[4/5] bg-paperD border border-rule grid place-items-center overflow-hidden">
-            <svg viewBox="0 0 420 540" class="w-2/3 transition-transform duration-700 group-hover:scale-105">
-              <rect x="62" y="82" width="296" height="380" rx="22" fill="#e1dccb" stroke="rgba(0,0,0,.06)"/>
-              <g stroke="rgba(0,0,0,.15)" stroke-width="1.5" fill="none">
-                <path d="M80 200 Q150 180 220 200 T350 200"/>
-                <path d="M80 280 Q150 260 220 280 T350 280"/>
-                <path d="M80 360 Q150 340 220 360 T350 360"/>
-              </g>
-              <rect x="186" y="240" width="48" height="22" rx="3" fill="#a8a190"/>
-              <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="#8a6b4d"/>
-              <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="#8a6b4d"/>
-              <circle cx="100" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
-              <circle cx="320" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
-            </svg>
-          </div>
-          <div class="mt-6 flex items-center justify-between">
-            <div>
-              <div class="font-serif text-2xl text-ink">Silver</div>
-              <div class="smallcaps text-muted mt-1">Classic Aluminum</div>
-            </div>
-            <div class="smallcaps text-ink">$890</div>
-          </div>
-        </a>
-
-        <!-- Champagne Gold -->
-        <a href="#reserve" class="group block">
-          <div class="aspect-[4/5] bg-paperD border border-rule grid place-items-center overflow-hidden">
-            <svg viewBox="0 0 420 540" class="w-2/3 transition-transform duration-700 group-hover:scale-105">
-              <rect x="62" y="82" width="296" height="380" rx="22" fill="#d8c4a0" stroke="rgba(0,0,0,.06)"/>
-              <g stroke="rgba(0,0,0,.18)" stroke-width="1.5" fill="none">
-                <path d="M80 200 Q150 180 220 200 T350 200"/>
-                <path d="M80 280 Q150 260 220 280 T350 280"/>
-                <path d="M80 360 Q150 340 220 360 T350 360"/>
-              </g>
-              <rect x="186" y="240" width="48" height="22" rx="3" fill="#9a8458"/>
-              <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="#6f4426"/>
-              <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="#6f4426"/>
-              <circle cx="100" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
-              <circle cx="320" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
-            </svg>
-          </div>
-          <div class="mt-6 flex items-center justify-between">
-            <div>
-              <div class="font-serif text-2xl text-ink">Champagne Gold</div>
-              <div class="smallcaps text-muted mt-1">Limited Run · 200 Pieces</div>
-            </div>
-            <div class="smallcaps text-ink">$960</div>
-          </div>
-        </a>
-
-        <!-- Obsidian -->
-        <a href="#reserve" class="group block">
-          <div class="aspect-[4/5] bg-paperD border border-rule grid place-items-center overflow-hidden">
-            <svg viewBox="0 0 420 540" class="w-2/3 transition-transform duration-700 group-hover:scale-105">
-              <rect x="62" y="82" width="296" height="380" rx="22" fill="#2a2520" stroke="rgba(0,0,0,.2)"/>
-              <g stroke="rgba(255,255,255,.1)" stroke-width="1.5" fill="none">
-                <path d="M80 200 Q150 180 220 200 T350 200"/>
-                <path d="M80 280 Q150 260 220 280 T350 280"/>
-                <path d="M80 360 Q150 340 220 360 T350 360"/>
-              </g>
-              <rect x="186" y="240" width="48" height="22" rx="3" fill="#4a4338"/>
-              <path d="M70 80 Q70 70 80 70 L140 70 L140 92 L80 92 Q70 92 70 82 Z" fill="#8a6b4d"/>
-              <path d="M350 80 Q350 70 340 70 L280 70 L280 92 L340 92 Q350 92 350 82 Z" fill="#8a6b4d"/>
-              <circle cx="100" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
-              <circle cx="320" cy="495" r="22" fill="#ffffff" stroke="rgba(0,0,0,.06)"/>
-            </svg>
-          </div>
-          <div class="mt-6 flex items-center justify-between">
-            <div>
-              <div class="font-serif text-2xl text-ink">Obsidian</div>
-              <div class="smallcaps text-muted mt-1">Anodized Black</div>
-            </div>
-            <div class="smallcaps text-ink">$920</div>
-          </div>
-        </a>
+      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
+        <div class="col-span-2 cap">02</div>
+        <div class="col-span-10">
+          <h4 class="font-serif text-2xl text-ink mb-2">Cut from a single sheet.</h4>
+          <p class="text-ash leading-relaxed font-serif">Each panel is CNC-milled from a single billet of 7000-series aluminum. The wave pattern is press-formed, preserving the alloy's structural integrity.</p>
+        </div>
+      </div>
+      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
+        <div class="col-span-2 cap">03</div>
+        <div class="col-span-10">
+          <h4 class="font-serif text-2xl text-ink mb-2">Leather, stitched by hand.</h4>
+          <p class="text-ash leading-relaxed font-serif">Full-grain vegetable-tanned leather from a fourth-generation Tuscan tannery. Four hours per case.</p>
+        </div>
+      </div>
+      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
+        <div class="col-span-2 cap">04</div>
+        <div class="col-span-10">
+          <h4 class="font-serif text-2xl text-ink mb-2">Eighty-four checks.</h4>
+          <p class="text-ash leading-relaxed font-serif">Wheel rotation. Latch tension. Hinge alignment. Seam pressure. Every case earns the BLN signature on the inner panel.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ─────────────── RESERVE ─────────────── -->
-  <section id="reserve" class="bg-paperD py-32 border-t border-rule">
-    <div class="max-w-2xl mx-auto px-8 text-center reveal stagger">
-      <div class="smallcaps text-muted mb-6">Reserve</div>
+  <section id="reserve" class="bg-paper py-32 border-t border-line">
+    <div class="max-w-xl mx-auto px-8 text-center reveal">
+      <div class="cap mb-3">Reserve</div>
       <h2 class="font-serif text-4xl md:text-5xl text-ink leading-tight tracking-tight">
-        First production run.<br/>
-        <span class="italic text-ash">Limited to 500 pieces.</span>
+        First production run. Limited to 500.
       </h2>
-      <p class="mt-8 text-ash leading-relaxed text-lg">
-        Join the list. Reserve your colorway. Ship first quarter 2027. No payment required to hold your place.
+      <p class="mt-6 text-ash leading-relaxed font-serif text-lg">
+        Join the list. Reserve your colorway. Ships Q1 2027. No payment required.
       </p>
 
-      <form id="reserveForm" class="mt-12 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <form id="reserveForm" class="mt-12 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
         <input
           type="email"
           required
           placeholder="your@email.com"
-          class="flex-1 px-5 py-4 bg-paper border border-ink/20 text-ink placeholder:text-muted focus:outline-none focus:border-ink transition-colors" />
+          class="flex-1 px-4 py-3.5 bg-paper border border-ink/20 text-ink placeholder:text-mute focus:outline-none focus:border-ink transition-colors font-serif text-base" />
         <button
           type="submit"
-          class="smallcaps px-7 py-4 bg-ink hover:bg-ash text-paper transition-colors">
+          class="cap px-7 py-3.5 bg-ink text-paper hover:bg-ash transition-colors">
           Reserve
         </button>
       </form>
-      <div id="reserveDone" class="hidden mt-8 text-ink">
-        ✓ You're on the list. Watch your inbox.
+      <div id="reserveDone" class="hidden mt-8 cap cap-ink">
+        ✓ You're on the list.
       </div>
 
-      <p class="mt-8 smallcaps text-muted">
-        Free shipping worldwide · Lifetime warranty · 100-day returns
+      <p class="mt-10 cap">
+        Free shipping · Lifetime warranty · 100-day returns
       </p>
     </div>
   </section>
 
   <!-- ─────────────── FOOTER ─────────────── -->
-  <footer class="bg-paper border-t border-rule py-20">
-    <div class="max-w-[1300px] mx-auto px-8 lg:px-24">
-      <div class="grid md:grid-cols-12 gap-12">
-
-        <div class="md:col-span-5">
-          <div class="font-serif text-3xl tracking-[0.4em] text-ink">BLN</div>
-          <div class="smallcaps text-muted mt-1">Travel</div>
-          <p class="mt-8 text-ash leading-relaxed max-w-sm text-lg">
-            Precision-engineered luggage from Berlin. Built by hand. Made to last decades, not destinations.
+  <footer class="bg-paper border-t border-line py-16">
+    <div class="max-w-[1500px] mx-auto px-8 lg:px-12">
+      <div class="grid md:grid-cols-12 gap-10">
+        <div class="md:col-span-4">
+          <div class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</div>
+          <p class="mt-4 text-ash leading-relaxed max-w-xs font-serif">
+            Precision-engineered luggage from Berlin. Built by hand. Made to last decades.
           </p>
-          <div class="mt-8 flex items-center gap-5 text-ash">
-            <a href="#" class="hover:text-ink transition-colors link-grow">Instagram</a>
-            <span class="text-ink/20">·</span>
-            <a href="#" class="hover:text-ink transition-colors link-grow">YouTube</a>
-            <span class="text-ink/20">·</span>
-            <a href="#" class="hover:text-ink transition-colors link-grow">Pinterest</a>
-          </div>
         </div>
 
         <div class="md:col-span-2">
-          <h5 class="smallcaps text-muted mb-5">Collection</h5>
-          <ul class="space-y-3 text-ash">
+          <h5 class="cap mb-4">Shop</h5>
+          <ul class="space-y-2 font-serif text-ash">
             <li><a href="#collection" class="link-grow hover:text-ink">Carry-On</a></li>
             <li><a href="#collection" class="link-grow hover:text-ink">Check-In</a></li>
             <li><a href="#collection" class="link-grow hover:text-ink">Trunk</a></li>
-            <li><a href="#collection" class="link-grow hover:text-ink">Accessories</a></li>
           </ul>
         </div>
 
         <div class="md:col-span-2">
-          <h5 class="smallcaps text-muted mb-5">Company</h5>
-          <ul class="space-y-3 text-ash">
-            <li><a href="#craft" class="link-grow hover:text-ink">Craftsmanship</a></li>
+          <h5 class="cap mb-4">Company</h5>
+          <ul class="space-y-2 font-serif text-ash">
+            <li><a href="#craft" class="link-grow hover:text-ink">Craft</a></li>
             <li><a href="#" class="link-grow hover:text-ink">Atelier</a></li>
             <li><a href="#" class="link-grow hover:text-ink">Press</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">Careers</a></li>
           </ul>
         </div>
 
-        <div class="md:col-span-3">
-          <h5 class="smallcaps text-muted mb-5">Service</h5>
-          <ul class="space-y-3 text-ash">
-            <li><a href="#" class="link-grow hover:text-ink">Lifetime Warranty</a></li>
+        <div class="md:col-span-2">
+          <h5 class="cap mb-4">Service</h5>
+          <ul class="space-y-2 font-serif text-ash">
+            <li><a href="#" class="link-grow hover:text-ink">Warranty</a></li>
             <li><a href="#" class="link-grow hover:text-ink">Repairs</a></li>
             <li><a href="#" class="link-grow hover:text-ink">Contact</a></li>
-            <li><a href="mailto:hello@blntravel.com" class="link-grow hover:text-ink">hello@blntravel.com</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h5 class="cap mb-4">Follow</h5>
+          <ul class="space-y-2 font-serif text-ash">
+            <li><a href="#" class="link-grow hover:text-ink">Instagram</a></li>
+            <li><a href="#" class="link-grow hover:text-ink">YouTube</a></li>
+            <li><a href="#" class="link-grow hover:text-ink">Pinterest</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="mt-16 pt-8 border-t border-rule flex flex-col md:flex-row justify-between items-start md:items-center gap-4 smallcaps text-muted">
-        <div>© 2026 BLN Travel · Berlin · All rights reserved</div>
+      <div class="mt-16 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-3 cap">
+        <div>© 2026 BLN Travel · Berlin</div>
         <div class="flex gap-6">
-          <a href="#" class="hover:text-ink transition-colors">Privacy</a>
-          <a href="#" class="hover:text-ink transition-colors">Terms</a>
-          <a href="#" class="hover:text-ink transition-colors">Imprint</a>
+          <a href="#" class="hover:cap-ink">Privacy</a>
+          <a href="#" class="hover:cap-ink">Terms</a>
+          <a href="#" class="hover:cap-ink">Imprint</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // ── Scroll-triggered reveal ──
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ── Nav background on scroll ──
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > 60) nav.classList.add('bg-paper/85','backdrop-blur-sm','border-b','border-rule');
-      else        nav.classList.remove('bg-paper/85','backdrop-blur-sm','border-b','border-rule');
+      if (window.scrollY > 30) nav.classList.add('shadow-[0_1px_0_0_#ececec]');
+      else                     nav.classList.remove('shadow-[0_1px_0_0_#ececec]');
     });
 
-    // ── Reservation form (placeholder — wire to Formspree/Resend later) ──
     const form = document.getElementById('reserveForm');
     const done = document.getElementById('reserveDone');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // TODO: replace with real submission.
       form.classList.add('hidden');
       done.classList.remove('hidden');
     });
