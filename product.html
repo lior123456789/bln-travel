@@ -123,6 +123,27 @@
     const cfg = window.BLN_SHOPIFY;
     const GQL = `https://${cfg.SHOP_DOMAIN}/api/2024-10/graphql.json`;
 
+    // Local image fallback — used if Shopify product has fewer than 2 images.
+    // Once you upload the same images to each Shopify product's Media,
+    // these get skipped automatically.
+    const LOCAL_IMAGES = {
+      "7666466750531": [
+        { url: "carry-on-silver.png",            altText: "BLN Travel Carry-On in Silver" },
+        { url: "carry-on-silver-studio.png",     altText: "Silver — studio shot" },
+        { url: "carry-on-silver-lifestyle.png",  altText: "Silver — on location" },
+      ],
+      "7666466717763": [
+        { url: "carry-on-gold.png",              altText: "BLN Travel Carry-On in Champagne Gold" },
+        { url: "carry-on-gold-studio.png",       altText: "Champagne Gold — studio shot" },
+        { url: "carry-on-gold-lifestyle.png",    altText: "Champagne Gold — on location" },
+      ],
+      "7666466783299": [
+        { url: "carry-on-obsidian.png",          altText: "BLN Travel Carry-On in Obsidian" },
+        { url: "carry-on-obsidian-studio.png",   altText: "Obsidian — studio shot" },
+        { url: "carry-on-obsidian-lifestyle.png", altText: "Obsidian — on location" },
+      ],
+    };
+
     // ── Fetch product via Storefront API ───────────────────────
     async function fetchProduct(id) {
       const res = await fetch(GQL, {
@@ -167,8 +188,11 @@
       // Description (Shopify returns HTML)
       document.getElementById("product-description").innerHTML = p.descriptionHtml || "";
 
-      // Images
-      const imgs = (p.images.edges || []).map((e) => e.node);
+      // Images — Shopify-fetched, falling back to local files when there
+      // are fewer than 2 in Shopify so the gallery never looks bare.
+      let imgs = (p.images.edges || []).map((e) => e.node);
+      const fallback = LOCAL_IMAGES[productId] || [];
+      if (imgs.length < 2 && fallback.length > 0) imgs = fallback;
       const main = document.getElementById("product-main-image");
       const thumbs = document.getElementById("product-thumbs");
       if (imgs.length > 0) {
