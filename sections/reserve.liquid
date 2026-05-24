@@ -1,0 +1,49 @@
+<section id="reserve" class="section">
+  <div class="container" style="max-width: 560px; text-align: center;">
+    <div class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">{{ section.settings.eyebrow | default: 'Reserve' }}</div>
+      <h2 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em;">
+        {{ section.settings.heading | default: 'First production run. Limited to 500.' }}
+      </h2>
+      <p style="margin-top: 24px; color: var(--ash); font-size: 18px; line-height: 1.6;">
+        {{ section.settings.body | default: 'Join the list. Reserve your colorway. Ships Q1 2027. No payment required.' }}
+      </p>
+
+      <div style="margin-top: 40px;">
+        {%- form 'customer', class: 'reserve-form' -%}
+          <input type="hidden" name="contact[tags]" value="waitlist">
+          {%- if form.posted_successfully? -%}
+            <p class="cap cap-ink" style="padding: 16px;">✓ You're on the list.</p>
+          {%- else -%}
+            {%- if form.errors -%}
+              <p style="padding: 12px; border: 1px solid #d44; color: #d44; margin-bottom: 16px;">{{ form.errors | default_errors }}</p>
+            {%- endif -%}
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <input type="email" name="contact[email]" placeholder="your@email.com" class="input" required style="text-align: center;">
+              <button type="submit" class="btn btn--full">Reserve</button>
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+      <p class="cap" style="margin-top: 32px;">
+        {{ section.settings.footnote | default: 'Free shipping · Lifetime warranty · 100-day returns' }}
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reserve",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",  "label": "Eyebrow",  "default": "Reserve" },
+    { "type": "text",     "id": "heading",  "label": "Heading",  "default": "First production run. Limited to 500." },
+    { "type": "textarea", "id": "body",     "label": "Body",     "default": "Join the list. Reserve your colorway. Ships Q1 2027. No payment required." },
+    { "type": "text",     "id": "footnote", "label": "Footnote", "default": "Free shipping · Lifetime warranty · 100-day returns" }
+  ],
+  "presets": [
+    { "name": "Reserve" }
+  ]
+}
+{% endschema %}

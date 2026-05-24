@@ -1,0 +1,37 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="{{ routes.root_url }}" class="site-header__logo">{{ shop.name | default: 'BLN Travel' }}</a>
+
+    <nav class="site-header__nav">
+      {%- if section.settings.menu != blank -%}
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      {%- else -%}
+        <a href="{{ routes.collections_url }}">Collection</a>
+        <a href="{{ routes.all_products_collection_url }}">All Products</a>
+      {%- endif -%}
+    </nav>
+
+    <a href="{{ routes.cart_url }}" class="site-header__cta link-grow">
+      Cart ({{ cart.item_count }})
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [
+    { "name": "Header" }
+  ]
+}
+{% endschema %}

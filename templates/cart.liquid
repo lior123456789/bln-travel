@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="container">
+    <div style="max-width: 640px; margin: 0 auto 48px;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">Cart</div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1;">Your Cart</h1>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <div style="max-width: 800px; margin: 0 auto;">
+          {%- for item in cart.items -%}
+            <div class="cart-item">
+              <a href="{{ item.url }}">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}">
+                {%- endif -%}
+              </a>
+              <div>
+                <a href="{{ item.url }}" style="font-family: var(--serif); font-size: 18px;">{{ item.product.title }}</a>
+                {%- if item.variant.title != 'Default Title' -%}
+                  <div class="cap" style="margin-top: 4px;">{{ item.variant.title }}</div>
+                {%- endif -%}
+                <div style="margin-top: 8px; display: flex; align-items: center; gap: 12px;">
+                  <label for="updates_{{ item.key }}" class="cap">Qty</label>
+                  <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="input" style="width: 70px; padding: 8px;">
+                  <a href="{{ item.url_to_remove }}" class="cap link-grow">Remove</a>
+                </div>
+              </div>
+              <div style="font-family: var(--serif); font-size: 18px;">{{ item.final_line_price | money_without_trailing_zeros }}</div>
+            </div>
+          {%- endfor -%}
+
+          <div class="cart-summary">
+            <div class="cart-row cart-row--total">
+              <div>Subtotal</div>
+              <div>{{ cart.total_price | money_without_trailing_zeros }}</div>
+            </div>
+            <p class="cap" style="margin-top: 16px;">
+              Free worldwide shipping. Taxes calculated at checkout.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 16px; margin-top: 24px;">
+            <button type="submit" name="update" class="btn btn--outline">Update</button>
+            <button type="submit" name="checkout" class="btn" style="flex: 1;">Checkout — {{ cart.total_price | money_without_trailing_zeros }}</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="empty">
+        <h2>Your cart is empty.</h2>
+        <p style="margin-top: 12px;">Reserve a piece below.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn" style="margin-top: 32px;">Browse Collection</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>

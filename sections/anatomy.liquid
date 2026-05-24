@@ -1,0 +1,95 @@
+<section class="section">
+  <div class="container">
+    <div style="max-width: 640px; margin-bottom: 64px;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">{{ section.settings.eyebrow | default: 'The Anatomy' }}</div>
+      <h2 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em;">
+        {{ section.settings.heading | default: 'Four details.' }}
+      </h2>
+    </div>
+
+    <div class="anatomy-grid reveal">
+      {%- for block in section.blocks -%}
+        <div class="anatomy-item" {{ block.shopify_attributes }}>
+          {%- case block.settings.icon -%}
+            {%- when 'wave' -%}
+              <svg viewBox="0 0 80 80" class="anatomy-icon" fill="none" stroke="#0e0e0e" stroke-width="1.2">
+                <path d="M10 30 Q25 15 40 30 T70 30"/>
+                <path d="M10 50 Q25 35 40 50 T70 50"/>
+              </svg>
+            {%- when 'leather' -%}
+              <svg viewBox="0 0 80 80" class="anatomy-icon" fill="none" stroke="#0e0e0e" stroke-width="1.2">
+                <path d="M14 14 L40 14 Q66 14 66 40 L66 66 L40 66 Q14 66 14 40 Z"/>
+              </svg>
+            {%- when 'wheel' -%}
+              <svg viewBox="0 0 80 80" class="anatomy-icon">
+                <circle cx="40" cy="40" r="28" fill="none" stroke="#0e0e0e" stroke-width="1.2"/>
+                <circle cx="40" cy="40" r="14" fill="none" stroke="#0e0e0e" stroke-width="1"/>
+                <circle cx="40" cy="40" r="3"  fill="#0e0e0e"/>
+              </svg>
+            {%- when 'frame' -%}
+              <svg viewBox="0 0 80 80" class="anatomy-icon" fill="none" stroke="#0e0e0e" stroke-width="1.2">
+                <rect x="14" y="14" width="52" height="52" rx="6"/>
+                <path d="M22 30 L58 30" opacity=".4"/>
+                <path d="M22 40 L58 40" opacity=".4"/>
+                <path d="M22 50 L58 50" opacity=".4"/>
+              </svg>
+          {%- endcase -%}
+          <div class="cap" style="margin-bottom: 8px;">{{ block.settings.label }}</div>
+          <h3 style="font-family: var(--serif); font-size: 22px; color: var(--ink); margin-bottom: 8px;">{{ block.settings.title }}</h3>
+          <p style="color: var(--ash); line-height: 1.6;">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .anatomy-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+  @media (min-width: 768px) { .anatomy-grid { grid-template-columns: repeat(4, 1fr); gap: 32px; } }
+  .anatomy-icon { width: 40px; height: 40px; margin-bottom: 24px; }
+</style>
+
+{% schema %}
+{
+  "name": "Anatomy",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Anatomy" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Four details." }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "wave",    "label": "Wave" },
+            { "value": "leather", "label": "Leather" },
+            { "value": "wheel",   "label": "Wheel" },
+            { "value": "frame",   "label": "Frame" }
+          ],
+          "default": "wave"
+        },
+        { "type": "text",     "id": "label", "label": "Label", "default": "01 — Wave" },
+        { "type": "text",     "id": "title", "label": "Title", "default": "Inspired by motion." },
+        { "type": "textarea", "id": "body",  "label": "Body",  "default": "A signature wave pressed into every panel. Reduces visible scuffing." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Anatomy",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "wave",    "label": "01 — Wave",    "title": "Inspired by motion.",    "body": "A signature wave pressed into every panel. Reduces visible scuffing." } },
+        { "type": "feature", "settings": { "icon": "leather", "label": "02 — Leather", "title": "Hand-finished corners.", "body": "Full-grain leather, vegetable-tanned in Tuscany. Stitched by hand." } },
+        { "type": "feature", "settings": { "icon": "wheel",   "label": "03 — Wheels",  "title": "Silent skate.",          "body": "360° polyurethane, sealed bearings, marble to gravel." } },
+        { "type": "feature", "settings": { "icon": "frame",   "label": "04 — Frame",   "title": "Aerospace aluminum.",    "body": "7000-series, CNC-milled, anodized to a soft satin." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

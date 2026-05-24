@@ -1,0 +1,63 @@
+<section class="section">
+  <div class="container">
+    <div style="max-width: 640px; margin: 0 auto 80px; text-align: center;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">{{ section.settings.eyebrow | default: 'The Process' }}</div>
+      <h2 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em;">
+        {{ section.settings.heading | default: 'Eighty-six steps.' }}<br>
+        {{ section.settings.heading_b | default: 'Six weeks. One case.' }}
+      </h2>
+    </div>
+
+    <div class="process-list" style="max-width: 720px; margin: 0 auto;">
+      {%- for block in section.blocks -%}
+        <div class="process-step reveal" {{ block.shopify_attributes }}>
+          <div class="process-step__num cap">{{ block.settings.number }}</div>
+          <div class="process-step__body">
+            <h3 style="font-family: var(--serif); font-size: 26px; color: var(--ink); margin-bottom: 12px;">{{ block.settings.title }}</h3>
+            <p style="color: var(--ash); line-height: 1.7; font-size: 17px;">{{ block.settings.body }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-list { display: flex; flex-direction: column; gap: 56px; }
+  .process-step { display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: baseline; }
+  .process-step__num { color: var(--ash); font-size: 11px; }
+</style>
+
+{% schema %}
+{
+  "name": "Process",
+  "settings": [
+    { "type": "text", "id": "eyebrow",   "label": "Eyebrow",            "default": "The Process" },
+    { "type": "text", "id": "heading",   "label": "Heading (line 1)",   "default": "Eighty-six steps." },
+    { "type": "text", "id": "heading_b", "label": "Heading (line 2)",   "default": "Six weeks. One case." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text",     "id": "number", "label": "Step number", "default": "01" },
+        { "type": "text",     "id": "title",  "label": "Title",       "default": "Hand-drawn. Then proved." },
+        { "type": "textarea", "id": "body",   "label": "Body",        "default": "Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Process",
+      "blocks": [
+        { "type": "step", "settings": { "number": "01", "title": "Hand-drawn. Then proved.",  "body": "Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal." } },
+        { "type": "step", "settings": { "number": "02", "title": "Cut from a single sheet.",  "body": "Each panel is CNC-milled from a single billet of 7000-series aluminum. The wave pattern is press-formed, preserving the alloy's structural integrity." } },
+        { "type": "step", "settings": { "number": "03", "title": "Leather, stitched by hand.", "body": "Full-grain vegetable-tanned leather from a fourth-generation Tuscan tannery. Four hours per case." } },
+        { "type": "step", "settings": { "number": "04", "title": "Eighty-four checks.",        "body": "Wheel rotation. Latch tension. Hinge alignment. Seam pressure. Every case earns the BLN signature on the inner panel." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

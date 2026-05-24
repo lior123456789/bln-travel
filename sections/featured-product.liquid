@@ -1,0 +1,50 @@
+{%- assign product = all_products[section.settings.product] -%}
+
+<section class="container">
+  <div class="product-showcase reveal">
+    {%- if product != blank -%}
+      <a href="{{ product.url }}" class="product-image-wrap">
+        {%- if product.featured_image -%}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}">
+        {%- endif -%}
+      </a>
+
+      <div class="product-meta">
+        <span class="cap">Specification</span>
+        <p class="product-meta__intro">
+          Precision in motion. Designed to last. Aerospace-grade aluminum, hand-finished leather, whisper-quiet skate wheels.
+        </p>
+
+        <ul class="spec-list">
+          <li><span class="cap">Dimensions</span><span class="val">22″ × 14″ × 9″</span></li>
+          <li><span class="cap">Weight</span><span class="val">8.4 lbs</span></li>
+          <li><span class="cap">Capacity</span><span class="val">37 L</span></li>
+          <li><span class="cap">Frame</span><span class="val">Aerospace Aluminum</span></li>
+          <li><span class="cap">Wheels</span><span class="val">360° Silent Skate</span></li>
+          <li><span class="cap">Warranty</span><span class="val">Lifetime</span></li>
+        </ul>
+
+        <a href="{{ product.url }}" class="cap cap-ink link-grow">
+          Reserve from {{ product.price | money_without_trailing_zeros }} →
+        </a>
+      </div>
+    {%- else -%}
+      <div class="empty" style="grid-column: 1 / -1;">
+        <h2>No featured product yet</h2>
+        <p>Set one in <strong>Theme Customizer → Featured product</strong>.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured product",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Featured product" }
+  ],
+  "presets": [
+    { "name": "Featured product" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,21 @@
+<section class="container">
+  <div class="hero reveal">
+    <div class="cap hero__label">{{ section.settings.eyebrow | default: 'Edition 01 — The Carry-On' }}</div>
+    <h1>{{ section.settings.heading_a | default: 'Engineered for movement.' }}</h1>
+    <h1 class="italic">{{ section.settings.heading_b | default: 'Crafted to endure.' }}</h1>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow",   "label": "Eyebrow",      "default": "Edition 01 — The Carry-On" },
+    { "type": "text", "id": "heading_a", "label": "Headline (line 1)", "default": "Engineered for movement." },
+    { "type": "text", "id": "heading_b", "label": "Headline (line 2, italic)", "default": "Crafted to endure." }
+  ],
+  "presets": [
+    { "name": "Hero", "category": "Hero" }
+  ]
+}
+{% endschema %}

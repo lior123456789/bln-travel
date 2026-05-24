@@ -1,0 +1,46 @@
+<section class="container" style="padding: 64px 32px;">
+  <div class="product-showcase reveal">
+    <div class="product-image-wrap">
+      {%- if product.featured_image -%}
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.featured_image.alt | escape }}">
+      {%- endif -%}
+    </div>
+
+    <div class="product-meta">
+      <span class="cap">{{ product.type | default: 'The Carry-On' }}</span>
+
+      <h1 style="font-size: clamp(32px, 5vw, 48px); margin: 16px 0 12px; line-height: 1.1; letter-spacing: -0.01em;">
+        {{ product.title }}
+      </h1>
+
+      <div class="product-meta__price">{{ product.price | money_without_trailing_zeros }}</div>
+
+      {%- if product.description != blank -%}
+        <div class="product-meta__intro" style="margin-top: 24px;">{{ product.description }}</div>
+      {%- endif -%}
+
+      <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" style="margin-top: 32px;">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="btn btn--full" {% unless product.available %}disabled{% endunless %}>
+          {%- if product.available -%}
+            Add to Cart — {{ product.price | money_without_trailing_zeros }}
+          {%- else -%}
+            Sold Out
+          {%- endif -%}
+        </button>
+      </form>
+
+      <p class="cap" style="margin-top: 24px; text-align: center;">
+        Free worldwide shipping · Lifetime warranty · 100-day returns
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "blocks": []
+}
+{% endschema %}

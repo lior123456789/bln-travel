@@ -1,0 +1,38 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 32px;">
+      <div class="cap" style="margin-bottom: 12px;">Account</div>
+      <h1 style="font-size: clamp(28px, 4vw, 40px);">Welcome, {{ customer.first_name | default: customer.email }}</h1>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr; gap: 32px;">
+      <div>
+        <h2 class="cap" style="margin-bottom: 16px;">Order History</h2>
+        {%- if customer.orders.size > 0 -%}
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead><tr style="text-align: left;"><th class="cap" style="padding: 12px 0;">Order</th><th class="cap">Date</th><th class="cap">Total</th><th class="cap">Status</th></tr></thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr style="border-top: 1px solid var(--line);">
+                  <td style="padding: 12px 0;"><a href="{{ order.customer_url }}" class="link-grow">{{ order.name }}</a></td>
+                  <td>{{ order.created_at | date: '%b %-d, %Y' }}</td>
+                  <td>{{ order.total_price | money_without_trailing_zeros }}</td>
+                  <td class="cap">{{ order.fulfillment_status_label }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        {%- else -%}
+          <p style="color: var(--ash);">No orders yet.</p>
+        {%- endif -%}
+      </div>
+
+      <div>
+        <h2 class="cap" style="margin-bottom: 16px;">Account</h2>
+        <p style="color: var(--ash); margin-bottom: 16px;">{{ customer.default_address.formatted | newline_to_br | default: 'No address on file.' }}</p>
+        <a href="/account/addresses" class="cap link-grow">Manage Addresses</a> &nbsp;·&nbsp;
+        <a href="/account/logout" class="cap link-grow">Log Out</a>
+      </div>
+    </div>
+  </div>
+</section>

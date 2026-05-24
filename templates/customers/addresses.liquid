@@ -1,0 +1,19 @@
+<section class="section">
+  <div class="container" style="max-width: 720px;">
+    <div class="cap" style="margin-bottom: 12px;">Account · Addresses</div>
+    <h1 style="font-size: clamp(28px, 4vw, 40px); margin-bottom: 32px;">Your Addresses</h1>
+
+    {% paginate customer.addresses by 5 %}
+      {%- for address in customer.addresses -%}
+        <div style="padding: 24px 0; border-bottom: 1px solid var(--line);">
+          {%- if address == customer.default_address -%}<span class="cap" style="color: var(--ink);">Default</span>{%- endif -%}
+          <p style="margin-top: 8px;">{{ address.formatted | newline_to_br }}</p>
+        </div>
+      {%- else -%}
+        <p style="color: var(--ash);">No addresses on file.</p>
+      {%- endfor -%}
+    {% endpaginate %}
+
+    <a href="/account" class="cap link-grow" style="margin-top: 24px; display: inline-block;">← Back to Account</a>
+  </div>
+</section>

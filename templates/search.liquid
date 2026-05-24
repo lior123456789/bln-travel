@@ -1,0 +1,40 @@
+<section class="section">
+  <div class="container">
+    <div style="max-width: 640px; margin-bottom: 32px;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">Search</div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1;">
+        {%- if search.performed -%}
+          {{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for "{{ search.terms | escape }}"
+        {%- else -%}
+          Search
+        {%- endif -%}
+      </h1>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" style="max-width: 640px; margin-bottom: 48px;">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products" class="input">
+    </form>
+
+    {%- if search.performed and search.results.size > 0 -%}
+      <div class="collection-grid reveal">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            <a href="{{ item.url }}" class="collection-card">
+              <div class="collection-card__image">
+                {%- if item.featured_image -%}
+                  <img src="{{ item.featured_image | image_url: width: 600 }}" alt="{{ item.title | escape }}">
+                {%- endif -%}
+              </div>
+              <div class="collection-card__meta">
+                <div class="collection-card__title">{{ item.title }}</div>
+                <div class="collection-card__price">{{ item.price | money_without_trailing_zeros }}</div>
+              </div>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- elsif search.performed -%}
+      <div class="empty"><h2>No results.</h2></div>
+    {%- endif -%}
+  </div>
+</section>

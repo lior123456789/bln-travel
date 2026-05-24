@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="container" style="max-width: 420px;">
+    <div class="reveal" style="text-align: center; margin-bottom: 32px;">
+      <div class="cap" style="margin-bottom: 12px;">Account</div>
+      <h1 style="font-size: clamp(28px, 4vw, 40px);">Create Account</h1>
+    </div>
+
+    {% form 'create_customer' %}
+      {%- if form.errors -%}
+        <div style="padding: 12px; border: 1px solid #d44; color: #d44; margin-bottom: 16px;">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="field"><label for="FirstName">First name</label><input type="text" name="customer[first_name]" id="FirstName" class="input"></div>
+      <div class="field"><label for="LastName">Last name</label><input type="text" name="customer[last_name]" id="LastName" class="input"></div>
+      <div class="field"><label for="Email">Email</label><input type="email" name="customer[email]" id="Email" class="input" required></div>
+      <div class="field"><label for="Password">Password</label><input type="password" name="customer[password]" id="Password" class="input" required></div>
+      <button type="submit" class="btn btn--full">Create Account</button>
+      <p class="cap" style="text-align: center; margin-top: 16px;"><a href="/account/login" class="link-grow">Already have an account?</a></p>
+    {% endform %}
+  </div>
+</section>

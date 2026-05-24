@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="container">
+    <div style="max-width: 800px; margin: 0 auto 48px;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">Journal</div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1;">{{ blog.title }}</h1>
+    </div>
+
+    {%- if blog.articles_count > 0 -%}
+      <div style="max-width: 800px; margin: 0 auto;">
+        {%- for article in blog.articles -%}
+          <a href="{{ article.url }}" style="display: block; padding: 32px 0; border-bottom: 1px solid var(--line);" class="reveal">
+            <div class="cap" style="margin-bottom: 8px;">{{ article.published_at | date: '%B %-d, %Y' }}</div>
+            <h2 style="font-family: var(--serif); font-size: 28px;">{{ article.title }}</h2>
+            <p style="margin-top: 12px; color: var(--ash);">{{ article.excerpt_or_content | strip_html | truncate: 180 }}</p>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="empty"><h2>No articles yet.</h2></div>
+    {%- endif -%}
+  </div>
+</section>

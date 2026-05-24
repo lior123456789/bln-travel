@@ -1,0 +1,76 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <div class="cap cap-ink" style="letter-spacing: 0.4em;">{{ shop.name | default: 'BLN Travel' }}</div>
+        <p style="margin-top: 16px; color: var(--ash); max-width: 280px;">
+          {{ section.settings.tagline | default: 'Precision-engineered luggage from Berlin. Built by hand. Made to last decades.' }}
+        </p>
+      </div>
+
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          {%- for collection in collections limit: 4 -%}
+            <li><a href="{{ collection.url }}" class="link-grow">{{ collection.title }}</a></li>
+          {%- else -%}
+            <li><a href="{{ routes.all_products_collection_url }}" class="link-grow">All Products</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/pages/craft" class="link-grow">Craft</a></li>
+          <li><a href="/pages/atelier" class="link-grow">Atelier</a></li>
+          <li><a href="/pages/press" class="link-grow">Press</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Service</h5>
+        <ul>
+          <li><a href="/pages/warranty" class="link-grow">Warranty</a></li>
+          <li><a href="/pages/repairs" class="link-grow">Repairs</a></li>
+          <li><a href="/pages/contact" class="link-grow">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Follow</h5>
+        <ul>
+          <li><a href="https://instagram.com" class="link-grow">Instagram</a></li>
+          <li><a href="https://youtube.com" class="link-grow">YouTube</a></li>
+          <li><a href="https://pinterest.com" class="link-grow">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <div>© {{ 'now' | date: '%Y' }} {{ shop.name | default: 'BLN Travel' }} · Berlin</div>
+      <div style="display:flex; gap:24px;">
+        <a href="/policies/privacy-policy">Privacy</a>
+        <a href="/policies/terms-of-service">Terms</a>
+        <a href="/policies/refund-policy">Returns</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Precision-engineered luggage from Berlin. Built by hand. Made to last decades."
+    }
+  ],
+  "presets": [
+    { "name": "Footer" }
+  ]
+}
+{% endschema %}

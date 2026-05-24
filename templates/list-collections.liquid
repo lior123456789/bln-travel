@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <div style="max-width: 640px; margin-bottom: 48px;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">Collections</div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1;">All Collections</h1>
+    </div>
+
+    <div class="collection-grid reveal">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" class="collection-card">
+          <div class="collection-card__image">
+            {%- if collection.featured_image -%}
+              <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}">
+            {%- elsif collection.products.first.featured_image -%}
+              <img src="{{ collection.products.first.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}">
+            {%- endif -%}
+          </div>
+          <div class="collection-card__meta">
+            <div class="collection-card__title">{{ collection.title }}</div>
+            <div class="collection-card__sub">{{ collection.products_count }} pieces</div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

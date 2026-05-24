@@ -1,0 +1,23 @@
+<section class="section">
+  <article class="container" style="max-width: 720px;">
+    <div class="reveal" style="margin-bottom: 32px;">
+      <div class="cap" style="margin-bottom: 12px;">{{ article.published_at | date: '%B %-d, %Y' }} · {{ article.author }}</div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1;">{{ article.title }}</h1>
+    </div>
+    <div class="reveal" style="font-family: var(--serif); font-size: 18px; line-height: 1.7;">
+      {{ article.content }}
+    </div>
+
+    {%- if article.comments_enabled? -%}
+      <div style="margin-top: 64px; border-top: 1px solid var(--line); padding-top: 32px;">
+        <h3 class="cap" style="margin-bottom: 24px;">Comments</h3>
+        {%- for comment in article.comments -%}
+          <div style="margin-bottom: 24px;">
+            <div class="cap">{{ comment.author }} · {{ comment.created_at | date: '%b %-d' }}</div>
+            <p style="margin-top: 8px;">{{ comment.content }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </article>
+</section>

@@ -1,0 +1,43 @@
+<section class="section" style="padding-top: 80px;">
+  <div class="container">
+    <div style="max-width: 640px; margin-bottom: 48px;" class="reveal">
+      <div class="cap" style="margin-bottom: 12px;">{{ collection.title | default: 'Collection' }}</div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em;">
+        {{ collection.title }}
+      </h1>
+      {%- if collection.description != blank -%}
+        <p style="margin-top: 16px; color: var(--ash); font-size: 18px;">{{ collection.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="collection-grid reveal">
+      {%- for product in collection.products -%}
+        <a href="{{ product.url }}" class="collection-card">
+          <div class="collection-card__image">
+            {%- if product.featured_image -%}
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | escape }}">
+            {%- endif -%}
+          </div>
+          <div class="collection-card__meta">
+            <div>
+              <div class="collection-card__title">{{ product.title | split: '·' | last | strip }}</div>
+              <div class="collection-card__sub">{{ product.type | default: 'Carry-On' }}</div>
+            </div>
+            <div class="collection-card__price">{{ product.price | money_without_trailing_zeros }}</div>
+          </div>
+        </a>
+      {%- else -%}
+        <div class="empty" style="grid-column: 1 / -1;">
+          <h2>No products in this collection yet</h2>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": []
+}
+{% endschema %}

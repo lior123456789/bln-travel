@@ -1,0 +1,26 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "BLN Travel",
+    "theme_version": "1.0.0",
+    "theme_author": "BLN Travel",
+    "theme_documentation_url": "https://altobroker.us",
+    "theme_support_url": "mailto:hello@blntravel.com"
+  },
+  {
+    "name": "Branding",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "tagline",
+        "label": "Tagline",
+        "default": "Precision-engineered luggage from Berlin."
+      }
+    ]
+  }
+]
