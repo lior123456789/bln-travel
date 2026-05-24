@@ -497,7 +497,8 @@
           storefrontAccessToken: cfg.STOREFRONT_TOKEN,
         });
 
-        ShopifyBuy.UI.onReady(client).then((ui) => {
+        const ui = ShopifyBuy.UI.init(client);
+        ;(function (ui) {
           // Shared button style — matches our .btn / .cap aesthetic
           const buttonOnlyOptions = (label) => ({
             product: {
@@ -584,7 +585,7 @@
               }
             }, 300);
           }
-        });
+        })(ui);
       });
     })();
   </script>
