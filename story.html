@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Story — BLN Travel</title>
+  <meta name="description" content="How BLN Travel makes polycarbonate luggage in a small atelier in Berlin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { paper:'#ffffff', offwhite:'#f6f6f5', ink:'#0e0e0e', ash:'#5a5a5a', mute:'#9a9a9a', line:'#e7e7e7' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background:#fff; color:#0e0e0e; font-family:'Inter', system-ui, sans-serif; font-size:15px; line-height:1.55; letter-spacing:-0.005em; -webkit-font-smoothing:antialiased; }
+    .caps      { text-transform:uppercase; letter-spacing:0.20em; font-size:11px; font-weight:500; color:#0e0e0e; }
+    .caps-mute { text-transform:uppercase; letter-spacing:0.20em; font-size:11px; color:#9a9a9a; font-weight:500; }
+    .wordmark  { font-weight:600; letter-spacing:0.24em; font-size:22px; }
+    .nav-link  { font-size:13px; font-weight:500; letter-spacing:0.10em; text-transform:uppercase; color:#0e0e0e; padding:0 14px; line-height:60px; display:inline-block; }
+    .nav-link:hover { color:#5a5a5a; }
+    .pill      { display:inline-flex; align-items:center; justify-content:center; padding:14px 28px; border-radius:9999px; font-size:13px; font-weight:500; letter-spacing:0.10em; text-transform:uppercase; }
+    .pill-dark { background:#0e0e0e; color:#fff; }
+    .pill-dark:hover { background:#2a2a2a; }
+    .reveal    { opacity:0; transform:translateY(12px); transition:opacity 1s ease, transform 1s ease; }
+    .reveal.in { opacity:1; transform:none; }
+    .bold-img  { filter: contrast(1.05) saturate(1.05); }
+  </style>
+</head>
+<body>
+
+  <!-- Top utility -->
+  <div class="border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-9 flex items-center justify-between text-[11px] text-mute">
+      <span>Ship to Canada · English</span>
+      <a href="#" class="hover:text-ink">Track order</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 grid grid-cols-3 items-center">
+      <div class="text-[12px] text-ash hidden md:flex"><span>Ship to Canada · English</span></div>
+      <a href="index.html" class="wordmark mx-auto">BLN TRAVEL</a>
+      <div class="flex items-center justify-end gap-5">
+        <a href="index.html"   aria-label="Search"   class="text-ink hover:text-ash"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></a>
+        <a href="account.html" aria-label="Account"  class="text-ink hover:text-ash hidden sm:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></a>
+        <a href="wishlist.html"aria-label="Wishlist" class="text-ink hover:text-ash hidden sm:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+        <a href="cart.html"    aria-label="Cart"     class="text-ink hover:text-ash"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l-1.5 12H7.5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></a>
+      </div>
+    </div>
+    <nav class="hidden md:block border-t border-line">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-center">
+        <a class="nav-link" href="index.html#carry-on">Carry-On</a>
+        <a class="nav-link" href="story.html">Our Story</a>
+        <a class="nav-link" href="index.html#craft">Craft</a>
+        <a class="nav-link" href="index.html#services">Services</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ─────────── Hero ─────────── -->
+  <section class="bg-offwhite">
+    <div class="max-w-[1100px] mx-auto px-6 lg:px-10 py-24 md:py-32 text-center">
+      <p class="caps-mute mb-5 reveal">Berlin · Atelier since 2024</p>
+      <h1 class="text-[44px] md:text-[72px] leading-[1.05] tracking-tight reveal">
+        We make one<br/>suitcase, well.
+      </h1>
+      <p class="text-ash text-[17px] leading-relaxed max-w-2xl mx-auto mt-8 reveal">
+        BLN Travel is a five-person studio in Berlin-Kreuzberg making polycarbonate luggage
+        the way pieces of furniture used to be made — by hand, in a single workshop, with parts
+        you can replace.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────── Section: The shell ─────────── -->
+  <section class="bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <img src="carry-on-silver.png" alt="Polycarbonate shell" class="w-full max-w-[520px] mx-auto bold-img" />
+      </div>
+      <div class="reveal">
+        <p class="caps-mute mb-5">01 · The shell</p>
+        <h2 class="text-[34px] md:text-[44px] leading-tight tracking-tight mb-6">
+          A single sheet, vacuum-formed.
+        </h2>
+        <p class="text-ash leading-relaxed mb-5">
+          Every BLN shell starts as a 2.4 mm sheet of aerospace-grade polycarbonate from
+          Bayer MaterialScience in Leverkusen. The sheet is heated to 165 °C and pulled
+          over a forming jig — one piece, no seams, no glue.
+        </p>
+        <p class="text-ash leading-relaxed">
+          Polycarbonate flexes under impact and returns to form. It's the same material used
+          in police shields and the canopy of the F-22 Raptor — strong enough to outlast a
+          dropped overhead bin, light enough that a child can lift the case off the carousel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── Section: The atelier ─────────── -->
+  <section class="bg-offwhite">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <p class="caps-mute mb-5">02 · The atelier</p>
+        <h2 class="text-[34px] md:text-[44px] leading-tight tracking-tight mb-6">
+          Made in Kreuzberg, by five people.
+        </h2>
+        <p class="text-ash leading-relaxed mb-5">
+          Our workshop sits on the ground floor of a former bakery on Skalitzer Straße. Five
+          craftspeople — two of them third-generation luggage makers from Trier — assemble each
+          piece by hand. A finished case passes through their hands 11 times before it ships.
+        </p>
+        <p class="text-ash leading-relaxed">
+          We don't run a production line. We finish forty cases a week and we like it that way.
+          The bottleneck is the polishing — Reinhardt insists on doing every shell himself, and
+          we don't argue with him.
+        </p>
+      </div>
+      <div class="reveal order-1 lg:order-2">
+        <img src="carry-on-obsidian-lifestyle.png" alt="The Berlin atelier" class="w-full bold-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── Section: The hardware ─────────── -->
+  <section class="bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <img src="carry-on-gold-studio.png" alt="Hardware" class="w-full max-w-[520px] mx-auto bold-img" />
+      </div>
+      <div class="reveal">
+        <p class="caps-mute mb-5">03 · The hardware</p>
+        <h2 class="text-[34px] md:text-[44px] leading-tight tracking-tight mb-6">
+          German, Japanese, and lifetime.
+        </h2>
+        <p class="text-ash leading-relaxed mb-5">
+          The lock is a TSA-approved 3-dial unit from <strong class="text-ink">Travelsentry</strong>.
+          The wheels are <strong class="text-ink">Hinomoto Lisof</strong> 360° silent runners, machined
+          in Toyama, Japan — the same wheels Briggs &amp; Riley uses on their President line. The
+          telescoping handle is multi-stop CNC aluminum from <strong class="text-ink">Würth</strong>
+          in Künzelsau.
+        </p>
+        <p class="text-ash leading-relaxed">
+          Every part is replaceable. We keep ten years of spares for each generation. Crack a wheel
+          in 2034 and we'll ship you a new set — free.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── Section: Numbers ─────────── -->
+  <section class="bg-ink text-white">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 md:py-32">
+      <p class="caps-mute mb-5 reveal" style="color:#9a9a9a">By the numbers</p>
+      <div class="grid md:grid-cols-4 gap-12">
+        <div class="reveal">
+          <p class="text-[64px] leading-none font-light mb-3">11</p>
+          <p class="text-[14px] text-mute leading-relaxed">Times each case is touched by a craftsperson before it ships.</p>
+        </div>
+        <div class="reveal">
+          <p class="text-[64px] leading-none font-light mb-3">40</p>
+          <p class="text-[14px] text-mute leading-relaxed">Cases finished per week. The cap is on purpose.</p>
+        </div>
+        <div class="reveal">
+          <p class="text-[64px] leading-none font-light mb-3">10y</p>
+          <p class="text-[14px] text-mute leading-relaxed">Spares stocked for every generation. Wheels, handles, locks.</p>
+        </div>
+        <div class="reveal">
+          <p class="text-[64px] leading-none font-light mb-3">∞</p>
+          <p class="text-[14px] text-mute leading-relaxed">Warranty. If we made it, we'll fix it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── Section: The repair promise ─────────── -->
+  <section class="bg-white">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-10 py-24 md:py-32 text-center reveal">
+      <p class="caps-mute mb-5">04 · Repair, don't replace</p>
+      <h2 class="text-[36px] md:text-[52px] leading-tight tracking-tight mb-7">
+        A suitcase you'll hand down.
+      </h2>
+      <p class="text-ash leading-relaxed text-[16px] mb-8">
+        We design every BLN case so its parts can be swapped out — not glued, not riveted shut.
+        Mail us your case from anywhere in the world and we'll repair it in our Berlin atelier,
+        free, for the life of the product. Then we ship it back, carbon-offset.
+      </p>
+      <a href="product.html" class="pill pill-dark">Shop The Carry-On</a>
+    </div>
+  </section>
+
+  <!-- ─────────── Founders ─────────── -->
+  <section class="bg-offwhite">
+    <div class="max-w-[1100px] mx-auto px-6 lg:px-10 py-20 md:py-28 text-center">
+      <p class="caps-mute mb-5">Founders</p>
+      <h2 class="text-[32px] md:text-[40px] leading-tight tracking-tight mb-10">
+        Three friends from Berlin and Paris.
+      </h2>
+      <p class="text-ash leading-relaxed max-w-2xl mx-auto">
+        We started BLN Travel because the suitcases we travelled with — German, Japanese, French —
+        were all built to be thrown away in five years. We didn't want a logo case. We wanted a
+        case that outlived its purchase, and a workshop we could walk into. That's all this is.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────── Footer ─────────── -->
+  <footer class="bg-white border-t border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 grid md:grid-cols-4 gap-10 text-[13px]">
+      <div>
+        <p class="wordmark mb-4">BLN TRAVEL</p>
+        <p class="text-ash leading-relaxed">Polycarbonate luggage.<br/>Designed in Berlin.</p>
+      </div>
+      <div>
+        <p class="caps mb-3">Shop</p>
+        <ul class="space-y-1.5 text-ash">
+          <li><a href="product.html?color=silver"   class="hover:text-ink">The Carry-On · Silver</a></li>
+          <li><a href="product.html?color=obsidian" class="hover:text-ink">The Carry-On · Obsidian</a></li>
+          <li><a href="product.html?color=gold"     class="hover:text-ink">The Carry-On · Champagne</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="caps mb-3">Help</p>
+        <ul class="space-y-1.5 text-ash">
+          <li><a href="#" class="hover:text-ink">Shipping</a></li>
+          <li><a href="#" class="hover:text-ink">Returns</a></li>
+          <li><a href="#" class="hover:text-ink">Warranty</a></li>
+          <li><a href="#" class="hover:text-ink">Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="caps mb-3">Stay in touch</p>
+        <form class="flex">
+          <input type="email" placeholder="your@email.com" class="flex-1 min-w-0 border border-line px-3 py-2 text-[13px] outline-none focus:border-ink" />
+          <button class="bg-ink text-white px-4 text-[12px] uppercase tracking-wider">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center justify-between text-mute text-[11px] gap-3">
+        <span>© 2026 BLN Travel · Berlin</span>
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-ink">Privacy</a>
+          <a href="#" class="hover:text-ink">Terms</a>
+          <a href="#" class="hover:text-ink">Imprint</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

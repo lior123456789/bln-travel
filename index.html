@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BLN Travel — The Carry-On</title>
-  <meta name="description" content="BLN Travel — precision-engineered aluminum luggage. Made in Berlin." />
+  <title>BLN Travel — Polycarbonate luggage. Made in Berlin.</title>
+  <meta name="description" content="BLN Travel — high-performance polycarbonate luggage built for a lifetime of journeys." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <!-- Inter mirrors the clean humanist sans Rimowa uses on their site. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -15,13 +16,17 @@
         extend: {
           colors: {
             paper: '#ffffff',
+            offwhite: '#f6f6f5',
+            // Hero-only colour, picked to match the silver suitcase shell so the
+            // product blends into the background instead of floating on a card.
+            heroSilver: '#e9eaec',
             ink:   '#0e0e0e',
             ash:   '#5a5a5a',
             mute:  '#9a9a9a',
-            line:  '#ececec',
+            line:  '#e7e7e7',
           },
           fontFamily: {
-            serif: ['"EB Garamond"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
           },
         },
       },
@@ -32,628 +37,324 @@
     body {
       background: #ffffff;
       color: #0e0e0e;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-feature-settings: "kern","liga","onum";
-      font-size: 16px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-feature-settings: "kern","liga";
+      font-size: 15px;
       line-height: 1.55;
+      letter-spacing: -0.005em;
       -webkit-font-smoothing: antialiased;
     }
-    .reveal     { opacity: 0; transform: translateY(10px); transition: opacity 1.1s ease, transform 1.1s ease; }
-    .reveal.in  { opacity: 1; transform: none; }
-
-    .cap {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 11px;
-      letter-spacing: 0.26em;
+    .caps {
       text-transform: uppercase;
+      letter-spacing: 0.20em;
+      font-size: 11px;
       font-weight: 500;
-      color: #5a5a5a;
+      color: #0e0e0e;
     }
-    .cap-ink { color: #0e0e0e; }
-
-    .link-grow { position: relative; }
-    .link-grow::after {
-      content: ''; position: absolute; left: 0; right: 0; bottom: -3px;
-      height: 1px; background: currentColor; transform-origin: left;
-      transform: scaleX(0); transition: transform .4s ease;
+    .caps-mute { text-transform: uppercase; letter-spacing: 0.20em; font-size: 11px; color: #9a9a9a; font-weight: 500; }
+    .wordmark { font-weight: 600; letter-spacing: 0.24em; font-size: 22px; }
+    .hairline { border-color: #e7e7e7; }
+    .reveal     { opacity: 0; transform: translateY(12px); transition: opacity 1s ease, transform 1s ease; }
+    .reveal.in  { opacity: 1; transform: none; }
+    .nav-link {
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: #0e0e0e; padding: 0 14px;
+      line-height: 60px; display: inline-block;
     }
-    .link-grow:hover::after { transform: scaleX(1); }
+    .nav-link:hover { color: #5a5a5a; }
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 28px; border-radius: 9999px;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      transition: opacity .2s ease, transform .15s ease;
+    }
+    .pill:active { transform: scale(.98); }
+    .pill-dark  { background: #0e0e0e; color: #fff; }
+    .pill-dark:hover { background: #2a2a2a; }
+    .pill-ghost { background: #fff; color: #0e0e0e; border: 1px solid #0e0e0e; }
+    .pill-ghost:hover { background: #0e0e0e; color: #fff; }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-thumb { background: #d6d6d6; border-radius: 9999px; }
-    ::selection { background: #f0f0f0; color: #0e0e0e; }
+    .carousel { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .carousel::-webkit-scrollbar { display: none; }
+    .snap-item { scroll-snap-align: start; }
+
+    /* Bolder, crisper product photography across the site */
+    .bold-img    { filter: contrast(1.08) saturate(1.08); }
+    .bold-hero   { filter: contrast(1.10) saturate(1.05) drop-shadow(0 30px 40px rgba(0,0,0,0.10)); }
   </style>
 </head>
 <body>
 
-  <!-- ─────────────── NAV ─────────────── -->
-  <nav id="nav" class="fixed inset-x-0 top-0 z-50 bg-paper transition-shadow duration-300">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 h-16 flex items-center justify-between">
-      <a href="#top" class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</a>
-      <div class="hidden md:flex items-center gap-10 cap">
-        <a href="#collection" class="link-grow hover:cap-ink">Collection</a>
-        <a href="#detail"     class="link-grow hover:cap-ink">Carry-On</a>
-        <a href="#craft"      class="link-grow hover:cap-ink">Craft</a>
-        <a href="#story"      class="link-grow hover:cap-ink">Story</a>
-      </div>
-      <div class="flex items-center gap-6">
-        <div id="bln-cart-toggle" class="cap cap-ink link-grow" style="cursor:pointer;">Cart (0)</div>
-        <a href="#reserve" class="cap cap-ink link-grow">Reserve</a>
-      </div>
+  <!-- ─────────── Top utility row ─────────── -->
+  <div class="border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-9 flex items-center justify-between text-[11px] text-mute">
+      <span>Ship to Canada · English</span>
+      <a href="#" class="hover:text-ink">Track order</a>
     </div>
-    <div class="h-px bg-line"></div>
-  </nav>
+  </div>
 
-  <!-- ─────────────── HERO ─────────────── -->
-  <header id="top" class="pt-16">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-24 pb-16 text-center reveal">
-      <div class="cap mb-8">Edition 01 — The Carry-On</div>
-      <h1 class="font-serif text-5xl md:text-7xl xl:text-[88px] leading-[1.05] text-ink tracking-tight">
-        Engineered for movement.
-      </h1>
-      <h1 class="font-serif italic text-5xl md:text-7xl xl:text-[88px] leading-[1.05] text-ink tracking-tight">
-        Crafted to endure.
-      </h1>
-    </div>
-
-    <!-- Hero showcase: smaller suitcase + stats side-by-side -->
-    <div id="detail" class="max-w-[1300px] mx-auto px-8 lg:px-12 pb-32">
-      <div class="grid md:grid-cols-12 gap-12 lg:gap-20 items-center">
-
-        <!-- Image side -->
-        <div class="md:col-span-6 reveal">
-          <div class="bg-[#f6f5f1] aspect-square grid place-items-center">
-            <img
-              src="carry-on-silver.png"
-              alt="BLN Travel Carry-On in Silver"
-              class="h-[78%] w-auto object-contain"
-              loading="eager" />
-          </div>
-        </div>
-
-        <!-- Stats side -->
-        <div class="md:col-span-6 reveal">
-          <div class="cap mb-4">Specification</div>
-          <p class="font-serif text-xl text-ink leading-relaxed max-w-md mb-10">
-            Precision in motion. Designed to last. Aerospace-grade aluminum, hand-finished leather, whisper-quiet skate wheels.
-          </p>
-
-          <dl class="space-y-0 max-w-md">
-            <div class="flex justify-between py-4 border-b border-line">
-              <dt class="cap">Dimensions</dt>
-              <dd class="font-serif text-ink">22″ × 14″ × 9″</dd>
-            </div>
-            <div class="flex justify-between py-4 border-b border-line">
-              <dt class="cap">Weight</dt>
-              <dd class="font-serif text-ink">8.4 lbs</dd>
-            </div>
-            <div class="flex justify-between py-4 border-b border-line">
-              <dt class="cap">Capacity</dt>
-              <dd class="font-serif text-ink">37 L</dd>
-            </div>
-            <div class="flex justify-between py-4 border-b border-line">
-              <dt class="cap">Frame</dt>
-              <dd class="font-serif text-ink">Aerospace Aluminum</dd>
-            </div>
-            <div class="flex justify-between py-4 border-b border-line">
-              <dt class="cap">Wheels</dt>
-              <dd class="font-serif text-ink">360° Silent Skate</dd>
-            </div>
-            <div class="flex justify-between py-4 border-b border-line">
-              <dt class="cap">Warranty</dt>
-              <dd class="font-serif text-ink">Lifetime</dd>
-            </div>
-          </dl>
-
-          <div id="bln-buy-silver-hero" class="mt-10">
-            <a href="product.html?id=7666466750531" class="cap cap-ink link-grow bln-fallback-cta">View The Carry-On →</a>
-          </div>
-        </div>
-
+  <!-- ─────────── Top bar ─────────── -->
+  <header class="sticky top-0 z-40 bg-white border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 grid grid-cols-3 items-center">
+      <div class="text-[12px] text-ash hidden md:flex items-center gap-6">
+        <span>Ship to Canada · English</span>
+      </div>
+      <a href="index.html" class="wordmark mx-auto">BLN TRAVEL</a>
+      <div class="flex items-center justify-end gap-5">
+        <button id="openSearch" aria-label="Search" class="text-ink hover:text-ash">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <a href="account.html" aria-label="Account" class="text-ink hover:text-ash hidden sm:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </a>
+        <a href="wishlist.html" aria-label="Wishlist" class="text-ink hover:text-ash hidden sm:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </a>
+        <a href="cart.html" aria-label="Cart" class="text-ink hover:text-ash">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l-1.5 12H7.5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        </a>
       </div>
     </div>
+    <nav class="hidden md:block border-t border-line">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-center">
+        <a class="nav-link" href="#carry-on">Carry-On</a>
+        <a class="nav-link" href="story.html">Our Story</a>
+        <a class="nav-link" href="#craft">Craft</a>
+        <a class="nav-link" href="#services">Services</a>
+      </div>
+    </nav>
   </header>
 
-  <!-- ─────────────── ANATOMY — 4 features minimal ─────────────── -->
-  <section class="bg-paper py-32 border-t border-line">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12">
-      <div class="max-w-2xl mb-20 reveal">
-        <div class="cap mb-3">The Anatomy</div>
-        <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
-          Four details.
+  <!-- ─────────── Hero — pure white so the suitcase blends with its own studio bg ─────────── -->
+  <section class="bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 md:py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <p class="caps-mute mb-5">The Carry-On · Polycarbonate</p>
+        <h1 class="text-[44px] md:text-[64px] leading-[1.05] tracking-tight mb-6">
+          Engineered<br/>for a lifetime<br/>of journeys.
+        </h1>
+        <p class="text-ash text-[15px] leading-relaxed max-w-md mb-10">
+          High-performance polycarbonate. Aircraft-grade hinges. The Carry-On is BLN Travel's
+          most reliable companion — built in Berlin, tested in transit.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="product.html" class="pill pill-dark">Shop The Carry-On</a>
+          <a href="story.html" class="pill pill-ghost">Our Story</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <img src="carry-on-silver.png" alt="The Carry-On in Silver"
+             class="w-full max-w-[620px] mx-auto bold-hero" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── Iconic Products ─────────── -->
+  <section id="carry-on" class="bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 pt-20 pb-8">
+      <p class="caps">Iconic Products</p>
+    </div>
+
+    <div class="relative">
+      <div class="carousel flex overflow-x-auto gap-0 px-6 lg:px-10 pb-12">
+        <article class="snap-item flex-none w-[280px] md:w-[340px] lg:w-[380px] mr-6 md:mr-10">
+          <a href="product.html?color=silver" class="block">
+            <div class="aspect-[3/4] bg-offwhite flex items-center justify-center">
+              <img src="carry-on-silver.png" alt="The Carry-On — Silver" class="w-[78%] mx-auto bold-img" loading="lazy"/>
+            </div>
+            <div class="pt-4">
+              <p class="text-[15px] mb-1">The Carry-On — Silver</p>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#d8d8d8"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#0e0e0e"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#c9a97a"></span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="snap-item flex-none w-[280px] md:w-[340px] lg:w-[380px] mr-6 md:mr-10">
+          <a href="product.html?color=obsidian" class="block">
+            <div class="aspect-[3/4] bg-offwhite flex items-center justify-center">
+              <img src="carry-on-obsidian.png" alt="The Carry-On — Obsidian" class="w-[78%] mx-auto bold-img" loading="lazy"/>
+            </div>
+            <div class="pt-4">
+              <p class="text-[15px] mb-1">The Carry-On — Obsidian</p>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#0e0e0e"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#d8d8d8"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#c9a97a"></span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="snap-item flex-none w-[280px] md:w-[340px] lg:w-[380px] mr-6 md:mr-10">
+          <a href="product.html?color=gold" class="block">
+            <div class="aspect-[3/4] bg-offwhite flex items-center justify-center">
+              <img src="carry-on-gold.png" alt="The Carry-On — Champagne" class="w-[78%] mx-auto bold-img" loading="lazy"/>
+            </div>
+            <div class="pt-4">
+              <p class="text-[15px] mb-1">The Carry-On — Champagne</p>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#c9a97a"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#d8d8d8"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-line" style="background:#0e0e0e"></span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+      </div>
+
+      <button id="carouselNext" class="hidden md:flex items-center justify-center absolute top-1/2 -translate-y-1/2 right-6 lg:right-10 w-12 h-12 rounded-full bg-white border border-line shadow-sm hover:bg-offwhite">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ─────────── Material / Craft ─────────── -->
+  <section id="craft" class="bg-offwhite">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <img src="carry-on-obsidian-lifestyle.png" alt="Polycarbonate craft" class="w-full bold-img" loading="lazy"/>
+      </div>
+      <div class="reveal order-1 lg:order-2">
+        <p class="caps-mute mb-5">Material</p>
+        <h2 class="text-[36px] md:text-[48px] leading-tight tracking-tight mb-6">
+          High-performance polycarbonate.
         </h2>
-      </div>
-
-      <div class="grid md:grid-cols-4 gap-12 md:gap-8 reveal">
-        <div>
-          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6" fill="none" stroke="#0e0e0e" stroke-width="1.2">
-            <path d="M10 30 Q25 15 40 30 T70 30"/>
-            <path d="M10 50 Q25 35 40 50 T70 50"/>
-          </svg>
-          <div class="cap mb-2">01 — Wave</div>
-          <h3 class="font-serif text-xl text-ink mb-2">Inspired by motion.</h3>
-          <p class="text-ash leading-relaxed font-serif">A signature wave pressed into every panel. Reduces visible scuffing.</p>
-        </div>
-
-        <div>
-          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6" fill="none" stroke="#0e0e0e" stroke-width="1.2">
-            <path d="M14 14 L40 14 Q66 14 66 40 L66 66 L40 66 Q14 66 14 40 Z"/>
-          </svg>
-          <div class="cap mb-2">02 — Leather</div>
-          <h3 class="font-serif text-xl text-ink mb-2">Hand-finished corners.</h3>
-          <p class="text-ash leading-relaxed font-serif">Full-grain leather, vegetable-tanned in Tuscany. Stitched by hand.</p>
-        </div>
-
-        <div>
-          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6">
-            <circle cx="40" cy="40" r="28" fill="none" stroke="#0e0e0e" stroke-width="1.2"/>
-            <circle cx="40" cy="40" r="14" fill="none" stroke="#0e0e0e" stroke-width="1"/>
-            <circle cx="40" cy="40" r="3"  fill="#0e0e0e"/>
-          </svg>
-          <div class="cap mb-2">03 — Wheels</div>
-          <h3 class="font-serif text-xl text-ink mb-2">Silent skate.</h3>
-          <p class="text-ash leading-relaxed font-serif">360° polyurethane, sealed bearings, marble to gravel.</p>
-        </div>
-
-        <div>
-          <svg viewBox="0 0 80 80" class="w-10 h-10 mb-6" fill="none" stroke="#0e0e0e" stroke-width="1.2">
-            <rect x="14" y="14" width="52" height="52" rx="6"/>
-            <path d="M22 30 L58 30" opacity=".4"/>
-            <path d="M22 40 L58 40" opacity=".4"/>
-            <path d="M22 50 L58 50" opacity=".4"/>
-          </svg>
-          <div class="cap mb-2">04 — Frame</div>
-          <h3 class="font-serif text-xl text-ink mb-2">Aerospace aluminum.</h3>
-          <p class="text-ash leading-relaxed font-serif">7000-series, CNC-milled, anodized to a soft satin.</p>
-        </div>
+        <p class="text-ash text-[15px] leading-relaxed max-w-md mb-8">
+          BLN's shells are vacuum-formed from a single sheet of aerospace-grade polycarbonate.
+          The material flexes under impact and returns to form — lighter than aluminum, more
+          forgiving than ABS, scratch-resistant by design.
+        </p>
+        <ul class="space-y-3 text-[14px]">
+          <li class="flex justify-between border-b border-line pb-3"><span class="text-ash">Shell</span><span>Aerospace polycarbonate, 2.4 mm</span></li>
+          <li class="flex justify-between border-b border-line pb-3"><span class="text-ash">Weight</span><span>3.4 kg / 7.5 lb</span></li>
+          <li class="flex justify-between border-b border-line pb-3"><span class="text-ash">Wheels</span><span>360° Hinomoto silent</span></li>
+          <li class="flex justify-between border-b border-line pb-3"><span class="text-ash">Lock</span><span>TSA-approved 3-dial</span></li>
+          <li class="flex justify-between"><span class="text-ash">Warranty</span><span>Lifetime</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────── COLLECTION — 3 colorways full-bleed tiles ─────────────── -->
-  <section id="collection" class="bg-paper border-t border-line">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-32 pb-12">
-      <div class="max-w-2xl mb-12 reveal">
-        <div class="cap mb-3">The Collection</div>
-        <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
-          Three finishes.
-        </h2>
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-px bg-line">
-      <div class="group block bg-paper">
-        <a href="product.html?id=7666466750531" class="block">
-          <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
-            <img
-              src="carry-on-silver.png"
-              alt="BLN Travel Carry-On in Silver"
-              class="h-[80%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
-              loading="lazy" />
-          </div>
-          <div class="px-2 py-6 flex items-baseline justify-between">
-            <div>
-              <div class="font-serif text-xl text-ink">Silver</div>
-              <div class="cap mt-1">Classic Aluminum</div>
-            </div>
-            <div class="cap cap-ink">$890</div>
-          </div>
-        </a>
-        <div id="bln-buy-silver" class="px-2 pb-6">
-          <a href="product.html?id=7666466750531" class="cap cap-ink link-grow bln-fallback-cta">View Product →</a>
-        </div>
-      </div>
-
-      <div class="group block bg-paper">
-        <a href="product.html?id=7666466717763" class="block">
-          <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
-            <img
-              src="carry-on-gold.png"
-              alt="BLN Travel Carry-On in Champagne Gold"
-              class="h-[80%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
-              loading="lazy" />
-          </div>
-          <div class="px-2 py-6 flex items-baseline justify-between">
-            <div>
-              <div class="font-serif text-xl text-ink">Champagne Gold</div>
-              <div class="cap mt-1">Limited · 200 pieces</div>
-            </div>
-            <div class="cap cap-ink">$960</div>
-          </div>
-        </a>
-        <div id="bln-buy-gold" class="px-2 pb-6">
-          <a href="product.html?id=7666466717763" class="cap cap-ink link-grow bln-fallback-cta">View Product →</a>
-        </div>
-      </div>
-
-      <div class="group block bg-paper">
-        <a href="product.html?id=7666466783299" class="block">
-          <div class="aspect-[4/5] bg-[#f6f5f1] grid place-items-center overflow-hidden">
-            <img
-              src="carry-on-obsidian.png"
-              alt="BLN Travel Carry-On in Obsidian"
-              class="h-[80%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
-              loading="lazy" />
-          </div>
-          <div class="px-2 py-6 flex items-baseline justify-between">
-            <div>
-              <div class="font-serif text-xl text-ink">Obsidian</div>
-              <div class="cap mt-1">Anodized Black</div>
-            </div>
-            <div class="cap cap-ink">$920</div>
-          </div>
-        </a>
-        <div id="bln-buy-obsidian" class="px-2 pb-6">
-          <a href="product.html?id=7666466783299" class="cap cap-ink link-grow bln-fallback-cta">View Product →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────── LOOKBOOK — three lifestyle shots ─────────────── -->
-  <section class="bg-paper border-t border-line">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 pt-32 pb-12">
-      <div class="max-w-2xl mb-12 reveal">
-        <div class="cap mb-3">In Motion</div>
-        <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">On location.</h2>
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-px bg-line reveal">
-      <a href="product.html?id=7666466783299" class="group block bg-paper">
-        <div class="aspect-[3/2] overflow-hidden">
-          <img
-            src="carry-on-obsidian-lifestyle.png"
-            alt="Obsidian carry-on at the airport"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy" />
-        </div>
-        <div class="px-2 py-6">
-          <div class="cap">Obsidian</div>
-          <div class="font-serif text-lg text-ink mt-1">Sleek. Timeless. Refined.</div>
-        </div>
-      </a>
-
-      <a href="product.html?id=7666466717763" class="group block bg-paper">
-        <div class="aspect-[3/2] overflow-hidden">
-          <img
-            src="carry-on-gold-lifestyle.png"
-            alt="Champagne Gold carry-on at the hotel"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy" />
-        </div>
-        <div class="px-2 py-6">
-          <div class="cap">Champagne Gold</div>
-          <div class="font-serif text-lg text-ink mt-1">Elegant. Radiant. Sophisticated.</div>
-        </div>
-      </a>
-
-      <a href="product.html?id=7666466750531" class="group block bg-paper">
-        <div class="aspect-[3/2] overflow-hidden">
-          <img
-            src="carry-on-silver-lifestyle.png"
-            alt="Silver carry-on on architectural steps"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy" />
-        </div>
-        <div class="px-2 py-6">
-          <div class="cap">Silver</div>
-          <div class="font-serif text-lg text-ink mt-1">Minimal. Modern. Versatile.</div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- ─────────────── CRAFTSMANSHIP — single column, restrained ─────────────── -->
-  <section id="craft" class="bg-paper py-32 border-t border-line">
-    <div class="max-w-2xl mx-auto px-8 text-center reveal mb-20">
-      <div class="cap mb-3">The Process</div>
-      <h2 class="font-serif text-4xl md:text-5xl text-ink tracking-tight">
-        Eighty-six steps.<br/>Six weeks. One case.
+  <!-- ─────────── Story ─────────── -->
+  <section id="story" class="bg-white">
+    <div class="max-w-[1100px] mx-auto px-6 lg:px-10 py-20 md:py-28 text-center">
+      <p class="caps-mute mb-5">Berlin, since 2024</p>
+      <h2 class="text-[36px] md:text-[52px] leading-tight tracking-tight mb-7">
+        Travel objects, built to outlast trends.
       </h2>
-    </div>
-
-    <div class="max-w-3xl mx-auto px-8 space-y-16">
-      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
-        <div class="col-span-2 cap">01</div>
-        <div class="col-span-10">
-          <h4 class="font-serif text-2xl text-ink mb-2">Hand-drawn. Then proved.</h4>
-          <p class="text-ash leading-relaxed font-serif">Every silhouette starts on paper. Mock-ups are 3D-printed, weight-balanced, and dropped from six feet a hundred times before a millimeter is committed to metal.</p>
-        </div>
-      </div>
-      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
-        <div class="col-span-2 cap">02</div>
-        <div class="col-span-10">
-          <h4 class="font-serif text-2xl text-ink mb-2">Cut from a single sheet.</h4>
-          <p class="text-ash leading-relaxed font-serif">Each panel is CNC-milled from a single billet of 7000-series aluminum. The wave pattern is press-formed, preserving the alloy's structural integrity.</p>
-        </div>
-      </div>
-      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
-        <div class="col-span-2 cap">03</div>
-        <div class="col-span-10">
-          <h4 class="font-serif text-2xl text-ink mb-2">Leather, stitched by hand.</h4>
-          <p class="text-ash leading-relaxed font-serif">Full-grain vegetable-tanned leather from a fourth-generation Tuscan tannery. Four hours per case.</p>
-        </div>
-      </div>
-      <div class="reveal grid grid-cols-12 gap-8 items-baseline">
-        <div class="col-span-2 cap">04</div>
-        <div class="col-span-10">
-          <h4 class="font-serif text-2xl text-ink mb-2">Eighty-four checks.</h4>
-          <p class="text-ash leading-relaxed font-serif">Wheel rotation. Latch tension. Hinge alignment. Seam pressure. Every case earns the BLN signature on the inner panel.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────── RESERVE ─────────────── -->
-  <section id="reserve" class="bg-paper py-32 border-t border-line">
-    <div class="max-w-xl mx-auto px-8 text-center reveal">
-      <div class="cap mb-3">Reserve</div>
-      <h2 class="font-serif text-4xl md:text-5xl text-ink leading-tight tracking-tight">
-        First production run. Limited to 500.
-      </h2>
-      <p class="mt-6 text-ash leading-relaxed font-serif text-lg">
-        Join the list. Reserve your colorway. Ships Q1 2027. No payment required.
-      </p>
-
-      <form id="reserveForm" class="mt-12 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-        <input
-          type="email"
-          required
-          placeholder="your@email.com"
-          class="flex-1 px-4 py-3.5 bg-paper border border-ink/20 text-ink placeholder:text-mute focus:outline-none focus:border-ink transition-colors font-serif text-base" />
-        <button
-          type="submit"
-          class="cap px-7 py-3.5 bg-ink text-paper hover:bg-ash transition-colors">
-          Reserve
-        </button>
-      </form>
-      <div id="reserveDone" class="hidden mt-8 cap cap-ink">
-        ✓ You're on the list.
-      </div>
-
-      <p class="mt-10 cap">
-        Free shipping · Lifetime warranty · 100-day returns
+      <p class="text-ash text-[16px] leading-relaxed max-w-2xl mx-auto">
+        BLN Travel is a small studio in Berlin making one suitcase, three colourways, no seasonal
+        drops. Each piece is hand-finished, lifetime warrantied, and designed to be repaired —
+        not replaced.
       </p>
     </div>
   </section>
 
-  <!-- ─────────────── FOOTER ─────────────── -->
-  <footer class="bg-paper border-t border-line py-16">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12">
-      <div class="grid md:grid-cols-12 gap-10">
-        <div class="md:col-span-4">
-          <div class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</div>
-          <p class="mt-4 text-ash leading-relaxed max-w-xs font-serif">
-            Precision-engineered luggage from Berlin. Built by hand. Made to last decades.
-          </p>
-        </div>
-
-        <div class="md:col-span-2">
-          <h5 class="cap mb-4">Shop</h5>
-          <ul class="space-y-2 font-serif text-ash">
-            <li><a href="#collection" class="link-grow hover:text-ink">Carry-On</a></li>
-            <li><a href="#collection" class="link-grow hover:text-ink">Check-In</a></li>
-            <li><a href="#collection" class="link-grow hover:text-ink">Trunk</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-2">
-          <h5 class="cap mb-4">Company</h5>
-          <ul class="space-y-2 font-serif text-ash">
-            <li><a href="#craft" class="link-grow hover:text-ink">Craft</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">Atelier</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">Press</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-2">
-          <h5 class="cap mb-4">Service</h5>
-          <ul class="space-y-2 font-serif text-ash">
-            <li><a href="#" class="link-grow hover:text-ink">Warranty</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">Repairs</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-2">
-          <h5 class="cap mb-4">Follow</h5>
-          <ul class="space-y-2 font-serif text-ash">
-            <li><a href="#" class="link-grow hover:text-ink">Instagram</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">YouTube</a></li>
-            <li><a href="#" class="link-grow hover:text-ink">Pinterest</a></li>
-          </ul>
-        </div>
+  <!-- ─────────── Services ─────────── -->
+  <section id="services" class="bg-offwhite">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-24 grid md:grid-cols-3 gap-10 md:gap-14 text-center">
+      <div>
+        <p class="caps mb-3">Free shipping</p>
+        <p class="text-ash text-[14px]">Worldwide. Carbon-offset by default.</p>
       </div>
+      <div>
+        <p class="caps mb-3">Lifetime warranty</p>
+        <p class="text-ash text-[14px]">Wheels, handles, shell — fixed in Berlin, free forever.</p>
+      </div>
+      <div>
+        <p class="caps mb-3">100-day returns</p>
+        <p class="text-ash text-[14px]">Travel with it, change your mind, send it back.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-16 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-3 cap">
-        <div>© 2026 BLN Travel · Berlin</div>
-        <div class="flex gap-6">
-          <a href="#" class="hover:cap-ink">Privacy</a>
-          <a href="#" class="hover:cap-ink">Terms</a>
-          <a href="#" class="hover:cap-ink">Imprint</a>
+  <!-- ─────────── Footer ─────────── -->
+  <footer class="bg-white border-t border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 grid md:grid-cols-4 gap-10 text-[13px]">
+      <div>
+        <p class="wordmark mb-4">BLN TRAVEL</p>
+        <p class="text-ash leading-relaxed">Polycarbonate luggage.<br/>Designed in Berlin.</p>
+      </div>
+      <div>
+        <p class="caps mb-3">Shop</p>
+        <ul class="space-y-1.5 text-ash">
+          <li><a href="product.html?color=silver" class="hover:text-ink">The Carry-On · Silver</a></li>
+          <li><a href="product.html?color=obsidian" class="hover:text-ink">The Carry-On · Obsidian</a></li>
+          <li><a href="product.html?color=gold" class="hover:text-ink">The Carry-On · Champagne</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="caps mb-3">Help</p>
+        <ul class="space-y-1.5 text-ash">
+          <li><a href="#" class="hover:text-ink">Shipping</a></li>
+          <li><a href="#" class="hover:text-ink">Returns</a></li>
+          <li><a href="#" class="hover:text-ink">Warranty</a></li>
+          <li><a href="#" class="hover:text-ink">Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="caps mb-3">Stay in touch</p>
+        <form class="flex">
+          <input type="email" placeholder="your@email.com" class="flex-1 min-w-0 border border-line px-3 py-2 text-[13px] outline-none focus:border-ink" />
+          <button class="bg-ink text-white px-4 text-[12px] uppercase tracking-wider">Join</button>
+        </form>
+        <p class="text-mute text-[11px] mt-3">One letter per season. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center justify-between text-mute text-[11px] gap-3">
+        <span>© 2026 BLN Travel · Berlin</span>
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-ink">Privacy</a>
+          <a href="#" class="hover:text-ink">Terms</a>
+          <a href="#" class="hover:text-ink">Imprint</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║  SHOPIFY CONFIG — fill these 5 values and the buttons    ║ -->
-  <!-- ║  go live. Leave them as 'YOUR_*' to keep the waitlist     ║ -->
-  <!-- ║  fallback active.                                          ║ -->
-  <!-- ║                                                            ║ -->
-  <!-- ║  Where to find each value:                                 ║ -->
-  <!-- ║  • SHOP_DOMAIN ........ Settings → Domains (the           ║ -->
-  <!-- ║                         *.myshopify.com one).             ║ -->
-  <!-- ║  • STOREFRONT_TOKEN ... Apps → Develop apps → create     ║ -->
-  <!-- ║                         app → Storefront API → Install    ║ -->
-  <!-- ║                         app → copy access token.          ║ -->
-  <!-- ║  • PRODUCT_*_ID ....... Open each product in Shopify;     ║ -->
-  <!-- ║                         the URL ends in /products/        ║ -->
-  <!-- ║                         {NUMERIC_ID}.                      ║ -->
-  <!-- ╚══════════════════════════════════════════════════════════╝ -->
-  <script>
-    window.BLN_SHOPIFY = {
-      SHOP_DOMAIN:       "bln-travel.myshopify.com",
-      STOREFRONT_TOKEN:  "754d33af907d7e9bed8fead6c83028b5",
-      PRODUCT_SILVER_ID:   "7666466750531",
-      PRODUCT_GOLD_ID:     "7666466717763",
-      PRODUCT_OBSIDIAN_ID: "7666466783299",
-    };
-  </script>
+  <!-- ─────────── Search overlay ─────────── -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm hidden">
+    <div class="max-w-[800px] mx-auto px-6 pt-24">
+      <div class="flex items-center gap-4 border-b border-ink pb-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="Search BLN Travel…" class="flex-1 text-[24px] outline-none placeholder:text-mute" />
+        <button id="closeSearch" class="text-mute hover:text-ink">✕</button>
+      </div>
+      <p class="caps-mute mt-8 mb-4">Popular</p>
+      <div id="searchResults" class="space-y-2">
+        <a href="product.html?color=silver"   class="block py-3 border-b border-line hover:text-ash">The Carry-On — Silver</a>
+        <a href="product.html?color=obsidian" class="block py-3 border-b border-line hover:text-ash">The Carry-On — Obsidian</a>
+        <a href="product.html?color=gold"     class="block py-3 border-b border-line hover:text-ash">The Carry-On — Champagne</a>
+        <a href="story.html"                  class="block py-3 border-b border-line hover:text-ash">Our Story · Berlin atelier</a>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // ── Scroll reveal ─────────────────────────────────────────────
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // ── Nav shadow on scroll ─────────────────────────────────────
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) nav.classList.add('shadow-[0_1px_0_0_#ececec]');
-      else                     nav.classList.remove('shadow-[0_1px_0_0_#ececec]');
+    const car = document.querySelector('.carousel');
+    document.getElementById('carouselNext')?.addEventListener('click', () => {
+      car?.scrollBy({ left: 400, behavior: 'smooth' });
     });
-
-    // ── Waitlist reserve form (still here as marketing capture) ──
-    const form = document.getElementById('reserveForm');
-    const done = document.getElementById('reserveDone');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      form.classList.add('hidden');
-      done.classList.remove('hidden');
+    // Search overlay
+    const overlay = document.getElementById('searchOverlay');
+    document.getElementById('openSearch')?.addEventListener('click', () => {
+      overlay.classList.remove('hidden');
+      setTimeout(() => document.getElementById('searchInput').focus(), 50);
     });
-
-    // ── Shopify Buy Button SDK ───────────────────────────────────
-    // If BLN_SHOPIFY config is filled in (not placeholders), this
-    // replaces every #bln-buy-* slot with a real Add-to-Cart button
-    // and wires the nav "Cart (N)" element to open Shopify's cart
-    // drawer with live count. If config is empty/placeholder, the
-    // fallback "Reserve →" links keep working untouched.
-    (function () {
-      const cfg = window.BLN_SHOPIFY || {};
-      const configured =
-        cfg.SHOP_DOMAIN &&
-        !cfg.SHOP_DOMAIN.startsWith("YOUR_") &&
-        cfg.STOREFRONT_TOKEN &&
-        !cfg.STOREFRONT_TOKEN.startsWith("YOUR_");
-      if (!configured) return;
-
-      const loadSdk = (cb) => {
-        if (window.ShopifyBuy && window.ShopifyBuy.UI) return cb();
-        const s = document.createElement("script");
-        s.async = true;
-        s.src = "https://sdks.shopifycdn.com/buy-button/latest/buybutton.js";
-        s.onload = cb;
-        document.head.appendChild(s);
-      };
-
-      loadSdk(() => {
-        const client = ShopifyBuy.buildClient({
-          domain: cfg.SHOP_DOMAIN,
-          storefrontAccessToken: cfg.STOREFRONT_TOKEN,
-        });
-
-        const ui = ShopifyBuy.UI.init(client);
-        ;(function (ui) {
-          // Shared button style — matches our .btn / .cap aesthetic
-          const buttonOnlyOptions = (label) => ({
-            product: {
-              iframe: false,
-              contents: {
-                img: false, title: false, price: false,
-                options: false, quantity: false, description: false,
-                button: true,
-              },
-              text: { button: label || "Add to Cart" },
-              styles: {
-                button: {
-                  "font-family": "'EB Garamond', Georgia, serif",
-                  "font-size": "11px",
-                  "letter-spacing": "0.26em",
-                  "text-transform": "uppercase",
-                  "padding": "14px 28px",
-                  "background-color": "#0e0e0e",
-                  "border": "1px solid #0e0e0e",
-                  ":hover": { "background-color": "#5a5a5a", "border-color": "#5a5a5a" },
-                  ":focus": { "background-color": "#5a5a5a" },
-                },
-                product: {
-                  "max-width": "100%",
-                  "@media (min-width: 601px)": { "max-width": "100%" },
-                },
-              },
-            },
-            cart: {
-              popup: false, // checkout opens in the same window, not a popup
-              styles: {
-                button: {
-                  "font-family": "'EB Garamond', Georgia, serif",
-                  "font-size": "11px",
-                  "letter-spacing": "0.26em",
-                  "text-transform": "uppercase",
-                  "background-color": "#0e0e0e",
-                  ":hover": { "background-color": "#5a5a5a" },
-                },
-              },
-              text: {
-                title: "Your Cart",
-                total: "Subtotal",
-                button: "Checkout",
-                notice: "Free shipping worldwide · Tap × to keep shopping",
-              },
-            },
-            toggle: { sticky: false }, // we use our own toggle in the nav
-          });
-
-          // Clear fallback links inside each slot, then mount the SDK
-          const mount = (slotId, productId, label) => {
-            const slot = document.getElementById(slotId);
-            if (!slot || !productId || productId.startsWith("0000")) return;
-            slot.innerHTML = "";
-            ui.createComponent("product", {
-              id: productId,
-              node: slot,
-              options: buttonOnlyOptions(label),
-            });
-          };
-
-          mount("bln-buy-silver-hero", cfg.PRODUCT_SILVER_ID,   "Add to Cart — $890");
-          mount("bln-buy-silver",      cfg.PRODUCT_SILVER_ID,   "Add to Cart");
-          mount("bln-buy-gold",        cfg.PRODUCT_GOLD_ID,     "Add to Cart");
-          mount("bln-buy-obsidian",    cfg.PRODUCT_OBSIDIAN_ID, "Add to Cart");
-
-          // ── Wire our nav "Cart (N)" element to the SDK cart ──
-          // The SDK creates a global cart object on the first product
-          // component. We grab it and listen for state changes to
-          // update our nav count.
-          const cartToggle = document.getElementById("bln-cart-toggle");
-          if (cartToggle) {
-            const updateCount = () => {
-              const cart = ui.components.cart && ui.components.cart[0];
-              const count = cart ? cart.model.lineItems.reduce((s, i) => s + i.quantity, 0) : 0;
-              cartToggle.textContent = "Cart (" + count + ")";
-            };
-            cartToggle.addEventListener("click", (e) => {
-              e.preventDefault();
-              const cart = ui.components.cart && ui.components.cart[0];
-              if (cart) cart.open();
-            });
-            // Poll briefly until cart instance is ready, then update
-            const tick = setInterval(() => {
-              if (ui.components.cart && ui.components.cart[0]) {
-                updateCount();
-                ui.components.cart[0].view.iframe.parent.addEventListener("DOMSubtreeModified", updateCount);
-                clearInterval(tick);
-              }
-            }, 300);
-          }
-        })(ui);
-      });
-    })();
+    document.getElementById('closeSearch')?.addEventListener('click', () => overlay.classList.add('hidden'));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay.classList.add('hidden'); });
   </script>
 </body>
 </html>

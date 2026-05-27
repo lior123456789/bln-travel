@@ -3,301 +3,350 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BLN Travel — Carry-On</title>
+  <title>The Carry-On — BLN Travel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Shopify Buy Button SDK — official ecommerce integration. Activates the
+       moment SHOPIFY config below has a real domain + token. -->
+  <script src="https://sdks.shopifycdn.com/buy-button/latest/buybutton.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { paper: '#ffffff', paperD: '#f6f5f1', ink: '#0e0e0e', ash: '#5a5a5a', mute: '#9a9a9a', line: '#ececec' },
-          fontFamily: { serif: ['"EB Garamond"', 'Georgia', 'serif'] },
+          colors: {
+            paper: '#ffffff', offwhite: '#f6f6f5',
+            ink: '#0e0e0e', ash: '#5a5a5a',
+            mute: '#9a9a9a', line: '#e7e7e7',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
         },
       },
     };
   </script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { background: #ffffff; color: #0e0e0e; font-family: 'EB Garamond', Georgia, serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; font-feature-settings: "kern","liga","onum"; }
-    .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; color: #5a5a5a; }
-    .cap-ink { color: #0e0e0e; }
-    .link-grow { position: relative; }
-    .link-grow::after { content:''; position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform-origin:left; transform:scaleX(0); transition:transform .4s ease; }
-    .link-grow:hover::after { transform: scaleX(1); }
-    .reveal { opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-    /* Product description HTML styling */
-    .prose p { margin: 0 0 1em; color: #5a5a5a; line-height: 1.7; font-size: 17px; }
-    .prose h3 { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; color: #0e0e0e; margin: 2em 0 0.6em; letter-spacing: -0.005em; }
-    .prose ul { list-style: none; padding: 0; margin: 0 0 1em; }
-    .prose ul li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #ececec; color: #5a5a5a; }
-    .prose ul li strong { color: #0e0e0e; font-weight: 500; }
-    .prose strong { color: #0e0e0e; font-weight: 500; }
+    body {
+      background: #ffffff;
+      color: #0e0e0e;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px; line-height: 1.55;
+      letter-spacing: -0.005em;
+      -webkit-font-smoothing: antialiased;
+    }
+    .caps      { text-transform: uppercase; letter-spacing: 0.20em; font-size: 11px; font-weight: 500; color: #0e0e0e; }
+    .caps-mute { text-transform: uppercase; letter-spacing: 0.20em; font-size: 11px; color: #9a9a9a; font-weight: 500; }
+    .wordmark  { font-weight: 600; letter-spacing: 0.24em; font-size: 22px; }
+    .nav-link  { font-size: 13px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: #0e0e0e; padding: 0 14px; line-height: 60px; display: inline-block; }
+    .nav-link:hover { color: #5a5a5a; }
+    .pill      { display: inline-flex; align-items: center; justify-content: center; padding: 16px 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
+    .pill-dark { background: #0e0e0e; color: #fff; }
+    .pill-dark:hover { background: #2a2a2a; }
+    .swatch    { width: 32px; height: 32px; border-radius: 4px; cursor: pointer; transition: transform .15s ease; border: 1px solid #e7e7e7; }
+    .swatch:hover { transform: scale(1.06); }
+    .swatch.selected { outline: 1px solid #0e0e0e; outline-offset: 3px; }
+    .bold-img    { filter: contrast(1.08) saturate(1.08); }
+    .bold-hero   { filter: contrast(1.10) saturate(1.05) drop-shadow(0 30px 40px rgba(0,0,0,0.10)); }
+    .crumb a { color: #9a9a9a; }
+    .crumb a:hover { color: #0e0e0e; }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details summary .chev { transition: transform .2s ease; }
+    details[open] summary .chev { transform: rotate(180deg); }
   </style>
 </head>
 <body>
 
-  <!-- ─────────────── NAV ─────────────── -->
-  <nav id="nav" class="fixed inset-x-0 top-0 z-50 bg-paper transition-shadow duration-300">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 h-16 flex items-center justify-between">
-      <a href="/" class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</a>
-      <div class="hidden md:flex items-center gap-10 cap">
-        <a href="/#collection" class="link-grow hover:cap-ink">Collection</a>
-        <a href="/#detail"     class="link-grow hover:cap-ink">Carry-On</a>
-        <a href="/#craft"      class="link-grow hover:cap-ink">Craft</a>
+  <!-- Top utility row -->
+  <div class="border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-9 flex items-center justify-between text-[11px] text-mute">
+      <span>Ship to Canada · English</span>
+      <a href="#" class="hover:text-ink">Track order</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 grid grid-cols-3 items-center">
+      <div class="text-[12px] text-ash hidden md:flex items-center gap-6">
+        <span>Ship to Canada · English</span>
       </div>
-      <div class="flex items-center gap-6">
-        <div id="bln-cart-toggle" class="cap cap-ink link-grow" style="cursor:pointer;">Cart (0)</div>
+      <a href="index.html" class="wordmark mx-auto">BLN TRAVEL</a>
+      <div class="flex items-center justify-end gap-5">
+        <a href="index.html" aria-label="Search" class="text-ink hover:text-ash">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </a>
+        <a href="account.html" aria-label="Account" class="text-ink hover:text-ash hidden sm:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </a>
+        <a href="wishlist.html" aria-label="Wishlist" class="text-ink hover:text-ash hidden sm:inline-flex">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </a>
+        <a href="cart.html" aria-label="Cart" class="text-ink hover:text-ash">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l-1.5 12H7.5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        </a>
       </div>
     </div>
-    <div class="h-px bg-line"></div>
-  </nav>
+    <nav class="hidden md:block border-t border-line">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-center">
+        <a class="nav-link" href="index.html#carry-on">Carry-On</a>
+        <a class="nav-link" href="story.html">Our Story</a>
+        <a class="nav-link" href="index.html#craft">Craft</a>
+        <a class="nav-link" href="index.html#services">Services</a>
+      </div>
+    </nav>
+  </header>
 
-  <main class="pt-16">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12 py-16">
-      <a href="/#collection" class="cap link-grow inline-block mb-8">← Back to Collection</a>
+  <!-- Product -->
+  <main class="max-w-[1400px] mx-auto px-6 lg:px-10 pt-8 pb-24">
+    <!-- Breadcrumb -->
+    <p class="crumb text-[12px] mb-6">
+      <a href="index.html">Luggage</a> · <a href="index.html#carry-on">Collection</a> · <a href="index.html#carry-on">Carry-On</a> · <span class="text-ink">The Carry-On</span>
+    </p>
 
-      <div id="product-root" class="grid md:grid-cols-12 gap-12 lg:gap-20">
-        <!-- Image gallery -->
-        <div class="md:col-span-7 reveal">
-          <div id="product-main-image" class="bg-paperD aspect-[4/5] grid place-items-center mb-3">
-            <div class="cap text-mute">Loading…</div>
+    <div class="grid lg:grid-cols-12 gap-12">
+      <!-- Gallery -->
+      <div class="lg:col-span-7">
+        <div id="heroFrame" class="aspect-[4/5] flex items-center justify-center relative transition-colors duration-500 bg-white">
+          <img id="heroImage" src="carry-on-silver.png" alt="The Carry-On" class="max-w-[78%] mx-auto bold-hero" />
+        </div>
+        <!-- Thumbnail strip -->
+        <div class="grid grid-cols-4 gap-3 mt-4">
+          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-silver.png">
+            <img src="carry-on-silver.png" class="w-full h-full object-contain bold-img" alt=""/>
+          </button>
+          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-silver-studio.png">
+            <img src="carry-on-silver-studio.png" class="w-full h-full object-contain bold-img" alt=""/>
+          </button>
+          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-silver-lifestyle.png">
+            <img src="carry-on-silver-lifestyle.png" class="w-full h-full object-contain bold-img" alt=""/>
+          </button>
+          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-obsidian-lifestyle.png">
+            <img src="carry-on-obsidian-lifestyle.png" class="w-full h-full object-contain bold-img" alt=""/>
+          </button>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="lg:col-span-5">
+        <p class="caps-mute mb-3">The Carry-On</p>
+        <h1 class="text-[42px] leading-[1.05] tracking-tight mb-6">The Carry-On</h1>
+        <p class="text-[22px] mb-8"><span id="priceTag">$595.00</span> <span id="priceCurrency" class="text-mute text-[14px] align-middle">CAD</span></p>
+
+        <p id="description" class="text-ash leading-relaxed mb-2">
+          Made of high-performance polycarbonate, the BLN Carry-On is a reliable
+          and lightweight suitcase for your journeys ahead.
+        </p>
+        <details class="mb-10">
+          <summary class="text-[13px] text-ash inline-flex items-center gap-1">
+            Read more <span class="chev">▾</span>
+          </summary>
+          <p class="text-ash leading-relaxed mt-3 text-[14px]">
+            Vacuum-formed from a single 2.4 mm sheet of aerospace-grade polycarbonate, the shell
+            flexes under impact and returns to form. Hinomoto silent wheels, a TSA-approved 3-dial
+            lock, a recessed telescoping handle, and a felt-lined interior with internal compression
+            straps. Lifetime warranty. Repair, don't replace.
+          </p>
+        </details>
+
+        <!-- Size -->
+        <div class="border-t border-line pt-6 mb-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="caps">Size</span>
+            <a href="#" class="text-[12px] underline text-ash hover:text-ink">Size guide</a>
           </div>
-          <div id="product-thumbs" class="grid grid-cols-4 gap-3"></div>
+          <div class="border border-ink rounded-none p-4 flex items-center justify-between cursor-pointer">
+            <span class="text-[14px]">The Carry-On <span class="text-mute"> · 22.0 × 14.0 × 9.0 inch</span></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
         </div>
 
-        <!-- Info -->
-        <div class="md:col-span-5 reveal">
-          <div class="cap mb-4" id="product-eyebrow">The Carry-On</div>
-          <h1 id="product-title" class="font-serif text-4xl md:text-5xl text-ink leading-tight tracking-tight">Loading product…</h1>
-          <div id="product-price" class="font-serif text-2xl text-ink mt-4">&nbsp;</div>
+        <!-- Colour -->
+        <div class="mb-8">
+          <p class="text-[14px] mb-3">Color: <span id="colorName" class="text-ash">Silver</span></p>
+          <div class="flex items-center gap-6">
+            <span class="caps-mute w-16">Gloss</span>
+            <div class="flex items-center gap-3">
+              <button class="swatch selected" data-color="silver" data-name="Silver" data-img="carry-on-silver.png" style="background:#d8d8d8"></button>
+              <button class="swatch" data-color="obsidian" data-name="Obsidian" data-img="carry-on-obsidian.png" style="background:#0e0e0e"></button>
+              <button class="swatch" data-color="gold" data-name="Champagne" data-img="carry-on-gold.png" style="background:#c9a97a"></button>
+            </div>
+          </div>
+        </div>
 
-          <div id="product-description" class="prose mt-8 max-w-md"></div>
+        <!-- CTA -->
+        <button id="addToCart" class="pill pill-dark w-full mb-3">Add to bag</button>
+        <button class="pill bg-white border border-ink text-ink w-full hover:bg-offwhite">
+          ♡ Add to Wishlist
+        </button>
 
-          <div id="bln-buy-this" class="mt-8"></div>
-
-          <a href="/" class="cap link-grow inline-block mt-6">← Continue shopping</a>
-
-          <p class="cap mt-8">Free shipping · Lifetime warranty · 100-day returns</p>
+        <!-- Service strip -->
+        <div class="border-t border-line mt-10 pt-6 space-y-4 text-[13px] text-ash">
+          <div class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h13v10H3zM16 10h4l1 3v4h-5z"/><circle cx="7" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/></svg> Free worldwide shipping</div>
+          <div class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v7h7"/></svg> 100-day free returns</div>
+          <div class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg> Lifetime warranty</div>
         </div>
       </div>
     </div>
+
+    <!-- Spec table -->
+    <section class="mt-24 max-w-[700px] mx-auto">
+      <p class="caps mb-6 text-center">Specifications</p>
+      <ul class="text-[14px]">
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Shell</span><span>Aerospace polycarbonate, 2.4 mm</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Dimensions</span><span>22.0 × 14.0 × 9.0 in</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Volume</span><span>37 L</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Weight</span><span>3.4 kg / 7.5 lb</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Wheels</span><span>360° Hinomoto silent</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Lock</span><span>TSA-approved 3-dial combination</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Handle</span><span>Multi-stop telescoping aluminum</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Interior</span><span>Felt-lined, internal compression straps</span></li>
+        <li class="flex justify-between border-b border-line py-3"><span class="text-ash">Made in</span><span>Berlin, Germany</span></li>
+        <li class="flex justify-between py-3"><span class="text-ash">Warranty</span><span>Lifetime</span></li>
+      </ul>
+    </section>
   </main>
 
-  <!-- ─────────────── FOOTER (matches index) ─────────────── -->
-  <footer class="bg-paper border-t border-line py-16">
-    <div class="max-w-[1500px] mx-auto px-8 lg:px-12">
-      <div class="grid md:grid-cols-12 gap-10">
-        <div class="md:col-span-4">
-          <div class="cap cap-ink tracking-[0.4em]">BLN&nbsp;Travel</div>
-          <p class="mt-4 text-ash leading-relaxed max-w-xs">Precision-engineered luggage from Berlin. Built by hand. Made to last decades.</p>
-        </div>
-        <div class="md:col-span-2"><h5 class="cap mb-4">Shop</h5><ul class="space-y-2 text-ash"><li><a href="/#collection" class="link-grow hover:text-ink">Carry-On</a></li></ul></div>
-        <div class="md:col-span-2"><h5 class="cap mb-4">Company</h5><ul class="space-y-2 text-ash"><li><a href="/#craft" class="link-grow hover:text-ink">Craft</a></li></ul></div>
-        <div class="md:col-span-2"><h5 class="cap mb-4">Service</h5><ul class="space-y-2 text-ash"><li><a href="#" class="link-grow hover:text-ink">Warranty</a></li><li><a href="#" class="link-grow hover:text-ink">Contact</a></li></ul></div>
-        <div class="md:col-span-2"><h5 class="cap mb-4">Follow</h5><ul class="space-y-2 text-ash"><li><a href="#" class="link-grow hover:text-ink">Instagram</a></li></ul></div>
+  <!-- Shopify Buy Button cart drawer mounts here (hidden node, drawer pops out from right) -->
+  <div id="shopifyCart"></div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 grid md:grid-cols-4 gap-10 text-[13px]">
+      <div>
+        <p class="wordmark mb-4">BLN TRAVEL</p>
+        <p class="text-ash leading-relaxed">Polycarbonate luggage.<br/>Designed in Berlin.</p>
       </div>
-      <div class="mt-12 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-3 cap">
-        <div>© 2026 BLN Travel · Berlin</div>
+      <div>
+        <p class="caps mb-3">Shop</p>
+        <ul class="space-y-1.5 text-ash">
+          <li><a href="product.html?color=silver" class="hover:text-ink">The Carry-On · Silver</a></li>
+          <li><a href="product.html?color=obsidian" class="hover:text-ink">The Carry-On · Obsidian</a></li>
+          <li><a href="product.html?color=gold" class="hover:text-ink">The Carry-On · Champagne</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="caps mb-3">Help</p>
+        <ul class="space-y-1.5 text-ash">
+          <li><a href="#" class="hover:text-ink">Shipping</a></li>
+          <li><a href="#" class="hover:text-ink">Returns</a></li>
+          <li><a href="#" class="hover:text-ink">Warranty</a></li>
+          <li><a href="#" class="hover:text-ink">Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="caps mb-3">Stay in touch</p>
+        <form class="flex">
+          <input type="email" placeholder="your@email.com" class="flex-1 min-w-0 border border-line px-3 py-2 text-[13px] outline-none focus:border-ink" />
+          <button class="bg-ink text-white px-4 text-[12px] uppercase tracking-wider">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center justify-between text-mute text-[11px] gap-3">
+        <span>© 2026 BLN Travel · Berlin</span>
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-ink">Privacy</a>
+          <a href="#" class="hover:text-ink">Terms</a>
+          <a href="#" class="hover:text-ink">Imprint</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- ─────────────── SHOPIFY CONFIG (same as index) ─────────────── -->
   <script>
-    window.BLN_SHOPIFY = {
-      SHOP_DOMAIN:       "bln-travel.myshopify.com",
-      STOREFRONT_TOKEN:  "754d33af907d7e9bed8fead6c83028b5",
-    };
-  </script>
-
-  <script>
-    // ── Read ?id= from URL ─────────────────────────────────────
+    // Read ?color= from URL and preselect
     const params = new URLSearchParams(location.search);
-    const productId = params.get("id");
-    if (!productId) {
-      document.getElementById("product-root").innerHTML =
-        '<div class="md:col-span-12 text-center py-32"><div class="cap mb-3">404</div><h2 class="font-serif text-3xl">No product specified</h2><p class="mt-4 text-ash">Pick one from the <a href="/#collection" class="link-grow">collection</a>.</p></div>';
+    const initial = params.get('color') || 'silver';
+
+    // Background colour each suitcase blends into.
+    const HERO_BG = {
+      silver:   '#e9eaec',  // pale steel
+      obsidian: '#1c1c1d',  // deep charcoal
+      gold:     '#f1e7d3',  // warm cream
+    };
+    function pick(color) {
+      const swatch = document.querySelector(`.swatch[data-color="${color}"]`);
+      if (!swatch) return;
+      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+      swatch.classList.add('selected');
+      const name = swatch.dataset.name;
+      const img  = swatch.dataset.img;
+      document.getElementById('colorName').textContent = name;
+      document.getElementById('heroImage').src = img;
+      const frame = document.getElementById('heroFrame');
+      if (frame && HERO_BG[color]) frame.style.background = HERO_BG[color];
     }
+    document.querySelectorAll('.swatch').forEach(sw => {
+      sw.addEventListener('click', () => pick(sw.dataset.color));
+    });
+    pick(initial);
 
-    const cfg = window.BLN_SHOPIFY;
-    const GQL = `https://${cfg.SHOP_DOMAIN}/api/2024-10/graphql.json`;
+    // Thumbnail click → swap hero
+    document.querySelectorAll('.thumb').forEach(t => {
+      t.addEventListener('click', () => {
+        document.getElementById('heroImage').src = t.dataset.img;
+      });
+    });
 
-    // Local image fallback — used if Shopify product has fewer than 2 images.
-    // Once you upload the same images to each Shopify product's Media,
-    // these get skipped automatically.
-    const LOCAL_IMAGES = {
-      "7666466750531": [
-        { url: "carry-on-silver.png",            altText: "BLN Travel Carry-On in Silver" },
-        { url: "carry-on-silver-studio.png",     altText: "Silver — studio shot" },
-        { url: "carry-on-silver-lifestyle.png",  altText: "Silver — on location" },
-      ],
-      "7666466717763": [
-        { url: "carry-on-gold.png",              altText: "BLN Travel Carry-On in Champagne Gold" },
-        { url: "carry-on-gold-studio.png",       altText: "Champagne Gold — studio shot" },
-        { url: "carry-on-gold-lifestyle.png",    altText: "Champagne Gold — on location" },
-      ],
-      "7666466783299": [
-        { url: "carry-on-obsidian.png",          altText: "BLN Travel Carry-On in Obsidian" },
-        { url: "carry-on-obsidian-studio.png",   altText: "Obsidian — studio shot" },
-        { url: "carry-on-obsidian-lifestyle.png", altText: "Obsidian — on location" },
-      ],
+    // ─────────────────────────────────────────────────────────────────────
+    // 🛒 SHOPIFY — fill these in once, the site picks up checkout for real.
+    // Find them in: Shopify admin → Apps → Sales channels → Buy Button (or
+    // Storefront API access tokens under Apps → Develop apps).
+    // ─────────────────────────────────────────────────────────────────────
+    const SHOPIFY = {
+      domain:               'bln-travel.myshopify.com',
+      storefrontAccessToken:'754d33af907d7e9bed8fead6c83028b5',
     };
 
-    // ── Fetch product via Storefront API ───────────────────────
-    async function fetchProduct(id) {
-      const res = await fetch(GQL, {
-        method: "POST",
-        headers: {
-          "X-Shopify-Storefront-Access-Token": cfg.STOREFRONT_TOKEN,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: `{
-            product(id: "gid://shopify/Product/${id}") {
-              id
-              title
-              descriptionHtml
-              productType
-              availableForSale
-              priceRange { minVariantPrice { amount currencyCode } }
-              images(first: 8) { edges { node { url altText width height } } }
-            }
-          }`,
-        }),
+    // Per-colour catalogue with real Shopify product IDs.
+    // The Buy Button SDK fetches live price + variants on demand.
+    const CONFIG = {
+      currency: 'CAD',
+      products: {
+        silver:   { name: 'The Carry-On — Silver',    price: 890.00,
+                    img: 'carry-on-silver.png',
+                    shopifyProductId: '7666466750531' },
+        obsidian: { name: 'The Carry-On — Obsidian',  price: 920.00,
+                    img: 'carry-on-obsidian.png',
+                    shopifyProductId: '7666466783299' },
+        gold:     { name: 'The Carry-On — Champagne', price: 960.00,
+                    img: 'carry-on-gold.png',
+                    shopifyProductId: '7666466717763' },
+      },
+    };
+
+    function updatePrice(color) {
+      const p = CONFIG.products[color];
+      if (!p) return;
+      document.getElementById('priceTag').textContent = '$' + p.price.toFixed(2);
+      document.getElementById('priceCurrency').textContent = CONFIG.currency;
+    }
+    document.querySelectorAll('.swatch').forEach(sw => {
+      sw.addEventListener('click', () => updatePrice(sw.dataset.color));
+    });
+    updatePrice(initial);
+
+    document.getElementById('addToCart').addEventListener('click', () => {
+      const selected = document.querySelector('.swatch.selected');
+      const color    = selected?.dataset.color ?? 'silver';
+      const p        = CONFIG.products[color];
+      if (!p) return;
+
+      const cart = JSON.parse(localStorage.getItem('bln.cart') || '[]');
+      cart.push({
+        name:      p.name,
+        color:     selected?.dataset.name ?? '',
+        price:     p.price,
+        img:       p.img,
+        productId: p.shopifyProductId,
       });
-      const json = await res.json();
-      return json.data && json.data.product;
-    }
+      localStorage.setItem('bln.cart', JSON.stringify(cart));
 
-    // ── Render product ────────────────────────────────────────
-    function render(p) {
-      if (!p) {
-        document.getElementById("product-root").innerHTML =
-          '<div class="md:col-span-12 text-center py-32"><div class="cap mb-3">404</div><h2 class="font-serif text-3xl">Product not found</h2></div>';
-        return;
-      }
-      document.title = `${p.title} — BLN Travel`;
-      document.getElementById("product-title").textContent = p.title;
-      document.getElementById("product-eyebrow").textContent = p.productType || "The Carry-On";
-
-      const price = p.priceRange.minVariantPrice;
-      const fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: price.currencyCode || "USD", minimumFractionDigits: 0 });
-      document.getElementById("product-price").textContent = fmt.format(parseFloat(price.amount));
-
-      // Description (Shopify returns HTML)
-      document.getElementById("product-description").innerHTML = p.descriptionHtml || "";
-
-      // Images — Shopify-fetched, falling back to local files when there
-      // are fewer than 2 in Shopify so the gallery never looks bare.
-      let imgs = (p.images.edges || []).map((e) => e.node);
-      const fallback = LOCAL_IMAGES[productId] || [];
-      if (imgs.length < 2 && fallback.length > 0) imgs = fallback;
-      const main = document.getElementById("product-main-image");
-      const thumbs = document.getElementById("product-thumbs");
-      if (imgs.length > 0) {
-        main.innerHTML = `<img src="${imgs[0].url}" alt="${imgs[0].altText || p.title}" class="h-[80%] w-auto object-contain transition-opacity duration-300" id="main-img">`;
-        thumbs.innerHTML = imgs.slice(0, 4).map((img, i) =>
-          `<button class="aspect-square bg-paperD grid place-items-center overflow-hidden ${i === 0 ? 'ring-1 ring-ink' : ''}" data-thumb="${i}"><img src="${img.url}" alt="${img.altText || ''}" class="h-[80%] w-auto object-contain"></button>`
-        ).join("");
-        thumbs.querySelectorAll("[data-thumb]").forEach((btn, i) => {
-          btn.addEventListener("click", () => {
-            document.getElementById("main-img").src = imgs[i].url;
-            thumbs.querySelectorAll("[data-thumb]").forEach((b) => b.classList.remove("ring-1","ring-ink"));
-            btn.classList.add("ring-1","ring-ink");
-          });
-        });
-      } else {
-        main.innerHTML = '<div class="cap text-mute">No image</div>';
-      }
-
-      // Reveal
-      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
-    }
-
-    if (productId) {
-      fetchProduct(productId)
-        .then(render)
-        .catch((err) => {
-          console.error("[product]", err);
-          document.getElementById("product-title").textContent = "Couldn't load product";
-        });
-    }
-
-    // ── Shopify Buy Button SDK — Add to Cart + cart drawer ────
-    (function () {
-      if (!productId) return;
-      const loadSdk = (cb) => {
-        if (window.ShopifyBuy && window.ShopifyBuy.UI) return cb();
-        const s = document.createElement("script");
-        s.async = true;
-        s.src = "https://sdks.shopifycdn.com/buy-button/latest/buybutton.js";
-        s.onload = cb;
-        document.head.appendChild(s);
-      };
-      loadSdk(() => {
-        const client = ShopifyBuy.buildClient({ domain: cfg.SHOP_DOMAIN, storefrontAccessToken: cfg.STOREFRONT_TOKEN });
-        const ui = ShopifyBuy.UI.init(client);
-        ui.createComponent("product", {
-          id: productId,
-          node: document.getElementById("bln-buy-this"),
-          options: {
-            product: {
-              iframe: false,
-              contents: { img: false, title: false, price: false, options: false, quantity: false, description: false, button: true },
-              text: { button: "Add to Cart" },
-              styles: {
-                button: {
-                  "font-family": "'EB Garamond', Georgia, serif",
-                  "font-size": "11px",
-                  "letter-spacing": "0.26em",
-                  "text-transform": "uppercase",
-                  "padding": "14px 28px",
-                  "background-color": "#0e0e0e",
-                  "border": "1px solid #0e0e0e",
-                  ":hover": { "background-color": "#5a5a5a", "border-color": "#5a5a5a" },
-                },
-                product: { "max-width": "100%" },
-              },
-            },
-            cart: {
-              popup: false,
-              styles: { button: { "font-family": "'EB Garamond', Georgia, serif", "font-size": "11px", "letter-spacing": "0.26em", "text-transform": "uppercase", "background-color": "#0e0e0e", ":hover": { "background-color": "#5a5a5a" } } },
-              text: {
-                title: "Your Cart",
-                total: "Subtotal",
-                button: "Checkout",
-                notice: "Free shipping worldwide · Tap × to keep shopping",
-              },
-            },
-            toggle: { sticky: false },
-          },
-        });
-
-        const cartToggle = document.getElementById("bln-cart-toggle");
-        if (cartToggle) {
-          cartToggle.addEventListener("click", (e) => {
-            e.preventDefault();
-            const cart = ui.components.cart && ui.components.cart[0];
-            if (cart) cart.open();
-          });
-          const tick = setInterval(() => {
-            const cart = ui.components.cart && ui.components.cart[0];
-            if (cart) {
-              const update = () => {
-                const count = cart.model.lineItems.reduce((s, i) => s + i.quantity, 0);
-                cartToggle.textContent = "Cart (" + count + ")";
-              };
-              update();
-              cart.view.iframe.parent.addEventListener("DOMSubtreeModified", update);
-              clearInterval(tick);
-            }
-          }, 300);
-        }
-      });
-    })();
+      const btn = document.getElementById('addToCart');
+      btn.textContent = 'Added · view bag →';
+      setTimeout(() => { window.location = 'cart.html'; }, 700);
+    });
   </script>
 </body>
 </html>

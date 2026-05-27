@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cart — BLN Travel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://sdks.shopifycdn.com/buy-button/latest/buybutton.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{paper:'#fff',offwhite:'#f6f6f5',ink:'#0e0e0e',ash:'#5a5a5a',mute:'#9a9a9a',line:'#e7e7e7'},fontFamily:{sans:['Inter','system-ui','sans-serif']}}}}</script>
+  <style>
+    body{background:#fff;color:#0e0e0e;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.55;letter-spacing:-0.005em;-webkit-font-smoothing:antialiased;}
+    .caps{text-transform:uppercase;letter-spacing:0.20em;font-size:11px;font-weight:500;}
+    .caps-mute{text-transform:uppercase;letter-spacing:0.20em;font-size:11px;color:#9a9a9a;font-weight:500;}
+    .wordmark{font-weight:600;letter-spacing:0.24em;font-size:22px;}
+    .nav-link{font-size:13px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;color:#0e0e0e;padding:0 14px;line-height:60px;display:inline-block;}
+    .pill{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border-radius:9999px;font-size:13px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;background:#0e0e0e;color:#fff;}
+    .bold-img{filter:contrast(1.05) saturate(1.05);}
+  </style>
+</head>
+<body>
+  <div class="border-b border-line"><div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-9 flex items-center justify-between text-[11px] text-mute"><span>Ship to Canada · English</span><a href="#" class="hover:text-ink">Track order</a></div></div>
+  <header class="sticky top-0 z-40 bg-white border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 grid grid-cols-3 items-center">
+      <div></div>
+      <a href="index.html" class="wordmark mx-auto">BLN TRAVEL</a>
+      <div class="flex items-center justify-end gap-5">
+        <a href="index.html"  class="text-ink hover:text-ash"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></a>
+        <a href="account.html"class="text-ink hover:text-ash hidden sm:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></a>
+        <a href="wishlist.html" class="text-ink hover:text-ash hidden sm:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></a>
+      </div>
+    </div>
+    <nav class="hidden md:block border-t border-line"><div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-center"><a class="nav-link" href="index.html#carry-on">Carry-On</a><a class="nav-link" href="story.html">Our Story</a><a class="nav-link" href="index.html#craft">Craft</a><a class="nav-link" href="index.html#services">Services</a></div></nav>
+  </header>
+
+  <main id="cartRoot" class="max-w-[1100px] mx-auto px-6 py-20 md:py-28">
+    <p class="caps-mute mb-3 text-center">Your bag</p>
+    <h1 id="cartTitle" class="text-[36px] md:text-[48px] leading-tight tracking-tight mb-10 text-center">Your bag is empty.</h1>
+
+    <div id="cartEmpty" class="text-center">
+      <p class="text-ash mb-10 max-w-md mx-auto">Pick your colour and we'll have it on a plane to you in 48 hours.</p>
+      <a href="index.html#carry-on" class="pill">Shop The Carry-On</a>
+      <div class="mt-16 grid grid-cols-3 gap-4 opacity-50 max-w-[700px] mx-auto">
+        <img src="carry-on-silver.png"   class="w-full bold-img" alt=""/>
+        <img src="carry-on-obsidian.png" class="w-full bold-img" alt=""/>
+        <img src="carry-on-gold.png"     class="w-full bold-img" alt=""/>
+      </div>
+    </div>
+
+    <div id="cartItems" class="hidden">
+      <!-- populated by JS when items exist -->
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-line mt-12">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-8 flex flex-wrap items-center justify-between text-mute text-[11px] gap-3">
+      <span>© 2026 BLN Travel · Berlin</span>
+      <div class="flex items-center gap-5"><a href="#" class="hover:text-ink">Privacy</a><a href="#" class="hover:text-ink">Terms</a></div>
+    </div>
+  </footer>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('bln.cart') || '[]');
+      const title = document.getElementById('cartTitle');
+      const empty = document.getElementById('cartEmpty');
+      const items = document.getElementById('cartItems');
+
+      if (cart.length === 0) {
+        title.textContent = 'Your bag is empty.';
+        empty.classList.remove('hidden');
+        items.classList.add('hidden');
+        items.innerHTML = '';
+        return;
+      }
+
+      title.textContent = 'Your bag';
+      empty.classList.add('hidden');
+      items.classList.remove('hidden');
+      const total = cart.reduce((s, i) => s + i.price, 0);
+      items.innerHTML = cart.map((it, idx) => `
+        <div class="flex items-center gap-6 border-b border-line py-6">
+          <img src="${it.img}" class="w-24 h-24 object-contain bg-offwhite bold-img"/>
+          <div class="flex-1">
+            <p class="font-medium">${it.name}</p>
+            <p class="text-mute text-[12px]">${it.color}</p>
+            <button onclick="removeItem(${idx})"
+                    class="text-mute text-[11px] uppercase tracking-wider hover:text-ink mt-2 inline-flex items-center gap-1">
+              <span class="text-[14px] leading-none">×</span> Remove
+            </button>
+          </div>
+          <p class="text-right">$${it.price.toFixed(2)}</p>
+        </div>`).join('') + `
+        <div class="flex items-center justify-between mt-8">
+          <p class="caps">Total</p>
+          <p class="text-[22px]">$${total.toFixed(2)} <span class="text-mute text-[14px]">CAD</span></p>
+        </div>
+        <div class="mt-8 flex gap-3">
+          <a href="index.html#carry-on" class="flex-1 pill bg-white border border-ink text-ink hover:bg-offwhite">Continue shopping</a>
+          <button onclick="checkout(event)" class="flex-1 pill">Checkout</button>
+        </div>
+        <button onclick="clearCart()" class="block mx-auto mt-6 text-mute text-[12px] uppercase tracking-wider hover:text-ink">
+          Clear bag
+        </button>`;
+    }
+
+    function removeItem(idx) {
+      const cart = JSON.parse(localStorage.getItem('bln.cart') || '[]');
+      cart.splice(idx, 1);
+      localStorage.setItem('bln.cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+    // Shopify config — must match product.html.
+    const SHOPIFY = {
+      domain:               'bln-travel.myshopify.com',
+      storefrontAccessToken:'754d33af907d7e9bed8fead6c83028b5',
+    };
+
+    // Colour → real Shopify product ID. Used to override stale localStorage
+    // entries that were saved before the SDK was wired.
+    const COLOR_TO_PRODUCT = {
+      'Silver':    '7666466750531',
+      'Obsidian':  '7666466783299',
+      'Champagne': '7666466717763',
+      'Gold':      '7666466717763',   // legacy alias
+    };
+
+    function resolveProductId(item) {
+      if (item.productId && !String(item.productId).startsWith('PASTE_')) return item.productId;
+      return COLOR_TO_PRODUCT[item.color] || null;
+    }
+
+    // Raw GraphQL — sidesteps the Buy Button SDK so file:// works too.
+    async function fetchVariantId(productNumericId) {
+      const gid = `gid://shopify/Product/${productNumericId}`;
+      const r = await fetch(`https://${SHOPIFY.domain}/api/2024-07/graphql.json`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': SHOPIFY.storefrontAccessToken,
+        },
+        body: JSON.stringify({
+          query: `query($id: ID!) { product(id: $id) { variants(first:1){ edges { node { id } } } } }`,
+          variables: { id: gid },
+        }),
+      });
+      const body = await r.json();
+      const variantGid = body?.data?.product?.variants?.edges?.[0]?.node?.id;
+      return variantGid ? String(variantGid).split('/').pop() : null;
+    }
+
+    async function checkout(ev) {
+      const items = JSON.parse(localStorage.getItem('bln.cart') || '[]');
+      if (items.length === 0) { window.location = 'index.html#carry-on'; return; }
+
+      const btn = ev?.target ?? null;
+      if (btn) btn.textContent = 'Loading…';
+
+      try {
+        const variants = await Promise.all(items.map(async (it) => {
+          const pid = resolveProductId(it);
+          if (!pid) return null;
+          try { return await fetchVariantId(pid); }
+          catch (e) { console.warn('[Checkout] variant lookup failed for', pid, e); return null; }
+        }));
+        const valid = variants.filter(Boolean);
+        if (valid.length === 0) {
+          alert('Could not resolve cart items. Try removing and re-adding.');
+          if (btn) btn.textContent = 'Checkout';
+          return;
+        }
+        const variantPairs = valid.map(v => `${v}:1`).join(',');
+        localStorage.removeItem('bln.cart');
+        window.location = `https://${SHOPIFY.domain}/cart/${variantPairs}`;
+      } catch (err) {
+        console.error('[Checkout] error:', err);
+        alert('Checkout failed: ' + (err.message || err));
+        if (btn) btn.textContent = 'Checkout';
+      }
+    }
+
+    function clearCart() {
+      if (!confirm('Empty your bag?')) return;
+      localStorage.removeItem('bln.cart');
+      location.reload();
+    }
+  </script>
+</body>
+</html>
