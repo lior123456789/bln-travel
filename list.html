@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BLN Travel — Join the list. Drop June 13.</title>
+  <meta name="description" content="Three colorways. One hundred pieces. The list opens now." />
+
+  <!-- OpenGraph + Twitter for Meta/TikTok ad previews -->
+  <meta property="og:type"         content="website" />
+  <meta property="og:title"        content="BLN Travel — Join the list. Drop June 13." />
+  <meta property="og:description"  content="Three colorways. One hundred pieces. The list opens now." />
+  <meta property="og:image"        content="carry-on-gold.png" />
+  <meta property="og:url"          content="https://bln-travel.onrender.com/list.html" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="BLN Travel — Join the list. Drop June 13." />
+  <meta name="twitter:description" content="Three colorways. One hundred pieces. The list opens now." />
+  <meta name="twitter:image"       content="carry-on-gold.png" />
+
+  <style>
+    :root {
+      --cream:     #EFE7D8;
+      --charcoal:  #1F1F1F;
+      --cognac:    #8B5A3C;
+      --champagne: #C9A961;
+      --silver:    #D8D3C8;
+      --line:      rgba(31,31,31,0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Tiny header bar */
+    .topbar {
+      display: flex; align-items: center; justify-content: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar a {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+      text-align: center;
+    }
+    .kicker {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cognac);
+      margin: 0 0 24px;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin: 0 0 20px;
+      color: var(--charcoal);
+    }
+    .sub {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(31,31,31,0.7);
+      max-width: 420px;
+      margin: 0 auto 36px;
+    }
+
+    /* Countdown */
+    .countdown {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 28px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      margin: 0 auto 44px;
+      background: rgba(255,255,255,0.5);
+    }
+    .count-label {
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--cognac);
+    }
+    #countdown {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      letter-spacing: 0.02em;
+      color: var(--charcoal);
+    }
+
+    /* Form */
+    .form {
+      display: grid;
+      gap: 14px;
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .field-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--cognac);
+      margin-bottom: 6px;
+    }
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      font-size: 16px;                /* prevents iOS auto-zoom */
+      font-family: Helvetica, Arial, sans-serif;
+      color: var(--charcoal);
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 16px 18px;
+      min-height: 50px;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: border-color 0.15s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--charcoal);
+    }
+    .sms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      cursor: pointer;
+      min-height: 44px;
+      user-select: none;
+    }
+    .sms-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--charcoal);
+      flex-shrink: 0;
+    }
+    .sms-row span {
+      font-size: 14px;
+      color: rgba(31,31,31,0.78);
+      line-height: 1.45;
+    }
+    button[type="submit"] {
+      margin-top: 6px;
+      width: 100%;
+      background: var(--charcoal);
+      color: var(--cream);
+      border: none;
+      border-radius: 4px;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 18px 24px;
+      min-height: 52px;
+      cursor: pointer;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    button[type="submit"]:hover { background: #000; }
+    button[type="submit"]:disabled { opacity: 0.5; cursor: default; }
+    .form-message {
+      min-height: 24px;
+      font-size: 13px;
+      color: var(--cognac);
+      text-align: center;
+      margin: 8px 0 0;
+    }
+    .form-message.ok    { color: var(--charcoal); font-weight: 600; }
+    .form-message.error { color: #b14040; }
+
+    .footnote {
+      margin-top: 56px;
+      font-size: 12px;
+      color: rgba(31,31,31,0.55);
+      letter-spacing: 0.05em;
+    }
+
+    /* Popup */
+    .popup-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(31,31,31,0.50);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 9999;
+      padding: 24px;
+    }
+    .popup-backdrop.open { display: flex; }
+    .popup-card {
+      background: var(--cream);
+      border-radius: 8px;
+      max-width: 440px;
+      width: 100%;
+      padding: 40px 28px 32px;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    }
+    .popup-card .close-x {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 36px; height: 36px;
+      border: none; background: transparent;
+      font-size: 22px; line-height: 1;
+      color: rgba(31,31,31,0.6);
+      cursor: pointer;
+    }
+    .popup-card .close-x:hover { color: var(--charcoal); }
+    .popup-card h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.1;
+      margin: 0 0 12px;
+      color: var(--charcoal);
+    }
+    .popup-card p {
+      font-size: 14px;
+      color: rgba(31,31,31,0.7);
+      margin: 0 0 20px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 48px 20px 72px; }
+      h1 { font-size: 40px; }
+      .sub { font-size: 15px; }
+      #countdown { font-size: 20px; }
+      .popup-card { padding: 36px 22px 28px; }
+      .popup-card h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="index.html">BLN&nbsp;TRAVEL</a>
+  </div>
+
+  <div class="wrap">
+    <p class="kicker">June 13 · 2026</p>
+    <h1>Join the list.</h1>
+    <p class="sub">Three colorways. One hundred pieces. The list opens now.</p>
+
+    <div class="countdown" role="timer" aria-live="polite">
+      <span class="count-label">Drop opens in</span>
+      <span id="countdown">…</span>
+    </div>
+
+    <form class="form" id="waitlistForm" novalidate>
+      <div>
+        <label for="email" class="field-label">Email</label>
+        <input id="email" type="email" name="email" required autocomplete="email"
+               inputmode="email" placeholder="you@email.com" />
+      </div>
+
+      <label class="sms-row" for="sms">
+        <input id="sms" type="checkbox" />
+        <span>Add SMS for early access on Thursday June 12.</span>
+      </label>
+
+      <div id="phoneField" hidden>
+        <label for="phone" class="field-label">Phone</label>
+        <input id="phone" type="tel" name="phone" autocomplete="tel"
+               inputmode="tel" placeholder="+1 (514) 555 0123" />
+      </div>
+
+      <button type="submit" id="submitBtn">Join the list</button>
+      <p class="form-message" id="formMsg" aria-live="polite"></p>
+    </form>
+
+    <p class="footnote">No spam. One letter before the drop.</p>
+  </div>
+
+  <!-- Popup: 30s or 50% scroll, whichever first. Suppressed for known signers. -->
+  <div class="popup-backdrop" id="popup" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="popup-card">
+      <button class="close-x" type="button" aria-label="Close" id="popupClose">×</button>
+      <h2>Don't miss the drop.</h2>
+      <p>One hundred pieces. June 13. Drop your email and we'll send you the link the moment it goes live.</p>
+      <form class="form" id="popupForm" novalidate>
+        <div>
+          <label for="popEmail" class="field-label">Email</label>
+          <input id="popEmail" type="email" name="email" required autocomplete="email"
+                 inputmode="email" placeholder="you@email.com" />
+        </div>
+        <button type="submit">Save my spot</button>
+        <p class="form-message" id="popMsg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KLAVIYO_COMPANY = 'SRUrAp';
+  var LIST_EMAIL      = 'XHpxSX';
+  var LIST_SMS        = 'VUXEnu';
+  var DROP_AT         = new Date('2026-06-13T10:00:00-04:00').getTime();
+  var POPUP_DELAY_MS  = 30 * 1000;
+  var POPUP_SCROLL_PC = 50;
+  var LS_SUBMITTED    = 'bln.waitlist.submitted';
+  var LS_POPUP_SEEN   = 'bln.waitlist.popupSeen';
+
+  // ── Countdown ─────────────────────────────────────────────
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function renderCountdown() {
+    var el = document.getElementById('countdown');
+    if (!el) return;
+    var diff = DROP_AT - Date.now();
+    if (diff <= 0) { el.textContent = 'The list is open.'; return; }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000) / 60000);
+    el.textContent = days + ' days, ' + pad(hours) + 'h ' + pad(mins) + 'm';
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 60 * 1000);
+
+  // ── UTM capture ───────────────────────────────────────────
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  function captureUTMs() {
+    var qp = new URLSearchParams(window.location.search);
+    var stored = {};
+    try { stored = JSON.parse(localStorage.getItem('bln.utms') || '{}'); } catch (e) {}
+    var changed = false;
+    UTM_KEYS.forEach(function (k) {
+      var v = qp.get(k);
+      if (v) { stored[k] = v; changed = true; }
+    });
+    if (changed) {
+      stored.first_seen_at = stored.first_seen_at || new Date().toISOString();
+      stored.landing_url   = window.location.href;
+      try { localStorage.setItem('bln.utms', JSON.stringify(stored)); } catch (e) {}
+    }
+    return stored;
+  }
+  var utms = captureUTMs();
+
+  // ── SMS toggle ────────────────────────────────────────────
+  var smsCheck = document.getElementById('sms');
+  var phoneField = document.getElementById('phoneField');
+  if (smsCheck && phoneField) {
+    smsCheck.addEventListener('change', function () {
+      phoneField.hidden = !smsCheck.checked;
+      if (smsCheck.checked) document.getElementById('phone').focus();
+    });
+  }
+
+  // ── Klaviyo client subscribe ──────────────────────────────
+  function klaviyoSubscribe(opts) {
+    var profileAttrs = {
+      email: opts.email,
+      properties: Object.assign({
+        signup_source: opts.source || 'BLN Waitlist',
+        landing_url:   utms.landing_url || window.location.href,
+      }, utms),
+      subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } }
+    };
+    if (opts.phone) {
+      profileAttrs.phone_number = opts.phone;
+      profileAttrs.subscriptions.sms = { marketing: { consent: 'SUBSCRIBED' } };
+    }
+    var body = {
+      data: {
+        type: 'subscription',
+        attributes: {
+          custom_source: opts.source || 'BLN Waitlist',
+          profile: { data: { type: 'profile', attributes: profileAttrs } }
+        },
+        relationships: { list: { data: { type: 'list', id: opts.listId } } }
+      }
+    };
+    return fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + KLAVIYO_COMPANY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+      body: JSON.stringify(body)
+    });
+  }
+
+  function setMsg(el, text, cls) {
+    if (!el) return;
+    el.className = 'form-message ' + (cls || '');
+    el.textContent = text;
+  }
+
+  async function handleSignup(form, msgEl, source) {
+    var email = (form.querySelector('input[type="email"]') || {}).value || '';
+    var phoneInput = form.querySelector('input[type="tel"]');
+    var phone = phoneInput ? phoneInput.value.trim() : '';
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    email = email.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setMsg(msgEl, 'Enter a valid email.', 'error'); return;
+    }
+    if (phone && !/^\+?[\d\s()-]{7,}$/.test(phone)) {
+      setMsg(msgEl, 'Enter a valid phone or untick SMS.', 'error'); return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Adding…';
+    setMsg(msgEl, '', '');
+
+    try {
+      var r1 = await klaviyoSubscribe({
+        email: email, phone: phone || undefined,
+        listId: LIST_EMAIL, source: source
+      });
+      if (!r1.ok && r1.status !== 202) throw new Error('Email subscribe ' + r1.status);
+      if (phone) {
+        var r2 = await klaviyoSubscribe({
+          email: email, phone: phone,
+          listId: LIST_SMS, source: source + ' · SMS'
+        });
+        if (!r2.ok && r2.status !== 202) console.warn('[BLN] SMS subscribe failed', r2.status);
+      }
+      setMsg(msgEl, "You're in. Check your inbox.", 'ok');
+      submitBtn.textContent = 'Added';
+      try {
+        localStorage.setItem(LS_SUBMITTED, '1');
+        localStorage.setItem(LS_POPUP_SEEN, '1');
+      } catch (e) {}
+      closePopup();
+    } catch (err) {
+      console.error('[BLN] subscribe error', err);
+      setMsg(msgEl, "Something went sideways. Try again in a moment.", 'error');
+      submitBtn.disabled = false;
+      submitBtn.textContent = source === 'BLN Waitlist Popup' ? 'Save my spot' : 'Join the list';
+    }
+  }
+
+  // ── Wire forms ────────────────────────────────────────────
+  var inlineForm = document.getElementById('waitlistForm');
+  if (inlineForm) inlineForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    handleSignup(inlineForm, document.getElementById('formMsg'), 'BLN Waitlist Page');
+  });
+  var popupForm = document.getElementById('popupForm');
+  if (popupForm) popupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    handleSignup(popupForm, document.getElementById('popMsg'), 'BLN Waitlist Popup');
+  });
+
+  // ── Popup trigger ─────────────────────────────────────────
+  var popupEl = document.getElementById('popup');
+  var popupOpened = false;
+  function openPopup() {
+    var seen = '';
+    try { seen = localStorage.getItem(LS_SUBMITTED) || localStorage.getItem(LS_POPUP_SEEN) || ''; } catch (e) {}
+    if (seen || popupOpened) return;
+    popupOpened = true;
+    popupEl.classList.add('open');
+    popupEl.setAttribute('aria-hidden', 'false');
+    var emailIn = document.getElementById('popEmail');
+    if (emailIn) setTimeout(function () { emailIn.focus(); }, 200);
+  }
+  function closePopup() {
+    if (!popupEl) return;
+    popupEl.classList.remove('open');
+    popupEl.setAttribute('aria-hidden', 'true');
+    try { localStorage.setItem(LS_POPUP_SEEN, '1'); } catch (e) {}
+  }
+  if (popupEl) {
+    document.getElementById('popupClose').addEventListener('click', closePopup);
+    popupEl.addEventListener('click', function (e) { if (e.target === popupEl) closePopup(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && popupEl.classList.contains('open')) closePopup();
+    });
+    setTimeout(openPopup, POPUP_DELAY_MS);
+    window.addEventListener('scroll', function () {
+      var sc = (window.scrollY + window.innerHeight) /
+               Math.max(document.documentElement.scrollHeight, 1) * 100;
+      if (sc >= POPUP_SCROLL_PC) openPopup();
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>
