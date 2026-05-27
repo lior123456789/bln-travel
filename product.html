@@ -110,21 +110,8 @@
         <div id="heroFrame" class="aspect-[4/5] flex items-center justify-center relative transition-colors duration-500 bg-white">
           <img id="heroImage" src="carry-on-silver.png" alt="The Carry-On" class="max-w-[78%] mx-auto bold-hero" />
         </div>
-        <!-- Thumbnail strip -->
-        <div class="grid grid-cols-4 gap-3 mt-4">
-          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-silver.png">
-            <img src="carry-on-silver.png" class="w-full h-full object-contain bold-img" alt=""/>
-          </button>
-          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-silver-studio.png">
-            <img src="carry-on-silver-studio.png" class="w-full h-full object-contain bold-img" alt=""/>
-          </button>
-          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-silver-lifestyle.png">
-            <img src="carry-on-silver-lifestyle.png" class="w-full h-full object-contain bold-img" alt=""/>
-          </button>
-          <button class="thumb aspect-square bg-offwhite border border-line p-3" data-img="carry-on-obsidian-lifestyle.png">
-            <img src="carry-on-obsidian-lifestyle.png" class="w-full h-full object-contain bold-img" alt=""/>
-          </button>
-        </div>
+        <!-- Thumbnail strip — populated dynamically per selected colour -->
+        <div id="thumbs" class="grid grid-cols-3 gap-3 mt-4"></div>
       </div>
 
       <!-- Info -->
@@ -261,33 +248,50 @@
 
     // Background colour each suitcase blends into.
     const HERO_BG = {
-      silver:   '#e9eaec',  // pale steel
-      obsidian: '#1c1c1d',  // deep charcoal
-      gold:     '#f1e7d3',  // warm cream
+      silver:   '#e9eaec',
+      obsidian: '#1c1c1d',
+      gold:     '#f1e7d3',
     };
+
+    // Three angles per colour. Add or reorder freely — first one shows in the hero.
+    const GALLERY = {
+      silver:   ['carry-on-silver.png',   'carry-on-silver-studio.png',   'carry-on-silver-lifestyle.png'],
+      obsidian: ['carry-on-obsidian.png', 'carry-on-obsidian-studio.png', 'carry-on-obsidian-lifestyle.png'],
+      gold:     ['carry-on-gold.png',     'carry-on-gold-studio.png',     'carry-on-gold-lifestyle.png'],
+    };
+
     function pick(color) {
       const swatch = document.querySelector(`.swatch[data-color="${color}"]`);
       if (!swatch) return;
       document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
       swatch.classList.add('selected');
-      const name = swatch.dataset.name;
-      const img  = swatch.dataset.img;
-      document.getElementById('colorName').textContent = name;
-      document.getElementById('heroImage').src = img;
+      document.getElementById('colorName').textContent = swatch.dataset.name;
+
+      const images = GALLERY[color] || [swatch.dataset.img];
+      document.getElementById('heroImage').src = images[0];
       const frame = document.getElementById('heroFrame');
       if (frame && HERO_BG[color]) frame.style.background = HERO_BG[color];
+
+      // Rebuild the thumbnail strip for this colour so all three angles are visible
+      // and clickable — tapping a thumbnail swaps the hero, no page reload.
+      const thumbsEl = document.getElementById('thumbs');
+      thumbsEl.innerHTML = images.map((src, i) => `
+        <button class="thumb aspect-square border border-line p-3 transition-colors hover:bg-offwhite ${i === 0 ? 'ring-1 ring-ink' : ''}"
+                data-img="${src}">
+          <img src="${src}" class="w-full h-full object-contain bold-img" alt=""/>
+        </button>`).join('');
+      thumbsEl.querySelectorAll('.thumb').forEach(t => {
+        t.addEventListener('click', () => {
+          document.getElementById('heroImage').src = t.dataset.img;
+          thumbsEl.querySelectorAll('.thumb').forEach(x => x.classList.remove('ring-1', 'ring-ink'));
+          t.classList.add('ring-1', 'ring-ink');
+        });
+      });
     }
     document.querySelectorAll('.swatch').forEach(sw => {
       sw.addEventListener('click', () => pick(sw.dataset.color));
     });
     pick(initial);
-
-    // Thumbnail click → swap hero
-    document.querySelectorAll('.thumb').forEach(t => {
-      t.addEventListener('click', () => {
-        document.getElementById('heroImage').src = t.dataset.img;
-      });
-    });
 
     // ─────────────────────────────────────────────────────────────────────
     // 🛒 SHOPIFY — fill these in once, the site picks up checkout for real.
