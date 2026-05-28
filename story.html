@@ -36,8 +36,8 @@
 </head>
 <body>
 
-  <a href="list.html" class="block bg-ink text-white text-center text-[12px] tracking-[0.20em] uppercase py-3 hover:bg-black transition-colors">
-    Drop opens June 13 · Join the list →
+  <a href="list.html" id="launchBanner" class="block bg-ink text-white text-center text-[12px] tracking-[0.20em] uppercase py-3 hover:bg-black transition-colors">
+    <span id="countdown">Drop opens June 13</span> · Code <span class="text-white font-semibold">FIRST100</span> · 10% off · Join the list →
   </a>
 
   <!-- Top utility -->
@@ -267,5 +267,27 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
+
+  <!-- Live countdown to drop date — Friday June 13, 2026 10am ET -->
+  <script>
+    (function(){
+      var target = new Date('2026-06-13T10:00:00-04:00').getTime();
+      var el = document.getElementById('countdown');
+      if (!el) return;
+      function tick(){
+        var diff = target - new Date().getTime();
+        if (diff <= 0) { el.textContent = 'Drop is live'; return; }
+        var d = Math.floor(diff/86400000);
+        var h = Math.floor((diff%86400000)/3600000);
+        var m = Math.floor((diff%3600000)/60000);
+        if (d > 1) el.textContent = 'Drop in ' + d + ' days';
+        else if (d === 1) el.textContent = 'Drop in 1 day ' + h + 'h';
+        else el.textContent = 'Drop in ' + h + 'h ' + m + 'm';
+      }
+      tick();
+      setInterval(tick, 60000);
+    })();
+  </script>
+
 </body>
 </html>
