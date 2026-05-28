@@ -1,0 +1,530 @@
+<!--
+  BLN Travel — /pages/list body
+  Paste everything below into Shopify admin:
+    Online Store → Pages → "Join the list" → body editor → switch to "Show HTML"
+    → replace contents → Save.
+
+  No frameworks. No jQuery. Subscribes go to Klaviyo /client/subscriptions
+  directly so there is no Shopify→Klaviyo sync delay.
+
+  Klaviyo company id: SRUrAp
+  Email list:         XHpxSX
+  SMS list:           VUXEnu
+  Drop opens:         2026-06-13 10:00 ET
+-->
+
+<style>
+  /* All styles scoped under .bln-list so they don't bleed into the rest of the theme. */
+  .bln-list {
+    --cream:     #EFE7D8;
+    --charcoal:  #1F1F1F;
+    --cognac:    #8B5A3C;
+    --champagne: #C9A961;
+    --silver:    #D8D3C8;
+    --line:      rgba(31,31,31,0.12);
+
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    margin: -1rem 0;   /* swallow Shopify's default page padding */
+    padding: 0;
+  }
+  .bln-list * { box-sizing: border-box; }
+  .bln-list .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 24px 96px;
+    text-align: center;
+  }
+  .bln-list .kicker {
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    margin: 0 0 24px;
+  }
+  .bln-list h1 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    color: var(--charcoal);
+  }
+  .bln-list .sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(31,31,31,0.7);
+    max-width: 420px;
+    margin: 0 auto 36px;
+  }
+
+  /* Countdown */
+  .bln-list .countdown {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 28px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    margin: 0 auto 44px;
+    background: rgba(255,255,255,0.5);
+  }
+  .bln-list .count-label {
+    font-size: 11px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cognac);
+  }
+  .bln-list #countdown {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+  }
+
+  /* Form */
+  .bln-list .form {
+    display: grid;
+    gap: 14px;
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .bln-list .field-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    margin-bottom: 6px;
+  }
+  .bln-list input[type="email"],
+  .bln-list input[type="tel"] {
+    width: 100%;
+    /* 16px minimum prevents iOS auto-zoom on focus. */
+    font-size: 16px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--charcoal);
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 18px;
+    /* 16+16+padding = 50px ≈ ≥44pt touch target on phones */
+    min-height: 50px;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.15s ease;
+  }
+  .bln-list input:focus {
+    outline: none;
+    border-color: var(--charcoal);
+  }
+  .bln-list .sms-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+    /* Make the whole row a comfortable tap target */
+    min-height: 44px;
+    user-select: none;
+  }
+  .bln-list .sms-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--charcoal);
+    flex-shrink: 0;
+  }
+  .bln-list .sms-row span {
+    font-size: 14px;
+    color: rgba(31,31,31,0.78);
+    line-height: 1.45;
+  }
+  .bln-list button[type="submit"] {
+    margin-top: 6px;
+    width: 100%;
+    background: var(--charcoal);
+    color: var(--cream);
+    border: none;
+    border-radius: 4px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 18px 24px;
+    min-height: 52px;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+  .bln-list button[type="submit"]:hover { background: #000; }
+  .bln-list button[type="submit"]:disabled { opacity: 0.5; cursor: default; }
+  .bln-list .form-message {
+    min-height: 24px;
+    font-size: 13px;
+    color: var(--cognac);
+    text-align: center;
+    margin: 8px 0 0;
+  }
+  .bln-list .form-message.ok    { color: var(--charcoal); font-weight: 600; }
+  .bln-list .form-message.error { color: #b14040; }
+
+  /* Foot copy */
+  .bln-list .footnote {
+    margin-top: 56px;
+    font-size: 12px;
+    color: rgba(31,31,31,0.55);
+    letter-spacing: 0.05em;
+  }
+
+  /* Popup */
+  .bln-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(31,31,31,0.50);
+    backdrop-filter: blur(2px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 24px;
+  }
+  .bln-popup-backdrop.open { display: flex; }
+  .bln-popup-card {
+    background: #EFE7D8;
+    border-radius: 8px;
+    max-width: 440px;
+    width: 100%;
+    padding: 40px 28px 32px;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  }
+  .bln-popup-card .close-x {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    line-height: 1;
+    color: rgba(31,31,31,0.6);
+    cursor: pointer;
+  }
+  .bln-popup-card .close-x:hover { color: #1F1F1F; }
+  .bln-popup-card h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    color: #1F1F1F;
+  }
+  .bln-popup-card p {
+    font-size: 14px;
+    color: rgba(31,31,31,0.7);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .bln-list .wrap { padding: 56px 20px 72px; }
+    .bln-list h1 { font-size: 40px; }
+    .bln-list .sub { font-size: 15px; }
+    .bln-list #countdown { font-size: 20px; }
+    .bln-popup-card { padding: 36px 22px 28px; }
+    .bln-popup-card h2 { font-size: 24px; }
+  }
+</style>
+
+<div class="bln-list">
+  <div class="wrap">
+    <p class="kicker">June 13 · 2026</p>
+    <h1>Join the list.</h1>
+    <p class="sub">Three colorways. One hundred pieces. The list opens now.</p>
+
+    <div class="countdown" role="timer" aria-live="polite">
+      <span class="count-label">Drop opens in</span>
+      <span id="countdown">…</span>
+    </div>
+
+    <form class="form" id="blnWaitlistForm" novalidate>
+      <div>
+        <label for="bln-email" class="field-label">Email</label>
+        <input id="bln-email" type="email" name="email" required autocomplete="email"
+               inputmode="email" placeholder="you@email.com" />
+      </div>
+
+      <label class="sms-row" for="bln-sms">
+        <input id="bln-sms" type="checkbox" />
+        <span>Add SMS for early access on Thursday June 12.</span>
+      </label>
+
+      <div id="bln-phone-field" hidden>
+        <label for="bln-phone" class="field-label">Phone</label>
+        <input id="bln-phone" type="tel" name="phone" autocomplete="tel"
+               inputmode="tel" placeholder="+1 (514) 555 0123" />
+      </div>
+
+      <button type="submit" id="bln-submit">Join the list</button>
+      <p class="form-message" id="bln-form-msg" aria-live="polite"></p>
+    </form>
+
+    <p class="footnote">No spam. One letter before the drop.</p>
+  </div>
+</div>
+
+<!-- Popup (hidden by default, JS triggers it on 30s OR 50% scroll, whichever first) -->
+<div class="bln-popup-backdrop" id="blnPopup" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="bln-popup-card">
+    <button class="close-x" type="button" aria-label="Close" id="blnPopupClose">×</button>
+    <h2>Don't miss the drop.</h2>
+    <p>One hundred pieces. June 13. Add your email and we'll send you the link the moment it goes live.</p>
+    <form class="form" id="blnPopupForm" novalidate>
+      <div>
+        <label for="bln-pop-email" class="field-label">Email</label>
+        <input id="bln-pop-email" type="email" name="email" required autocomplete="email"
+               inputmode="email" placeholder="you@email.com" />
+      </div>
+      <button type="submit">Save my spot</button>
+      <p class="form-message" id="bln-pop-msg" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ─────────────────────────── Config ───────────────────────────
+  var KLAVIYO_COMPANY = 'SRUrAp';
+  var LIST_EMAIL      = 'XHpxSX';
+  var LIST_SMS        = 'VUXEnu';
+  var DROP_AT         = new Date('2026-06-13T10:00:00-04:00').getTime(); // June 13 2026 10:00 EDT
+  var POPUP_DELAY_MS  = 30 * 1000;
+  var POPUP_SCROLL_PC = 50;
+  var LS_SUBMITTED    = 'bln.waitlist.submitted';
+  var LS_POPUP_SEEN   = 'bln.waitlist.popupSeen';
+
+  // ─────────────────────────── Countdown ───────────────────────────
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function renderCountdown() {
+    var el = document.getElementById('countdown');
+    if (!el) return;
+    var diff = DROP_AT - Date.now();
+    if (diff <= 0) { el.textContent = 'The list is open.'; return; }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000) / 60000);
+    el.textContent = days + ' days, ' + pad(hours) + 'h ' + pad(mins) + 'm';
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 60 * 1000); // update every minute
+
+  // ─────────────────────────── UTM capture ───────────────────────────
+  // Persist UTMs from the URL to localStorage so they survive page refresh
+  // and get attached to the Klaviyo profile on submit.
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  function captureUTMs() {
+    var qp = new URLSearchParams(window.location.search);
+    var stored = {};
+    try { stored = JSON.parse(localStorage.getItem('bln.utms') || '{}'); } catch (e) {}
+    var changed = false;
+    UTM_KEYS.forEach(function (k) {
+      var v = qp.get(k);
+      if (v) { stored[k] = v; changed = true; }
+    });
+    if (changed) {
+      stored.first_seen_at = stored.first_seen_at || new Date().toISOString();
+      stored.landing_url   = window.location.href;
+      try { localStorage.setItem('bln.utms', JSON.stringify(stored)); } catch (e) {}
+    }
+    return stored;
+  }
+  var utms = captureUTMs();
+
+  // ─────────────────────────── SMS toggle ───────────────────────────
+  var smsCheck = document.getElementById('bln-sms');
+  var phoneField = document.getElementById('bln-phone-field');
+  if (smsCheck && phoneField) {
+    smsCheck.addEventListener('change', function () {
+      phoneField.hidden = !smsCheck.checked;
+      if (smsCheck.checked) document.getElementById('bln-phone').focus();
+    });
+  }
+
+  // ─────────────────────────── Klaviyo subscribe ───────────────────────────
+  // Uses the client-side Subscriptions endpoint — no API key in the browser,
+  // no Shopify proxy required.
+  // https://developers.klaviyo.com/en/reference/create_client_subscription
+  function klaviyoSubscribe(opts) {
+    var profileAttrs = {
+      email: opts.email,
+      properties: Object.assign({
+        signup_source: opts.source || 'waitlist_inline',
+        landing_url:   utms.landing_url || window.location.href,
+      }, utms),
+      subscriptions: {
+        email: { marketing: { consent: 'SUBSCRIBED' } }
+      }
+    };
+    if (opts.phone) {
+      profileAttrs.phone_number = opts.phone;
+      profileAttrs.subscriptions.sms = { marketing: { consent: 'SUBSCRIBED' } };
+    }
+
+    var body = {
+      data: {
+        type: 'subscription',
+        attributes: {
+          custom_source: opts.source || 'BLN Waitlist Page',
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: profileAttrs
+            }
+          }
+        },
+        relationships: {
+          list: { data: { type: 'list', id: opts.listId } }
+        }
+      }
+    };
+
+    return fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + KLAVIYO_COMPANY, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'revision':     '2024-10-15'
+      },
+      body: JSON.stringify(body)
+    });
+  }
+
+  // After email-list subscribe, if phone present, also subscribe to SMS list.
+  async function handleSignup(form, msgEl, source) {
+    var email = (form.querySelector('input[type="email"]') || {}).value || '';
+    var phoneInput = form.querySelector('input[type="tel"]');
+    var phone = phoneInput ? phoneInput.value.trim() : '';
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    email = email.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setMsg(msgEl, 'Enter a valid email.', 'error');
+      return;
+    }
+    if (phone && !/^\+?[\d\s()-]{7,}$/.test(phone)) {
+      setMsg(msgEl, 'Enter a valid phone or untick SMS.', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Adding…';
+    setMsg(msgEl, '', '');
+
+    try {
+      // 1. Email list
+      var r1 = await klaviyoSubscribe({
+        email:  email,
+        phone:  phone || undefined,
+        listId: LIST_EMAIL,
+        source: source
+      });
+      if (!r1.ok && r1.status !== 202) {
+        throw new Error('Klaviyo email subscribe ' + r1.status);
+      }
+      // 2. SMS list (only when phone provided)
+      if (phone) {
+        var r2 = await klaviyoSubscribe({
+          email:  email,
+          phone:  phone,
+          listId: LIST_SMS,
+          source: source + ' · SMS'
+        });
+        if (!r2.ok && r2.status !== 202) {
+          console.warn('[BLN] SMS subscribe failed', r2.status);
+        }
+      }
+      setMsg(msgEl, "You're in. Check your inbox.", 'ok');
+      submitBtn.textContent = 'Added';
+      try {
+        localStorage.setItem(LS_SUBMITTED, '1');
+        localStorage.setItem(LS_POPUP_SEEN, '1');
+      } catch (e) {}
+      closePopup();
+    } catch (err) {
+      console.error('[BLN] subscribe error', err);
+      setMsg(msgEl, "Something went sideways. Try again in a moment.", 'error');
+      submitBtn.disabled = false;
+      submitBtn.textContent = source === 'BLN Waitlist Popup' ? 'Save my spot' : 'Join the list';
+    }
+  }
+
+  function setMsg(el, text, cls) {
+    if (!el) return;
+    el.className = 'form-message ' + (cls || '');
+    el.textContent = text;
+  }
+
+  // ─────────────────────────── Wire forms ───────────────────────────
+  var inlineForm = document.getElementById('blnWaitlistForm');
+  if (inlineForm) {
+    inlineForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      handleSignup(inlineForm, document.getElementById('bln-form-msg'), 'BLN Waitlist Page');
+    });
+  }
+  var popupForm = document.getElementById('blnPopupForm');
+  if (popupForm) {
+    popupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      handleSignup(popupForm, document.getElementById('bln-pop-msg'), 'BLN Waitlist Popup');
+    });
+  }
+
+  // ─────────────────────────── Popup trigger ───────────────────────────
+  // 30s OR 50% scroll, whichever first. Suppressed for known subscribers
+  // (cookie/localStorage flag) so we don't nag people who already joined.
+  var popupEl = document.getElementById('blnPopup');
+  var popupOpened = false;
+  function openPopup() {
+    var seen = '';
+    try {
+      seen = localStorage.getItem(LS_SUBMITTED) || localStorage.getItem(LS_POPUP_SEEN) || '';
+    } catch (e) {}
+    if (seen || popupOpened) return;
+    popupOpened = true;
+    popupEl.classList.add('open');
+    popupEl.setAttribute('aria-hidden', 'false');
+    var emailIn = document.getElementById('bln-pop-email');
+    if (emailIn) setTimeout(function () { emailIn.focus(); }, 200);
+  }
+  function closePopup() {
+    if (!popupEl) return;
+    popupEl.classList.remove('open');
+    popupEl.setAttribute('aria-hidden', 'true');
+    try { localStorage.setItem(LS_POPUP_SEEN, '1'); } catch (e) {}
+  }
+  if (popupEl) {
+    document.getElementById('blnPopupClose').addEventListener('click', closePopup);
+    popupEl.addEventListener('click', function (e) { if (e.target === popupEl) closePopup(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && popupEl.classList.contains('open')) closePopup();
+    });
+    setTimeout(openPopup, POPUP_DELAY_MS);
+    window.addEventListener('scroll', function () {
+      var sc = (window.scrollY + window.innerHeight) /
+               Math.max(document.documentElement.scrollHeight, 1) * 100;
+      if (sc >= POPUP_SCROLL_PC) openPopup();
+    }, { passive: true });
+  }
+})();
+</script>
